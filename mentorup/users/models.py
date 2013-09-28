@@ -17,6 +17,8 @@ from taggit.managers import TaggableManager
 from django.utils.translation import ugettext_lazy as _
 
 # Create seperate classes for each tag type that will be a foreign key reference from User
+
+## Subclass these from the TagBase, and set them to have a ForeignKey -> User for better queries
 class TeachSkills(models.Model):
     skills = TaggableManager()
 
@@ -30,8 +32,8 @@ class User(AbstractUser):
         return self.username
 
     # Related tag models
-    teach = models.ForeignKey(TeachSkills, null=True)
-    learn = models.ForeignKey(LearnSkills, null=True)
+    teach = models.OneToOneField(TeachSkills, null=True)
+    learn = models.OneToOneField(LearnSkills, null=True)
     short_bio = models.TextField()
     location = models.CharField(max_length=50)
 
@@ -76,3 +78,58 @@ def create_skill_association(sender, instance, created, **kwargs):
 
 
 post_save.connect(create_skill_association, sender=User)
+
+class Search(models.Model):
+
+    @classmethod
+    # Find all learn - teach object from tag, which are one-to-one related to the user
+    # Currently you access the user by calling learn_skill_object.user
+    # A related lookup query such as 
+    # User.objects.filter(learn__skills__name=tag) returns an error that has to do with 
+    # django-taggit.  This is the current workaround until it can be fixed
+    def learn_tag(self, tag):
+        return LearnSkills.objects.filter(skills__name=tag).distinct()
+
+    def teach_tag(self, tag):
+        return TeachSkills.objects.filter(skills__name=tag).distinct()
+    
+    @classmethod
+    # Find all users with a given skill level
+    def user_by_skill(self, skill):
+        return User.objects.filter(tags__name__endswith=skill).distinct()
+
+# Note: access the skills -> user.skills.filter(endswith="Expert")
+
+class Skills(models.Model):
+
+    tags = TaggableManager()
+
+    # Call this method when initializing the available tags in the DB.
+    # It can be called safely multiple times without issue, as django-taggit checks against duplicates
+    @classmethod
+    def generate_tags(cls):
+        base_tags = ["Python", "Django", "Flask", "Ruby", "Ruby on Rails", "Javascript", "Node.js", "Angular", "Backbone", "Scala", "PHP", "Java", "HTML5", "CSS3", "Jquery"]
+        skill_level_tags = ["No Experience", "Beginner", "Intermediate", "Expert"]
+        manager = Skills.objects.get_or_create(pk=1)[0]
+        for tag in base_tags:
+            for skill_tag in skill_level_tags:
+                tag_skill = "%s %s" %(tag, skill_tag)
+                tag = "%s" %(tag)
+                manager.tags.add(tag_skill)
+                manager.tags.add(tag)
+
+    # Create a single tag with this method, if you specify a skill level ( which you should )
+    # It will also create the base tag.  I.E. Skills.create_tag("Python", "Expert")
+    # Will create the tag "Python" as well as the tag "Python Expert"
+    @classmethod
+    def create_tag(cls, tag, skill_level=None):
+        manager = Skills.objects.get_or_create(pk=1)[0]
+        if not skill_level:
+            tag = "%s" %(tag)
+            manager.tags.add(tag)
+        else:
+            tag_skill = "%s %s" %(tag, skill_level)
+            tag = "%s" %(tag)
+            manager.tags.add(tag_skill)
+            manager.tags.add(tag)          
+
