@@ -38,9 +38,29 @@ class User(AbstractUser):
 
     def __unicode__(self):
         return self.username
-        
+
     objects = UserManager()
     teach = models.ForeignKey(TeachSkills, null=True)
     learn = models.ForeignKey(LearnSkills, null=True)
     short_bio = models.TextField()
     location = models.CharField(max_length=50)
+
+    def save_skill_teach(self, tag, level):
+        tag_skill = "%s %s" %(tag, level)
+        tag = "%s" %(tag)
+        self.teach.skills.add(tag_skill)
+        self.teach.skills.add(tag)
+        return tag + " tag saved."   
+
+    def save_skill_learn(self, tag, level):
+        tag_skill = "%s %s" %(tag, level)
+        tag = "%s" %(tag)
+        self.learn.skills.add(tag_skill)
+        self.learn.skills.add(tag)
+        return tag + " tag saved."   
+
+    def get_skill_teach(self):
+        return self.teach.skills.all()
+
+    def get_skill_learn(self):
+        return self.learn.skills.all()
