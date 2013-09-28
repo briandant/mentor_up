@@ -14,6 +14,8 @@ from taggit.models import Tag
 from taggit.models import TagBase
 from taggit.managers import TaggableManager
 
+from allauth.socialaccount.models import SocialAccount
+
 from django.utils.translation import ugettext_lazy as _
 
 # Create seperate classes for each tag type that will be a foreign key reference from User
@@ -64,6 +66,18 @@ class User(AbstractUser):
     # Returns all tags, skills that a user wishes to learn
     def get_skill_learn(self):
         return self.learn.skills.all()
+
+    def github_profile_url(self): 
+        """ 
+        Given a user, return the profile URL of their Github account
+        """
+        accounts = SocialAccount.objects.filter(user=self)
+
+        for account in accounts:
+            if account.provider == 'github':
+                return account.get_profile_url()
+            else:
+                return None
 
 # post_save method to associate tags with user upon user creation.
 def create_skill_association(sender, instance, created, **kwargs):
