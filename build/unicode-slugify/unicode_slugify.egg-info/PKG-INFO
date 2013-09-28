@@ -1,0 +1,34 @@
+Metadata-Version: 1.1
+Name: unicode-slugify
+Version: 0.1.1
+Summary: A slug generator that turns strings into unicode slugs.
+Home-page: http://github.com/mozilla/unicode-slugify
+Author: Jeff Balogh, Dave Dash
+Author-email: jbalogh@mozilla.com, dd@mozilla.com
+License: BSD
+Description: # Unicode Slugify
+        
+        Unicode Slugify is a slugifier that generates unicode slugs.  It was originally
+        used in the Firefox Add-ons web site to generate slugs for add-ons and add-on
+        collections.  Many of these add-ons and collections had unicode characters and
+        required more than simple transliteration.
+        
+        ## Usage
+        
+            >>> import slugify
+        
+            >>> slugify.slugify(u'Bän...g (bang)')
+            u'bäng-bang'
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Environment :: Web Environment :: Mozilla
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

@@ -1,0 +1,17 @@
+MANIFEST.in
+setup.py
+chosen/__init__.py
+chosen/fields.py
+chosen/forms.py
+chosen/widgets.py
+chosen/static/css/chosen.css
+chosen/static/img/chosen-sprite.png
+chosen/static/js/chosen.LICENSE.md
+chosen/static/js/chosen.jquery.js
+chosen/static/js/chosen.jquery.min.js
+chosen/static/js/chosen.jquery_ready.js
+django_chosen.egg-info/PKG-INFO
+django_chosen.egg-info/SOURCES.txt
+django_chosen.egg-info/dependency_links.txt
+django_chosen.egg-info/not-zip-safe
+django_chosen.egg-info/top_level.txt

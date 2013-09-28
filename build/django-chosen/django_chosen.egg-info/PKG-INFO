@@ -1,0 +1,15 @@
+Metadata-Version: 1.0
+Name: django-chosen
+Version: 0.1
+Summary: django FormFields using the Chosen javascript plugin for jQuery
+Home-page: https://github.com/theatlantic/django-chosen
+Author: Frankie Dintino
+Author-email: fdintino@theatlantic.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Framework :: Django

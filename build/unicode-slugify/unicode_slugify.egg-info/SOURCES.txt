@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+slugify/__init__.py
+slugify/tests.py
+unicode_slugify.egg-info/PKG-INFO
+unicode_slugify.egg-info/SOURCES.txt
+unicode_slugify.egg-info/dependency_links.txt
+unicode_slugify.egg-info/not-zip-safe
+unicode_slugify.egg-info/requires.txt
+unicode_slugify.egg-info/top_level.txt
