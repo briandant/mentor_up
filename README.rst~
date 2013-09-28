@@ -13,6 +13,7 @@ Using Sass
 We're using Sass for stylesheets in a very simple way.  You've just gotta understand variables and CSS selector inheritance.  We're not doing anything crazy, and all valid CSS is Sass compliant.
 
 `gem install compass`
+`gem install sass`
 `cd mentorup/static`
 `compass watch`
 
