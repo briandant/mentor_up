@@ -1,9 +1,0 @@
-LICENSE
-MANIFEST.in
-README.rst
-django_cache_url.py
-setup.cfg
-pip-egg-info/django_cache_url.egg-info/PKG-INFO
-pip-egg-info/django_cache_url.egg-info/SOURCES.txt
-pip-egg-info/django_cache_url.egg-info/dependency_links.txt
-pip-egg-info/django_cache_url.egg-info/top_level.txt

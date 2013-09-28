@@ -4,3 +4,4 @@
 mentorup/media
 *.sw[pcom]
 mentorup/static/.sass-cache/
+build/

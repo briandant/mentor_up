@@ -44,3 +44,8 @@ body.sign-in form.login {
   padding: 0;
   color: inherit;
 }
+
+/* line 64, ../sass/project.scss */
+ul.socialaccount_providers li {
+  list-style: none;
+}

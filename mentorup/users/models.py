@@ -10,11 +10,14 @@ from django.db.models.signals import post_save
 from django import forms
 from django.db.models import Q
 
+from allauth.socialaccount.models import SocialAccount
+
 from django.utils.translation import ugettext_lazy as _
 
 # import select 2 fields and forms for skill tag searching
 import select2.fields
 import select2.models
+
 
 class Skills(models.Model):
     """
@@ -82,6 +85,7 @@ class Skills(models.Model):
                 Skills.objects.get_or_create(name=tag, teach=True)
                 Skills.objects.get_or_create(name=tag_skill, teach=True)
 
+
 # Subclass AbstractUser
 class User(AbstractUser):
 
@@ -91,6 +95,18 @@ class User(AbstractUser):
     skills = models.ManyToManyField(Skills, null=True)
     short_bio = models.TextField()
     location = models.CharField(max_length=50)
+
+    def github_profile_url(self): 
+        """ 
+        Given a user, return the profile URL of their Github account
+        """
+        accounts = SocialAccount.objects.filter(user=self)
+
+        for account in accounts:
+            if account.provider == 'github':
+                return account.get_profile_url()
+            else:
+                return None
 
 
 class Search(models.Model):
@@ -105,11 +121,5 @@ class Search(models.Model):
         case_sensitive=False,
         overlay="Choose a Skill Tag to Search by",
         js_options={},
-        )
-
-
-
-
-
-
+    )
 
