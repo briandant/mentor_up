@@ -9,6 +9,20 @@
 {% block content %}
 <h1>{% trans "Sign Up" %}</h1>
 
+{% if socialaccount.providers  %}
+	<p>{% blocktrans with site.name as site_name %}You can sign up with one
+	of your existing third party accounts.{% endblocktrans %}</p>
+
+	<div class="socialaccount_ballot">
+
+		<ul class="socialaccount_providers">
+		  {% include "socialaccount/snippets/provider_list.html" with process="signup" %}
+		</ul>
+
+	</div>
+
+{% endif %}
+
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
