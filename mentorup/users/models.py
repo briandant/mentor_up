@@ -24,15 +24,15 @@ class Skills(models.Model):
     # Call this method when initializing the available tags in the DB.
     # It can be called safely multiple times without issue, as django-taggit checks against duplicates
     @classmethod
-    def generate_tags(cls):
+    def generate_skills(cls):
         base_tags = ["Python", "Django", "Flask", "Ruby", "Ruby on Rails", "Javascript", "Node.js", "Angular", "Backbone", "Scala", "PHP", "Java", "HTML5", "CSS3", "Jquery"]
         skill_level_tags = ["No Experience", "Beginner", "Intermediate", "Expert"]
         for tag in base_tags:
             for skill_tag in skill_level_tags:
                 tag_skill = "%s %s" %(tag, skill_tag)
                 tag = "%s" %(tag)
-                Skills.objects.get_or_create(name=tag)
-                Skills.objects.get_or_create(name=tag_skill)
+                Skills.objects.get_or_create(name=tag, teach=False)
+                Skills.objects.get_or_create(name=tag_skill, teach=False)
                 Skills.objects.get_or_create(name=tag, teach=True)
                 Skills.objects.get_or_create(name=tag_skill, teach=True)
 
@@ -40,15 +40,15 @@ class Skills(models.Model):
     # It will also create the base tag.  I.E. Skills.create_tag("Python", "Expert")
     # Will create the tag "Python" as well as the tag "Python Expert"
     @classmethod
-    def create_tag(cls, tag, skill_level=None):
+    def create_skill(cls, tag, skill_level=None, teach=False):
         if not skill_level:
             tag = "%s" %(tag)
-            Skills.objects.get_or_create(name=tag)
+            Skills.objects.get_or_create(name=tag, teach=teach)
         else:
             tag_skill = "%s %s" %(tag, skill_level)
             tag = "%s" %(tag)  
-            Skills.objects.get_or_create(name=tag)
-            Skills.objects.get_or_create(name=tag_skill)
+            Skills.objects.get_or_create(name=tag, teach=teach)
+            Skills.objects.get_or_create(name=tag_skill, teach=teach)
 
 # Subclass AbstractUser
 class User(AbstractUser):
