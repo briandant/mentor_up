@@ -33,6 +33,5 @@ django-autoslug==1.7.1
 # Useful things
 django-avatar==2.0
 
-
 # Your custom requirements go here
 dj-static==0.0.5
