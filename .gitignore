@@ -1,4 +1,6 @@
 *.pyc
 .DS_Store
+*.*~
 mentorup/media
-.sw[pcom]
+*.sw[pcom]
+mentorup/static/.sass-cache/
