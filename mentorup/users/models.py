@@ -29,11 +29,14 @@ class User(AbstractUser):
     def __unicode__(self):
         return self.username
 
+    # Related tag models
     teach = models.ForeignKey(TeachSkills, null=True)
     learn = models.ForeignKey(LearnSkills, null=True)
     short_bio = models.TextField()
     location = models.CharField(max_length=50)
 
+    # Method for saving a selected skill that a user wants to teach
+    # Expected format is user.save_skill_teach("Python", "Beginner")
     def save_skill_teach(self, tag, level):
         tag_skill = "%s %s" %(tag, level)
         tag = "%s" %(tag)
@@ -41,6 +44,8 @@ class User(AbstractUser):
         self.teach.skills.add(tag)
         return tag + " tag saved."   
 
+    # Method for saving a selected skill that a user wants to learn
+    # Expected format is user.save_skill_learn("Django", "Expert")
     def save_skill_learn(self, tag, level):
         tag_skill = "%s %s" %(tag, level)
         tag = "%s" %(tag)
@@ -48,13 +53,15 @@ class User(AbstractUser):
         self.learn.skills.add(tag)
         return tag + " tag saved."   
 
+    # Returns all tags, skills that a user can teach
     def get_skill_teach(self):
         return self.teach.skills.all()
 
+    # Returns all tags, skills that a user wishes to learn
     def get_skill_learn(self):
         return self.learn.skills.all()
 
-
+# post_save method to associate tags with user upon user creation.
 def create_skill_association(sender, instance, created, **kwargs):
     if created:
         instance.teach = TeachSkills()
