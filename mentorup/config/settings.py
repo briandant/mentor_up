@@ -318,7 +318,8 @@ class Local(Common):
     ########## END STATIC FILE CONFIGURATION
 
     ########## Your local stuff: Below this line define 3rd party libary settings
-
+    import mimetypes
+    mimetypes.add_type("application/font-woff", ".woff", True)
 
 class Production(Common):
 
