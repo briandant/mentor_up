@@ -24,7 +24,7 @@ class LearnSkills(models.Model):
 
 class UserManager(models.Manager):
     def create(self, name):
-        new_user = Food()
+        new_user = User()
         new_user.name = name
         new_user.teach = TeachSkills()
         new_user.teach.save()
