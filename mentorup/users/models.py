@@ -13,3 +13,6 @@ class User(AbstractUser):
 
     def __unicode__(self):
         return self.username
+
+    short_bio = models.TextField()
+    location = models.CharField(max_length=50)
