@@ -101,7 +101,6 @@ class Skills(models.Model):
                 tag = "%s" %(tag)
                 manager.tags.add(tag_skill)
                 manager.tags.add(tag)
-                print tag, tag_skill
 
     # Create a single tag with this method, if you specify a skill level ( which you should )
     # It will also create the base tag.  I.E. Skills.create_tag("Python", "Expert")
