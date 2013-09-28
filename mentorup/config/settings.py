@@ -121,9 +121,9 @@ class Common(Configuration):
     # Do this here because thanks to django-pylibmc-sasl and pylibmc memcacheify is painful to install on windows.
     # memcacheify is what's used in Production
     CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': ''
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': ''
         }
     }
     ########## END CACHING
@@ -170,9 +170,9 @@ class Common(Configuration):
     )
 
     TEMPLATE_LOADERS = (
-            'django.template.loaders.filesystem.Loader',
-            'django.template.loaders.app_directories.Loader',
-        )
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+    )
 
     # See: http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
     CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -200,9 +200,9 @@ class Common(Configuration):
     )
 
     SOCIALACCOUNT_PROVIDERS = \
-        { 'github':
-             { 'METHOD': 'oauth2'} 
-        }
+        {'github':
+            {'METHOD': 'oauth2'}
+         }
 
     # Some really nice defaults
     ACCOUNT_AUTHENTICATION_METHOD = "username"
@@ -398,8 +398,7 @@ class Production(Common):
     ########## END STORAGE CONFIGURATION
 
     ########## EMAIL
-    DEFAULT_FROM_EMAIL = values.Value(
-            'mentorup <mentorup-noreply@mentorup.io>')
+    DEFAULT_FROM_EMAIL = values.Value('mentorup <mentorup-noreply@mentorup.io>')
     EMAIL_BACKEND = values.Value('django.core.mail.backends.smtp.EmailBackend')
     EMAIL_HOST = values.Value('smtp.sendgrid.com')
     EMAIL_HOST_PASSWORD = values.SecretValue(environ_prefix="", environ_name="SENDGRID_PASSWORD")

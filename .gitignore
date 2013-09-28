@@ -1,4 +1,4 @@
 *.pyc
 .DS_Store
 mentorup/media
-.sw[pcom]
+*.sw[pcom]
