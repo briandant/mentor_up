@@ -23,17 +23,6 @@ class TeachSkills(models.Model):
 class LearnSkills(models.Model):
     skills = TaggableManager()
 
-# class UserManager(models.Manager):
-#     def create(self, name):
-#         new_user = User()
-#         new_user.name = name
-#         new_user.teach = TeachSkills()
-#         new_user.teach.save()
-#         new_user.learn = LearnSkills()
-#         new_user.learn.save()
-#         new_user.save()
-#         return new_user
-
 # Subclass AbstractUser
 class User(AbstractUser):
 
