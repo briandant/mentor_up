@@ -40,3 +40,8 @@ django-postman==3.0.1
 django-notification==1.1.1
 django-taggit==0.10
 django-select2-forms==1.1.7
+
+# TODO: evaluate these packages for use to populate the Location field
+#django-cities-light==2.1.0
+# an alternative to django-cities-lite
+#djcities==0.1
