@@ -13,7 +13,6 @@
 {% endif %}
 <li>
   <a title="{{provider.name}}" class="btn btn-large btn-success socialaccount_provider {{provider.id}}" 
-     href="{% provider_login_url provider.id process=process %}">{{provider.name}}</a>
+     href="{% provider_login_url provider.id process=process %}"><i class="icon-{{provider.id}}"></i>&nbsp;{{provider.name}}</a>
 </li>
 {% endfor %}
-
