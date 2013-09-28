@@ -287,7 +287,7 @@ class Local(Common):
 
     # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
     STATICFILES_DIRS = (
-        join(BASE_DIR, '..', 'static'),
+        join(BASE_DIR, 'static'),
     )
 
     # as recommended on # https://devcenter.heroku.com/articles/django-assets
@@ -348,7 +348,7 @@ class Production(Common):
 
     # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
     STATICFILES_DIRS = (
-        join(BASE_DIR, '..', 'static'),
+        join(BASE_DIR, 'static'),
     )
 
     # as recommended on # https://devcenter.heroku.com/articles/django-assets
@@ -363,7 +363,7 @@ class Production(Common):
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     )
-    
+
     # TODO: check to see if AWS keys are set and if they are, serve static assets using S3
     # See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html#settings
     # AWS_ACCESS_KEY_ID = values.SecretValue()

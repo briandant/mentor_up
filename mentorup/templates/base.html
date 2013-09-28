@@ -16,18 +16,21 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+{#    <!-- Optional theme -->#}
+{#    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">#}
 
+    <!-- Loading Flat UI -->
+    <link href="{% static 'css/flat-ui.css' %}" rel="stylesheet">
     <!-- Your stuff: Third-party css libraries go here -->
 
     <!-- This file store project specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
+
     {% endblock %}
 
-    {% block angular %}
-      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    {% endblock %}
+{#    {% block angular %}#}
+{#      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>#}
+{#    {% endblock %}#}
 
   </head>
 
@@ -66,12 +69,23 @@
     <!-- Placed at the end of the document so the pages load faster -->
     {% block javascript %}
       <!-- Latest JQuery -->
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+{#      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>#}
+      <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
 
       <!-- Latest compiled and minified JavaScript -->
       <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
       <!-- Your stuff: Third-party javascript libraries go here -->
+      <!-- Load JS here for greater good =============================-->
+      <script src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
+      <script src="{% static 'js/jquery.ui.touch-punch.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap-select.js' %}"></script>
+      <script src="{% static 'js/bootstrap-switch.js' %}"></script>
+      <script src="{% static 'js/flatui-checkbox.js' %}"></script>
+      <script src="{% static 'js/flatui-radio.js' %}"></script>
+      <script src="{% static 'js/jquery.tagsinput.js' %}"></script>
+      <script src="{% static 'js/jquery.placeholder.js' %}"></script>
 
       <!-- place project specific Javascript in this file -->
       <script src="{% static 'js/project.js' %}"></script>
