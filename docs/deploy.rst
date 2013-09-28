@@ -17,7 +17,7 @@ Add the Heroku git repo as a remote, so that we can push to it.
 
 	$ git remote add heroku git@heroku.com:mentorup.git
 
-Add a PostgreSQL database. Note that you will probably get a color other than "GOLD". This is normal.
+Add a PostgreSQL database. Note that you will probably get a color other than "GOLD". This is normal::
 
 	$ heroku addons:add heroku-postgresql:dev
 	Adding heroku-postgresql:dev on mentorup... done, v3 (free)
