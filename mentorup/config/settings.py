@@ -51,6 +51,7 @@ class Common(Configuration):
         'taggit',  # for searchable skill tags
         'chosen',  # for pretty searches
         'postman',  # for users to message each other
+        'select2', # for pretty forms
     )
 
     # Apps specific for this project go here.

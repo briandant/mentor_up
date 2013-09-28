@@ -17,6 +17,7 @@
     <!-- Latest compiled and minified CSS -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="{% static 'css/select2.css' %}" rel="stylesheet"/>
 
 {#    <!-- Optional theme -->#}
 {#    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">#}
@@ -44,7 +45,7 @@
 
     <div class="header navbar">
       <div class="container">
-        <a class="navbar-brand" href="/">{{cookiecutter.repo_name}}</a>
+        <a class="navbar-brand" href="/">Mentor Up</a>
         <ul class="nav navbar-nav">
           <li class="active"><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
@@ -63,7 +64,19 @@
     <div class="container">
 
       {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
+        <p>Testing the search bar here.</p>
+
+        <br />
+
+        <p>
+        <div class="select2-container select2-container-multi populate" id="bagel">
+          <ul class="select2-choices">
+            <li class="select2-search-field">
+              <input type="hidden" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input select2-focused" tabindex="0">
+            </li>
+          </ul>
+        <div>
+        </p>
       {% endblock content %}
 
     </div> <!-- /container -->
@@ -95,6 +108,16 @@
 
       <!-- place project specific Javascript in this file -->
       <script src="{% static 'js/project.js' %}"></script>
+      <script src="{% static 'js/select2.js' %}"></script>
+      <script>
+        $(document).ready(function() { $("#bagel").select2({
+            data:[{id:0,text:'enhancement'},{id:1,text:'bug'},{id:2,text:'duplicate'},{id:3,text:'invalid'},{id:4,text:'wontfix'}]
+        });
+ 
+        var data=[{id:0,tag:'enhancement'},{id:1,tag:'bug'},{id:2,tag:'duplicate'},{id:3,tag:'invalid'},{id:4,tag:'wontfix'}];
+        function format(item) { return item.tag; };
+        });
+      </script>
     {% endblock javascript %}
   </body>
 </html>
