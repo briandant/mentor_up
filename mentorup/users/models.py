@@ -6,6 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 # Import the basic Django ORM models and forms library
 from django.db import models
+from django.db.models.signals import post_save
 from django import forms
 
 # Import tags for searching
@@ -22,16 +23,16 @@ class TeachSkills(models.Model):
 class LearnSkills(models.Model):
     skills = TaggableManager()
 
-class UserManager(models.Manager):
-    def create(self, name):
-        new_user = User()
-        new_user.name = name
-        new_user.teach = TeachSkills()
-        new_user.teach.save()
-        new_user.learn = LearnSkills()
-        new_user.learn.save()
-        new_user.save()
-        return new_user
+# class UserManager(models.Manager):
+#     def create(self, name):
+#         new_user = User()
+#         new_user.name = name
+#         new_user.teach = TeachSkills()
+#         new_user.teach.save()
+#         new_user.learn = LearnSkills()
+#         new_user.learn.save()
+#         new_user.save()
+#         return new_user
 
 # Subclass AbstractUser
 class User(AbstractUser):
@@ -39,7 +40,6 @@ class User(AbstractUser):
     def __unicode__(self):
         return self.username
 
-    objects = UserManager()
     teach = models.ForeignKey(TeachSkills, null=True)
     learn = models.ForeignKey(LearnSkills, null=True)
     short_bio = models.TextField()
@@ -64,3 +64,14 @@ class User(AbstractUser):
 
     def get_skill_learn(self):
         return self.learn.skills.all()
+
+
+def create_skill_association(sender, instance, created, **kwargs):
+    if created:
+        instance.teach = TeachSkills()
+        instance.teach.save()
+        instance.learn = LearnSkills()
+        instance.learn.save()
+
+
+post_save.connect(create_skill_association, sender=User)
