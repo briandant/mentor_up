@@ -21,6 +21,10 @@ class Skills(models.Model):
     name = models.CharField(max_length=50)
     teach = models.BooleanField(default=False)
 
+    def __unicode__(self):
+        return self.name + " Teach: " + str(self.teach)
+
+
     # Call this method when initializing the available tags in the DB.
     # It can be called safely multiple times without issue, as django-taggit checks against duplicates
     @classmethod
