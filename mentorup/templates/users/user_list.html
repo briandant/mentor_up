@@ -13,25 +13,29 @@
       <h2>MentorUP Members</h2>
   </div>
 
-  <div class="row">
-    <div class="list-group">
-        {% for user in user_list %}
-          <a href="{% url 'users:detail' user.username %}">
-            <div class="avatar-container">
-              <span class="avatar">{% avatar user %} </span>
-              <div class="name">
-                <span><h4>{{ user.first_name }} {{ user.last_name }}</h4></span><br>
-                <span class="username">{{ user.username }}</span>
-              </div>
-                <span>{{ user.tagline }}</span>
-                <span>{{ user.short_bio }}</span>
-              <a href="#" class="btn btn-info pull-right contact-me">Contact Me</a> 
-            </div>
-          </a>
-          <hr>
-        {% endfor %}
+    {% for user in user_list %}
+    <div class="row">
+      <a href="{% url 'users:detail' user.username %}">
+        <div class="col-sm-1">
+          <span class="avatar">{% avatar user %} </span>
+        </div>
+
+        <div class="col-sm-3 name">
+          <span><h4>{{ user.first_name }} {{ user.last_name }}</h4></span><br>
+          <span class="username">{{ user.username }}</span>
+        </div>
+
+        <div class="col-sm-5 list-bio">
+          <span>{{ user.short_bio }}</span>
+        </div>
+
+        <div class="col-sm-1 col-md-offset-1">
+          <a href="#" class="btn btn-info pull-right contact-me">Contact Me</a> 
+        </div>
+      </a>
     </div>
-  </div>
+    <hr>
+    {% endfor %}
 
 </div>
 

@@ -18,62 +18,49 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: 'Bowlby One SC', cursive;
   font-weight: 400;
-  color: #c0392b;
 }
 
-/* line 35, ../sass/project.scss */
+/* line 34, ../sass/project.scss */
 .navbar .nav a:hover {
   color: #c0392b;
 }
-/* line 40, ../sass/project.scss */
+/* line 39, ../sass/project.scss */
 .navbar .nav > li.active > a {
   color: #c0392b;
 }
 
-/* line 48, ../sass/project.scss */
+/* line 47, ../sass/project.scss */
 .btn-redhot {
   background-color: #c0392b;
 }
-/* line 50, ../sass/project.scss */
+/* line 49, ../sass/project.scss */
 .btn-redhot:hover, .btn-redhot:focus {
   background-color: #c0392b;
 }
 
-/* line 56, ../sass/project.scss */
+/* line 55, ../sass/project.scss */
 img.img-thumbnail {
   background-color: #bdc3c7;
   margin-bottom: 1%;
 }
 
-/* line 64, ../sass/project.scss */
+/* line 63, ../sass/project.scss */
 body.sign-in form.login {
   background: none;
   padding: 0;
   color: inherit;
 }
 
-/* line 73, ../sass/project.scss */
+/* line 81, ../sass/project.scss */
 body.members h2 {
-  padding-left: 0;
   margin-bottom: 2%;
+  padding-left: 15px;
 }
-/* line 79, ../sass/project.scss */
-body.members .avatar-container h4 {
-  display: inline-block;
-}
-/* line 83, ../sass/project.scss */
-body.members .avatar-container a {
-  color: #bdc3c7;
-}
-/* line 87, ../sass/project.scss */
-body.members .avatar-container div.name {
-  display: inline-block;
+/* line 86, ../sass/project.scss */
+body.members .list-bio {
+  font-size: 22px;
 }
 /* line 90, ../sass/project.scss */
-body.members .avatar-container div.name span {
-  display: inline-block;
-}
-/* line 94, ../sass/project.scss */
-body.members .avatar-container div.name .username {
-  color: #c0392b;
+body.members a {
+  color: #bdc3c7;
 }
