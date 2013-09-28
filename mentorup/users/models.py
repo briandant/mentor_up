@@ -15,6 +15,12 @@ from taggit.managers import TaggableManager
 
 from django.utils.translation import ugettext_lazy as _
 
+# Create seperate classes for each tag type that will be a foreign key reference from User
+class TeachSkills(models.Model):
+    skills = TaggableManager()
+
+class LearnSkills(models.Model):
+    skills = TaggableManager()
 
 # Subclass AbstractUser
 class User(AbstractUser):
