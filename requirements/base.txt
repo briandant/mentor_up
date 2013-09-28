@@ -35,3 +35,4 @@ django-avatar==2.0
 
 
 # Your custom requirements go here
+django-chosen==0.1
