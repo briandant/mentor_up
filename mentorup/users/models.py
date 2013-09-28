@@ -42,6 +42,7 @@ class User(AbstractUser):
         tag = "%s" %(tag)
         self.teach.skills.add(tag_skill)
         self.teach.skills.add(tag)
+        self.save()
         return tag + " tag saved."   
 
     # Method for saving a selected skill that a user wants to learn
@@ -51,6 +52,7 @@ class User(AbstractUser):
         tag = "%s" %(tag)
         self.learn.skills.add(tag_skill)
         self.learn.skills.add(tag)
+        self.save()
         return tag + " tag saved."   
 
     # Returns all tags, skills that a user can teach
@@ -64,10 +66,13 @@ class User(AbstractUser):
 # post_save method to associate tags with user upon user creation.
 def create_skill_association(sender, instance, created, **kwargs):
     if created:
-        instance.teach = TeachSkills()
-        instance.teach.save()
-        instance.learn = LearnSkills()
-        instance.learn.save()
+        teach = TeachSkills()
+        teach.save()
+        instance.teach = teach
+        learn = LearnSkills()
+        learn.save()
+        instance.learn = learn
+        instance.save()
 
 
 post_save.connect(create_skill_association, sender=User)
