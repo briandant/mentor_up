@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath="$PWD/mentorup" config.wsgi:application
