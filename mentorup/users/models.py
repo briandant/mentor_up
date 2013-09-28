@@ -17,6 +17,8 @@ from taggit.managers import TaggableManager
 from django.utils.translation import ugettext_lazy as _
 
 # Create seperate classes for each tag type that will be a foreign key reference from User
+
+## Subclass these from the TagBase, and set them to have a ForeignKey -> User for better queries
 class TeachSkills(models.Model):
     skills = TaggableManager()
 
@@ -77,11 +79,18 @@ def create_skill_association(sender, instance, created, **kwargs):
 
 post_save.connect(create_skill_association, sender=User)
 
-class Search(models.Model):
+# class Search(models.Model):
 
-    @classmethod
-    def tag_user(self, tag):
-        return User.objects.filter(tags__name__in=tag).distinct()
+#     @classmethod
+#     # Find all users with a given learn skill tag
+#     def learn_tag(self, tag):
+#         return User.objects.filter(learn__skills__name__in=tag).distinct()
+    
+#     @classmethod
+#     # Find all users with a given skill level
+#     def user_by_skill(self, skill):
+#         return User.objects.filter(tags__name__endswith=skill).distinct()
+
 # Note: access the skills -> user.skills.filter(endswith="Expert")
 
 class Skills(models.Model):
