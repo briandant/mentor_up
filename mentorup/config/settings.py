@@ -65,6 +65,7 @@ class Common(Configuration):
         'allauth',  # registration
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
+        'allauth.socialaccount.providers.github',
     )
     ########## END APP CONFIGURATION
 
@@ -197,6 +198,11 @@ class Common(Configuration):
         "django.contrib.auth.backends.ModelBackend",
         "allauth.account.auth_backends.AuthenticationBackend",
     )
+
+    SOCIALACCOUNT_PROVIDERS = \
+        { 'github':
+             { 'METHOD': 'oauth2'} 
+        }
 
     # Some really nice defaults
     ACCOUNT_AUTHENTICATION_METHOD = "username"
