@@ -2,13 +2,43 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 6, ../sass/project.scss */
-body {
+/* line 10, ../sass/project.scss */
+body, div.header, input.textinput {
   background-color: #2C3E50;
+  color: #bdc3c7;
+  font-family: 'Inconsolata', sans-serif;
+}
+/* line 16, ../sass/project.scss */
+body a:link, div.header a:link, input.textinput a:link {
   color: #bdc3c7;
 }
 
-/* line 14, ../sass/project.scss */
+/* line 24, ../sass/project.scss */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Bowlby One SC', cursive;
+  font-weight: 400;
+}
+
+/* line 32, ../sass/project.scss */
+.navbar .nav a:hover {
+  color: #c0392b;
+}
+/* line 37, ../sass/project.scss */
+.navbar .nav > li.active > a {
+  color: #c0392b;
+}
+
+/* line 45, ../sass/project.scss */
+.btn-redhot {
+  background-color: #c0392b;
+}
+/* line 47, ../sass/project.scss */
+.btn-redhot:hover, .btn-redhot:focus {
+  background-color: #c0392b;
+}
+
+/* line 55, ../sass/project.scss */
 body.sign-in form.login {
   background: none;
   padding: 0;
