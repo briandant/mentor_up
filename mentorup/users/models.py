@@ -133,6 +133,7 @@ class Search(models.Model):
     # A related lookup query such as 
     # User.objects.filter(learn__skills__name=tag) returns an error that has to do with 
     # django-taggit.  This is the current workaround until it can be fixed
+
     def learn_tag(self, tag):
         return LearnSkills.objects.filter(skills__name=tag).distinct()
 
@@ -145,4 +146,30 @@ class Search(models.Model):
         return User.objects.filter(tags__name__endswith=skill).distinct()
 
 # Note: access the skills -> user.skills.filter(endswith="Expert")     
+
+
+# API
+
+# get all of a user's skills
+#  - user.learn.skills.all()
+#  - user.teach.skills.all()
+#  - user.learn.skills.filter()
+#  - user.teach.skills.filter()
+
+#  user.skills.filter(skillname, teach=True)
+#  user.objects.teachskills(skillname)
+#  user.objects.learnskills(skillname)
+
+# get all of the users that have a certain skill
+#  - Users.objects.all().filter(teach__skill__name="Python")
+# get all in Boston with skill
+#  - Users.objects.all().filter(skill="Python", location="Boston")
+
+# get all of the skills
+#  - Skills.objects.all()
+
+
+
+
+
 

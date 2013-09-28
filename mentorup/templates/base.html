@@ -15,7 +15,7 @@
     {% block css %}
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-
+    <link href="select2.css" rel="static/stylesheet/"/>
 {#    <!-- Optional theme -->#}
 {#    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">#}
 
@@ -65,7 +65,15 @@
 
         <br />
 
-        
+        <p>
+        <div class="select2-container select2-container-multi populate" id="bagel">
+          <ul class="select2-choices">
+            <li class="select2-search-field">
+              <input type="hidden" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input select2-focused" tabindex="0">
+            </li>
+          </ul>
+        <div>
+        </p>
       {% endblock content %}
 
     </div> <!-- /container -->
@@ -97,6 +105,16 @@
 
       <!-- place project specific Javascript in this file -->
       <script src="{% static 'js/project.js' %}"></script>
+      <script src="{% static 'js/select2.js' %}"></script>
+      <script>
+        $(document).ready(function() { $("#bagel").select2({
+            data:[{id:0,text:'enhancement'},{id:1,text:'bug'},{id:2,text:'duplicate'},{id:3,text:'invalid'},{id:4,text:'wontfix'}]
+        });
+ 
+        var data=[{id:0,tag:'enhancement'},{id:1,tag:'bug'},{id:2,tag:'duplicate'},{id:3,tag:'invalid'},{id:4,tag:'wontfix'}];
+        function format(item) { return item.tag; };
+        });
+      </script>
     {% endblock javascript %}
   </body>
 </html>
