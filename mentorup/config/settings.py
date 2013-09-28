@@ -48,8 +48,9 @@ class Common(Configuration):
         'south',  # Database migration helpers:
         'crispy_forms',  # Form layouts
         'avatar',  # for user avatars
-        'taggit', # for searchable skill tags
-        'chosen', # for pretty searches
+        'taggit',  # for searchable skill tags
+        'chosen',  # for pretty searches
+        'postman',  # for users to message each other
     )
 
     # Apps specific for this project go here.
@@ -174,6 +175,7 @@ class Common(Configuration):
         'django.core.context_processors.tz',
         'django.contrib.messages.context_processors.messages',
         'django.core.context_processors.request',
+        'postman.context_processors.inbox',
         # Your stuff: custom template context processers go here
     )
 
@@ -265,8 +267,10 @@ class Common(Configuration):
     }
     ########## END LOGGING CONFIGURATION
 
-
     ########## Your common stuff: Below this line define 3rd party libary settings
+    ########## Django-postman ##############
+    POSTMAN_DISALLOW_ANONYMOUS = True
+    POSTMAN_DISALLOW_ANONYMOUS = True
 
 
 class Local(Common):

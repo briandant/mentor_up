@@ -37,3 +37,5 @@ django-avatar==2.0
 # Your custom requirements go here
 dj-static==0.0.5
 django-chosen==0.1
+django-postman==3.0.1
+django-notification==1.1.1

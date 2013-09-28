@@ -3,9 +3,50 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
-body {
+// Variables
+$red-hot: #C0392B;
+$button-primary: $red-hot;
+
+body, div.header, input.textinput {
   background-color: #2C3E50;
   color: rgb(189, 195, 199);
+  font-family: 'Inconsolata', sans-serif;
+
+    a {
+        &:link {
+          color: rgb(189, 195, 199);
+        }
+    }
+
+}
+
+h1, h2, h3, h4, h5, h6, 
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Bowlby One SC', cursive;
+    font-weight: 400;
+}
+
+.navbar {
+    .nav {
+
+        a:hover {
+            color: $red-hot;
+        }
+
+        > li.active {
+            > a {
+                color: $red-hot;
+            }
+        }
+
+    }
+}
+
+.btn-redhot {
+    background-color: $red-hot;
+      &:hover, &:focus, {
+        background-color: $red-hot;
+    }
 }
 
 // sign in page
