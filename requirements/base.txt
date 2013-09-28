@@ -39,3 +39,4 @@ django-chosen==0.1
 django-postman==3.0.1
 django-notification==1.1.1
 django-taggit==0.10
+django-select2-forms==1.1.7

@@ -15,12 +15,14 @@
                 <ul>
                     {{ primary_avatar_form.as_ul }}
                 </ul>
-                <p>{% csrf_token %}<input type="submit" value="{% trans "Choose new Default" %}" /></p>
+                <p>{% csrf_token %}<input type="submit" value="{% trans "Choose new Default" %}" class="btn btn-large btn-success" /></p>
             </form>
         {% endif %}
         <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
             {{ upload_avatar_form.as_p }}
-            <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" /></p>
+            <p>{% csrf_token %}
+            <input type="submit" value="{% trans "Upload New Image" %}" class="btn btn-large btn-success" />
+            </p>
         </form>
     </div>
   </div>

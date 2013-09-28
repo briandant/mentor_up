@@ -8,22 +8,83 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models.signals import post_save
 from django import forms
+from django.db.models import Q
 
-# Import tags for searching
-from taggit.models import Tag
-from taggit.models import TagBase
-from taggit.managers import TaggableManager
+from allauth.socialaccount.models import SocialAccount
 
 from django.utils.translation import ugettext_lazy as _
 
-# Create seperate classes for each tag type that will be a foreign key reference from User
+# import select 2 fields and forms for skill tag searching
+import select2.fields
+import select2.models
 
-## Subclass these from the TagBase, and set them to have a ForeignKey -> User for better queries
-class TeachSkills(models.Model):
-    skills = TaggableManager()
 
-class LearnSkills(models.Model):
-    skills = TaggableManager()
+class Skills(models.Model):
+    """
+    Model for storing skills and associating them with a user
+    """
+    active = models.BooleanField(default=True)
+    name = models.CharField(max_length=50)
+    teach = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return self.name + " Teach: " + str(self.teach)
+
+    @classmethod
+    def generate_skills(cls):
+        """
+        Call this method when initializing the available tags in the DB.
+        It can be called safely multiple times without issue, as it checks against duplicates
+        """
+        base_skills = ["Python", "Django", "Flask", "Ruby", "Ruby on Rails", "Javascript", "Node.js", "Angular", "Backbone", "Scala", "PHP", "Java", "HTML5", "CSS3", "Jquery"]
+        skill_levels = ["No Experience", "Beginner", "Intermediate", "Expert"]
+        for skill in base_skills:
+            for skill_level in skill_levels:
+                tag_skill = "%s %s" %(skill, skill_level)
+                tag = "%s" %(skill)
+                Skills.objects.get_or_create(name=tag, teach=False)
+                Skills.objects.get_or_create(name=tag_skill, teach=False)
+                Skills.objects.get_or_create(name=tag, teach=True)
+                Skills.objects.get_or_create(name=tag_skill, teach=True)
+
+    @classmethod
+    def create_skill(cls, skill, skill_level=None):
+        """
+        Create a single tag with this method, if you specify a skill level ( which you should )
+        It will also create the base skill.  I.E. Skills.create_skill("Python", "Expert")
+        will create the skill "Python" as well as the skill "Python Expert"
+        """
+        if skill_level:
+            tag_skill = "%s %s" %(skill, skill_level)
+            tag = "%s" %(skill)  
+            Skills.objects.get_or_create(name=tag, teach=False)
+            Skills.objects.get_or_create(name=tag_skill, teach=False)
+            Skills.objects.get_or_create(name=tag, teach=True)
+            Skills.objects.get_or_create(name=tag_skill, teach=True)
+        else:
+            tag = "%s" %(skill)
+            Skills.objects.get_or_create(name=tag, teach=False)
+            Skills.objects.get_or_create(name=tag, teach=True)
+
+    @classmethod
+    def create_skills_levels(cls, skills, skill_levels=["No Experience", "Beginner", "Intermediate", "Expert"]):
+        """
+        Create a skill for each skill level, and the base skill.
+        Pass in multiple skills to add more than one ( expects an array either way ).
+        I.E. Skills.create_skill_levels("Python")
+        Will create the skills "Python", "Python No Experience", "Python Beginner", "Python Intermediate", "Python Expert"
+        Specify an array for skill_levels to input custom skill levels.
+        Checks for duplicates, and will only save unique values.
+        """
+        for skill in skills:
+            for skill_level in skill_levels:
+                tag_skill = "%s %s" %(skill, skill_level)
+                tag = "%s" %(skill)
+                Skills.objects.get_or_create(name=tag, teach=False)
+                Skills.objects.get_or_create(name=tag_skill, teach=False)
+                Skills.objects.get_or_create(name=tag, teach=True)
+                Skills.objects.get_or_create(name=tag_skill, teach=True)
+
 
 # Subclass AbstractUser
 class User(AbstractUser):
@@ -31,105 +92,34 @@ class User(AbstractUser):
     def __unicode__(self):
         return self.username
 
-    # Related tag models
-    teach = models.OneToOneField(TeachSkills, null=True)
-    learn = models.OneToOneField(LearnSkills, null=True)
+    skills = models.ManyToManyField(Skills, null=True)
     short_bio = models.TextField()
     location = models.CharField(max_length=50)
 
-    # Method for saving a selected skill that a user wants to teach
-    # Expected format is user.save_skill_teach("Python", "Beginner")
-    def save_skill_teach(self, tag, level):
-        tag_skill = "%s %s" %(tag, level)
-        tag = "%s" %(tag)
-        self.teach.skills.add(tag_skill)
-        self.teach.skills.add(tag)
-        self.save()
-        return tag + " tag saved."   
+    def github_profile_url(self): 
+        """ 
+        Given a user, return the profile URL of their Github account
+        """
+        accounts = SocialAccount.objects.filter(user=self)
 
-    # Method for saving a selected skill that a user wants to learn
-    # Expected format is user.save_skill_learn("Django", "Expert")
-    def save_skill_learn(self, tag, level):
-        tag_skill = "%s %s" %(tag, level)
-        tag = "%s" %(tag)
-        self.learn.skills.add(tag_skill)
-        self.learn.skills.add(tag)
-        self.save()
-        return tag + " tag saved."   
+        for account in accounts:
+            if account.provider == 'github':
+                return account.get_profile_url()
+            else:
+                return None
 
-    # Returns all tags, skills that a user can teach
-    def get_skill_teach(self):
-        return self.teach.skills.all()
-
-    # Returns all tags, skills that a user wishes to learn
-    def get_skill_learn(self):
-        return self.learn.skills.all()
-
-# post_save method to associate tags with user upon user creation.
-def create_skill_association(sender, instance, created, **kwargs):
-    if created:
-        teach = TeachSkills()
-        teach.save()
-        instance.teach = teach
-        learn = LearnSkills()
-        learn.save()
-        instance.learn = learn
-        instance.save()
-
-
-post_save.connect(create_skill_association, sender=User)
 
 class Search(models.Model):
-
-    @classmethod
-    # Find all learn - teach object from tag, which are one-to-one related to the user
-    # Currently you access the user by calling learn_skill_object.user
-    # A related lookup query such as 
-    # User.objects.filter(learn__skills__name=tag) returns an error that has to do with 
-    # django-taggit.  This is the current workaround until it can be fixed
-    def learn_tag(self, tag):
-        return LearnSkills.objects.filter(skills__name=tag).distinct()
-
-    def teach_tag(self, tag):
-        return TeachSkills.objects.filter(skills__name=tag).distinct()
-    
-    @classmethod
-    # Find all users with a given skill level
-    def user_by_skill(self, skill):
-        return User.objects.filter(tags__name__endswith=skill).distinct()
-
-# Note: access the skills -> user.skills.filter(endswith="Expert")
-
-class Skills(models.Model):
-
-    tags = TaggableManager()
-
-    # Call this method when initializing the available tags in the DB.
-    # It can be called safely multiple times without issue, as django-taggit checks against duplicates
-    @classmethod
-    def generate_tags(cls):
-        base_tags = ["Python", "Django", "Flask", "Ruby", "Ruby on Rails", "Javascript", "Node.js", "Angular", "Backbone", "Scala", "PHP", "Java", "HTML5", "CSS3", "Jquery"]
-        skill_level_tags = ["No Experience", "Beginner", "Intermediate", "Expert"]
-        manager = Skills.objects.get_or_create(pk=1)[0]
-        for tag in base_tags:
-            for skill_tag in skill_level_tags:
-                tag_skill = "%s %s" %(tag, skill_tag)
-                tag = "%s" %(tag)
-                manager.tags.add(tag_skill)
-                manager.tags.add(tag)
-
-    # Create a single tag with this method, if you specify a skill level ( which you should )
-    # It will also create the base tag.  I.E. Skills.create_tag("Python", "Expert")
-    # Will create the tag "Python" as well as the tag "Python Expert"
-    @classmethod
-    def create_tag(cls, tag, skill_level=None):
-        manager = Skills.objects.get_or_create(pk=1)[0]
-        if not skill_level:
-            tag = "%s" %(tag)
-            manager.tags.add(tag)
-        else:
-            tag_skill = "%s %s" %(tag, skill_level)
-            tag = "%s" %(tag)
-            manager.tags.add(tag_skill)
-            manager.tags.add(tag)          
+    """
+    Model for hooking up available skill classes with ajax
+    search autocomplete requests.
+    """
+    skill_categories = select2.fields.ForeignKey(Skills,
+        limit_choices_to=models.Q(active=True),
+        ajax=True,
+        search_field='name',
+        case_sensitive=False,
+        overlay="Choose a Skill Tag to Search by",
+        js_options={},
+    )
 

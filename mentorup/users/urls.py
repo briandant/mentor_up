@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 
 from users import views
 
@@ -28,4 +28,6 @@ urlpatterns = patterns('',
         view=views.UserUpdateView.as_view(),
         name='update'
     ),
+    # URL pattern for select2's AJAX Support
+    url(r'^select2/', include('select2.urls')),
 )
