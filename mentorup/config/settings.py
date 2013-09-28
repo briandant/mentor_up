@@ -48,6 +48,8 @@ class Common(Configuration):
         'south',  # Database migration helpers:
         'crispy_forms',  # Form layouts
         'avatar',  # for user avatars
+        'taggit', # for searchable skill tags
+        'chosen', # for pretty searches
     )
 
     # Apps specific for this project go here.
@@ -115,6 +117,17 @@ class Common(Configuration):
     ########## DATABASE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
     DATABASES = values.DatabaseURLValue('postgres://localhost/mentorup')
+    if os.environ.get("ISCHRIS", False):
+        DATABASES = {
+            'default': {
+                "ENGINE": "django.db.backends.postgresql_psycopg2",
+                "NAME": "mentorup",
+                "USER": "djangochris",
+                "PASSWORD": "DjangoChris",
+                "HOST": "localhost",
+                "PORT": "",
+            }
+        }
     ########## END DATABASE CONFIGURATION
 
     ########## CACHING
