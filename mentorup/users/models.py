@@ -32,8 +32,8 @@ class User(AbstractUser):
         return self.username
 
     # Related tag models
-    teach = models.ForeignKey(TeachSkills, null=True)
-    learn = models.ForeignKey(LearnSkills, null=True)
+    teach = models.OneToOneField(TeachSkills, null=True)
+    learn = models.OneToOneField(LearnSkills, null=True)
     short_bio = models.TextField()
     location = models.CharField(max_length=50)
 
@@ -79,17 +79,24 @@ def create_skill_association(sender, instance, created, **kwargs):
 
 post_save.connect(create_skill_association, sender=User)
 
-# class Search(models.Model):
+class Search(models.Model):
 
-#     @classmethod
-#     # Find all users with a given learn skill tag
-#     def learn_tag(self, tag):
-#         return User.objects.filter(learn__skills__name__in=tag).distinct()
+    @classmethod
+    # Find all learn - teach object from tag, which are one-to-one related to the user
+    # Currently you access the user by calling learn_skill_object.user
+    # A related lookup query such as 
+    # User.objects.filter(learn__skills__name=tag) returns an error that has to do with 
+    # django-taggit.  This is the current workaround until it can be fixed
+    def learn_tag(self, tag):
+        return LearnSkills.objects.filter(skills__name=tag).distinct()
+
+    def teach_tag(self, tag):
+        return TeachSkills.objects.filter(skills__name=tag).distinct()
     
-#     @classmethod
-#     # Find all users with a given skill level
-#     def user_by_skill(self, skill):
-#         return User.objects.filter(tags__name__endswith=skill).distinct()
+    @classmethod
+    # Find all users with a given skill level
+    def user_by_skill(self, skill):
+        return User.objects.filter(tags__name__endswith=skill).distinct()
 
 # Note: access the skills -> user.skills.filter(endswith="Expert")
 
