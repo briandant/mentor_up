@@ -76,3 +76,45 @@ def create_skill_association(sender, instance, created, **kwargs):
 
 
 post_save.connect(create_skill_association, sender=User)
+
+class Search(models.Model):
+
+    @classmethod
+    def tag_user(self, tag):
+        return User.objects.filter(tags__name__in=tag).distinct()
+# Note: access the skills -> user.skills.filter(endswith="Expert")
+
+class Skills(models.Model):
+
+    tags = TaggableManager()
+
+    # Call this method when initializing the available tags in the DB.
+    # It can be called safely multiple times without issue, as django-taggit checks against duplicates
+    @classmethod
+    def generate_tags(cls):
+        base_tags = ["Python", "Django", "Flask", "Ruby", "Ruby on Rails", "Javascript", "Node.js", "Angular", "Backbone", "Scala", "PHP", "Java", "HTML5", "CSS3", "Jquery"]
+        skill_level_tags = ["No Experience", "Beginner", "Intermediate", "Expert"]
+        manager = Skills.objects.get_or_create(pk=1)[0]
+        for tag in base_tags:
+            for skill_tag in skill_level_tags:
+                tag_skill = "%s %s" %(tag, skill_tag)
+                tag = "%s" %(tag)
+                manager.tags.add(tag_skill)
+                manager.tags.add(tag)
+                print tag, tag_skill
+
+    # Create a single tag with this method, if you specify a skill level ( which you should )
+    # It will also create the base tag.  I.E. Skills.create_tag("Python", "Expert")
+    # Will create the tag "Python" as well as the tag "Python Expert"
+    @classmethod
+    def create_tag(cls, tag, skill_level=None):
+        manager = Skills.objects.get_or_create(pk=1)[0]
+        if not skill_level:
+            tag = "%s" %(tag)
+            manager.tags.add(tag)
+        else:
+            tag_skill = "%s %s" %(tag, skill_level)
+            tag = "%s" %(tag)
+            manager.tags.add(tag_skill)
+            manager.tags.add(tag)          
+
