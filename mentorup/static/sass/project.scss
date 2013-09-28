@@ -6,15 +6,17 @@
 // Variables
 $red-hot: #C0392B;
 $button-primary: $red-hot;
+$gray: rgb(189, 195, 199);
+$dark-blue: #2C3E50;
 
 body, div.header, input.textinput {
-  background-color: #2C3E50;
+  background-color: $dark-blue;
   color: rgb(189, 195, 199);
   font-family: 'Inconsolata', sans-serif;
 
     a {
         &:link {
-          color: rgb(189, 195, 199);
+          color: $gray;
         }
     }
 
@@ -24,6 +26,7 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: 'Bowlby One SC', cursive;
     font-weight: 400;
+    color: $red-hot;
 }
 
 .navbar {
@@ -49,12 +52,48 @@ h1, h2, h3, h4, h5, h6,
     }
 }
 
-// sign in page
+// Global
+img.img-thumbnail {
+    background-color: $gray;
+    margin-bottom: 1%;
+}
+
+// Sign in page
 body.sign-in {
 
     form.login { 
         background: none; 
         padding: 0; 
         color: inherit;
+    }
+}
+
+// Members page
+body.members {
+    h2 {
+        padding-left: 0;
+        margin-bottom: 2%;
+    }
+
+    .avatar-container {
+        h4 {
+          display: inline-block;
+        } 
+
+        a {
+            color: $gray;
+        }
+        
+        div.name {
+            display: inline-block;
+
+            span {
+                display: inline-block;
+            }
+
+            .username {
+                color: $red-hot;
+            }
+        }
     }
 }
