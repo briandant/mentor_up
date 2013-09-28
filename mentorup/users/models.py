@@ -66,38 +66,15 @@ class User(AbstractUser):
 
 
 class Search(models.Model):
-    pass
-    # skill_categories = select2.fields.ForeignKey(Skills,
-    #     limit_choices_to=models.Q(active=True),
-    #     ajax=True,
-    #     search_field='name',
-    #     case_sensitive=False,
-    #     overlay="Choose a Skill Tag to Search by",
-    #     js_options={},
-    #     )
+    skill_categories = select2.fields.ForeignKey(Skills,
+        limit_choices_to=models.Q(active=True),
+        ajax=True,
+        search_field='name',
+        case_sensitive=False,
+        overlay="Choose a Skill Tag to Search by",
+        js_options={},
+        )
 
-# Note: access the skills -> user.skills.filter(endswith="Expert")     
-
-
-# API
-
-# get all of a user's skills
-#  - user.learn.skills.all()
-#  - user.teach.skills.all()
-#  - user.learn.skills.filter()
-#  - user.teach.skills.filter()
-
-#  user.skills.filter(skillname, teach=True)
-#  user.objects.teachskills(skillname)
-#  user.objects.learnskills(skillname)
-
-# get all of the users that have a certain skill
-#  - Users.objects.all().filter(teach__skill__name="Python")
-# get all in Boston with skill
-#  - Users.objects.all().filter(skill="Python", location="Boston")
-
-# get all of the skills
-#  - Skills.objects.all()
 
 
 
