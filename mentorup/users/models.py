@@ -28,5 +28,7 @@ class User(AbstractUser):
     def __unicode__(self):
         return self.username
 
+    teach = models.ForeignKey(TeachSkills, null=True)
+    learn = models.ForeignKey(LearnSkills, null=True)
     short_bio = models.TextField()
     location = models.CharField(max_length=50)
