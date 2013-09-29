@@ -25,7 +25,7 @@ class UserForm(forms.ModelForm):
                 Field('last_name'),
                 Field('short_bio'),
                 Field('location'),
-                Field('skill_to_learn'),
+                Field('skills_to_learn'),
                 Field('skills_to_teach')
             )
         )
