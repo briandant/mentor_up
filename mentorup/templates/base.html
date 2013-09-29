@@ -39,7 +39,7 @@
       <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">Mentor UP</a>
         <ul class="nav navbar-nav">
-          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'users:list' %}">Find Members</a></li>
 
           {% if request.user.is_authenticated %}
             <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
@@ -48,6 +48,9 @@
             <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
             <li><a href="{% url 'account_login' %}">{% trans "Log In" %}</a></li>
           {% endif %}
+
+          <li><a href="{% url 'about' %}">About</a></li>
+
         </ul>
       </div>
     </div>
