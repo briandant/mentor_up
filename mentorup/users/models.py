@@ -99,9 +99,10 @@ class User(AbstractUser):
         ('seattle', 'Seattle, WA'),
         ('austin', 'Austin, TX'),
         ('portland', 'Portland, OR'),
-        ('minneapolis', 'Minneapolis,MN'),
+        ('minneapolis', 'Minneapolis, MN'),
         ('chicago', 'Chicago, IL'),
         ('boulder', 'Boulder, CO'),
+        ('other', 'Other')
     )
     skills_to_teach = select2.fields.ManyToManyField(Skill, related_name='skills_to_teach')
     skills_to_learn = select2.fields.ManyToManyField(Skill, related_name='skills_to_learn')
