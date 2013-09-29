@@ -47,7 +47,6 @@ class Common(Configuration):
     THIRD_PARTY_APPS = (
         'south',  # Database migration helpers:
         'crispy_forms',  # Form layouts
-        'avatar',  # for user avatars
         'postman',  # for users to message each other
         'django_select2', # for pretty forms
     )
@@ -68,6 +67,7 @@ class Common(Configuration):
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
         'allauth.socialaccount.providers.github',
+        'avatar',  # for user avatars
     )
     ########## END APP CONFIGURATION
 
