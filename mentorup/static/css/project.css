@@ -1,1 +1,39 @@
-/*! project specific CSS goes here. */
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 18, ../sass/project.scss */
+.btn-redhot {
+  background-color: #c0392b;
+}
+/* line 20, ../sass/project.scss */
+.btn-redhot:hover, .btn-redhot:focus {
+  background-color: #c0392b;
+}
+
+/* line 26, ../sass/project.scss */
+img.img-thumbnail {
+  margin-bottom: 1%;
+}
+
+/* line 33, ../sass/project.scss */
+body.sign-in form.login {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* line 41, ../sass/project.scss */
+body.members h2 {
+  margin-bottom: 2%;
+  padding-left: 15px;
+}
+/* line 46, ../sass/project.scss */
+body.members .list-bio {
+  font-size: 22px;
+}
+
+/* line 52, ../sass/project.scss */
+ul.socialaccount_providers li {
+  list-style: none;
+}

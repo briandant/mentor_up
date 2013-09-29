@@ -7,6 +7,8 @@ from django.views.generic import DetailView
 from django.views.generic import RedirectView
 from django.views.generic import UpdateView
 from django.views.generic import ListView
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 # Only authenticated users can access views using this.
 from braces.views import LoginRequiredMixin
@@ -18,7 +20,7 @@ from .forms import UserForm
 from .models import User
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserDetailView(DetailView):
     model = User
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
@@ -29,28 +31,38 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get_redirect_url(self):
-        return reverse("users:detail",
+        return reverse(
+            "users:detail",
             kwargs={"username": self.request.user.username})
 
 
-class UserUpdateView(LoginRequiredMixin, UpdateView):
+@login_required()
+def user_update_view(request, template='users/user_form.html'):
+    instance = User.objects.get(username=request.user.username)
 
-    form_class = UserForm
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=instance)
+        if form.is_valid():
 
-    # we already imported User in the view code above, remember?
-    model = User
+            form.save()
 
-    # send the user back to their own page after a successful update
-    def get_success_url(self):
-        return reverse("users:detail",
-                    kwargs={"username": self.request.user.username})
+            success_url = reverse(
+                "users:detail",
+                kwargs={"username": request.user.username})
 
-    def get_object(self):
-        # Only get the User record for the user making the request
-        return User.objects.get(username=self.request.user.username)
+            return redirect(success_url)
+
+    else:  # Get request
+        form = UserForm(instance=instance)
+
+    return render(
+        request,
+        template,
+        {'form': form}
+    )
 
 
-class UserListView(LoginRequiredMixin, ListView):
+class UserListView(ListView):
     model = User
     # These next two lines tell the view to index lookups by username
     slug_field = "username"

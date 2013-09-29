@@ -4,48 +4,64 @@
     <meta charset="utf-8">
     <title>{% block title %}{{ project_name }}{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Django Dash 2013 project exploring ways to connect mentors and mentees learning to code.
+">
+    <meta name="author" content="Nate Aune, Brian Dant, Chris Van Schyndel">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+    <!-- for some reason, jQuery needs to go *before* select2.js or else you get this error:
+    "Uncaught ReferenceError: jQuery is not defined"
+    -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
     {% block css %}
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+{#    <!-- Optional theme -->#}
+{#    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">#}
 
+    <!-- Loading Flat UI -->
+    <link href="{% static 'css/flat-ui.css' %}" rel="stylesheet">
     <!-- Your stuff: Third-party css libraries go here -->
 
     <!-- This file store project specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
+
+    <!-- Fonts -->
+{#    <link href='http://fonts.googleapis.com/css?family=Bowlby+One+SC' rel='stylesheet' type='text/css'>#}
+{#    <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>#}
+
     {% endblock %}
 
-    {% block angular %}
-      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    {% block extra_css %}
     {% endblock %}
+{#    {% block angular %}#}
+{#      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>#}
+{#    {% endblock %}#}
 
   </head>
 
-  <body>
+  <body class={% block body_class %}{% endblock %}>
 
     <div class="header navbar">
       <div class="container">
-        <a class="navbar-brand" href="/">{{cookiecutter.repo_name}}</a>
+        <a class="navbar-brand" href="/">Mentor Up</a>
         <ul class="nav navbar-nav">
           <li class="active"><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
 
           {% if request.user.is_authenticated %}
-            <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
-            <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
+            <li><a href="{% url 'users:detail' request.user.username  %}"><i class="icon-user"></i>&nbsp;{% trans "My Profile" %}</a></li>
+            <li><a href="{% url 'account_logout' %}"><i class="icon-off"></i>&nbsp;{% trans "Logout" %}</a></li>
           {% else %}
             <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
-            <li><a href="{% url 'account_login' %}">{% trans "Log In" %}</a></li>
+            <li><a href="{% url 'account_login' %}"><i class="icon-lock">&nbsp</i>&nbsp;{% trans "Log In" %}</a></li>
           {% endif %}
         </ul>
       </div>
@@ -54,7 +70,7 @@
     <div class="container">
 
       {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
+
       {% endblock content %}
 
     </div> <!-- /container -->
@@ -66,16 +82,34 @@
     <!-- Placed at the end of the document so the pages load faster -->
     {% block javascript %}
       <!-- Latest JQuery -->
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+      <!-- <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script> -->
 
       <!-- Latest compiled and minified JavaScript -->
       <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
+      <!-- if we have bootstrap.min.js served up from this CDN, then we don't need to
+      also serve it up locally -->
+      <!-- <script src="{% static 'js/bootstrap.min.js' %}"></script> -->
+
       <!-- Your stuff: Third-party javascript libraries go here -->
+      <!-- Load JS here for greater good =============================-->
+      <script src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
+      <script src="{% static 'js/jquery.ui.touch-punch.min.js' %}"></script>
+
+      <script src="{% static 'js/bootstrap-select.js' %}"></script>
+      <script src="{% static 'js/bootstrap-switch.js' %}"></script>
+      <script src="{% static 'js/flatui-checkbox.js' %}"></script>
+      <script src="{% static 'js/flatui-radio.js' %}"></script>
+      <script src="{% static 'js/jquery.tagsinput.js' %}"></script>
+      <script src="{% static 'js/jquery.placeholder.js' %}"></script>
 
       <!-- place project specific Javascript in this file -->
       <script src="{% static 'js/project.js' %}"></script>
+
     {% endblock javascript %}
+
+    {% block extra_javascript %}
+    {% endblock %}
   </body>
 </html>
  

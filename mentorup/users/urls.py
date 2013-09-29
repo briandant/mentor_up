@@ -3,7 +3,8 @@ from django.conf.urls import patterns, url
 
 from users import views
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # URL pattern for the UserListView
     url(
         regex=r'^$',
@@ -25,7 +26,7 @@ urlpatterns = patterns('',
     # URL pattern for the UserDetailView
     url(
         regex=r'^~update/$',
-        view=views.UserUpdateView.as_view(),
+        view=views.user_update_view,
         name='update'
     ),
 )

@@ -63,6 +63,12 @@ Don't forget to replace the secret key with a random string::
 	Setting config vars and restarting mentorup... done, v9
 	DJANGO_SECRET_KEY: abcdefghijklmnopqrstuvwxyz
 
+Before you go live, you should set DEBUG = False::
+
+	$ heroku config:add DJANGO_DEBUG=False
+	Setting config vars and restarting mentorup... done, v14
+	DJANGO_DEBUG: False
+
 If you're using AWS S3 to serve up static assets, then you need to set these values::
 
 	$ heroku config:add DJANGO_AWS_ACCESS_KEY_ID=YOUR_ID

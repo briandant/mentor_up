@@ -48,6 +48,10 @@ class Common(Configuration):
         'south',  # Database migration helpers:
         'crispy_forms',  # Form layouts
         'avatar',  # for user avatars
+        'taggit',  # for searchable skill tags
+        'chosen',  # for pretty searches
+        'postman',  # for users to message each other
+        'django_select2', # for pretty forms
     )
 
     # Apps specific for this project go here.
@@ -65,6 +69,7 @@ class Common(Configuration):
         'allauth',  # registration
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
+        'allauth.socialaccount.providers.github',
     )
     ########## END APP CONFIGURATION
 
@@ -113,16 +118,18 @@ class Common(Configuration):
 
     ########## DATABASE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-    DATABASES = values.DatabaseURLValue('postgres://localhost/mentorup')
+    DATABASES = values.DatabaseURLValue('postgres://localhost/mentorup_local')
+    if os.environ.get('MENTORUP_POSTGRES', False):
+        DATABASES = values.DatabaseURLValue(os.environ.get('MENTORUP_POSTGRES'))
     ########## END DATABASE CONFIGURATION
 
     ########## CACHING
     # Do this here because thanks to django-pylibmc-sasl and pylibmc memcacheify is painful to install on windows.
     # memcacheify is what's used in Production
     CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': ''
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': ''
         }
     }
     ########## END CACHING
@@ -160,6 +167,7 @@ class Common(Configuration):
         'django.core.context_processors.tz',
         'django.contrib.messages.context_processors.messages',
         'django.core.context_processors.request',
+        'postman.context_processors.inbox',
         # Your stuff: custom template context processers go here
     )
 
@@ -169,9 +177,9 @@ class Common(Configuration):
     )
 
     TEMPLATE_LOADERS = (
-            'django.template.loaders.filesystem.Loader',
-            'django.template.loaders.app_directories.Loader',
-        )
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+    )
 
     # See: http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
     CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -198,6 +206,11 @@ class Common(Configuration):
         "allauth.account.auth_backends.AuthenticationBackend",
     )
 
+    SOCIALACCOUNT_PROVIDERS = \
+        {'github':
+            {'METHOD': 'oauth2'}
+         }
+
     # Some really nice defaults
     ACCOUNT_AUTHENTICATION_METHOD = "username"
     ACCOUNT_EMAIL_REQUIRED = True
@@ -208,6 +221,14 @@ class Common(Configuration):
     # Select the correct user model
     AUTH_USER_MODEL = "users.User"
     LOGIN_REDIRECT_URL = "users:redirect"
+
+    # this will redirect the user to the update profile page
+    # after they confirm their email address
+    ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "users:update"
+
+    # use this if you want to request all the form fields the first time
+    # the user signs up
+    # ACCOUNT_SIGNUP_FORM_CLASS = "users.forms.UserForm"
     ########## END Custom user app defaults
 
     ########## SLUGLIFIER
@@ -246,8 +267,10 @@ class Common(Configuration):
     }
     ########## END LOGGING CONFIGURATION
 
-
     ########## Your common stuff: Below this line define 3rd party libary settings
+    ########## Django-postman ##############
+    POSTMAN_DISALLOW_ANONYMOUS = True
+    POSTMAN_DISALLOW_ANONYMOUS = True
 
 
 class Local(Common):
@@ -262,7 +285,7 @@ class Local(Common):
 
     ########## django-debug-toolbar
     MIDDLEWARE_CLASSES = Common.MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-    INSTALLED_APPS += ('debug_toolbar',)
+    INSTALLED_APPS += ('debug_toolbar', )
 
     INTERNAL_IPS = ('127.0.0.1',)
 
@@ -281,7 +304,7 @@ class Local(Common):
 
     # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
     STATICFILES_DIRS = (
-        join(BASE_DIR, '..', 'static'),
+        join(BASE_DIR, 'static'),
     )
 
     # as recommended on # https://devcenter.heroku.com/articles/django-assets
@@ -299,7 +322,8 @@ class Local(Common):
     ########## END STATIC FILE CONFIGURATION
 
     ########## Your local stuff: Below this line define 3rd party libary settings
-
+    import mimetypes
+    mimetypes.add_type("application/font-woff", ".woff", True)
 
 class Production(Common):
 
@@ -342,7 +366,7 @@ class Production(Common):
 
     # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
     STATICFILES_DIRS = (
-        join(BASE_DIR, '..', 'static'),
+        join(BASE_DIR, 'static'),
     )
 
     # as recommended on # https://devcenter.heroku.com/articles/django-assets
@@ -357,7 +381,7 @@ class Production(Common):
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     )
-    
+
     # TODO: check to see if AWS keys are set and if they are, serve static assets using S3
     # See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html#settings
     # AWS_ACCESS_KEY_ID = values.SecretValue()
@@ -392,8 +416,7 @@ class Production(Common):
     ########## END STORAGE CONFIGURATION
 
     ########## EMAIL
-    DEFAULT_FROM_EMAIL = values.Value(
-            'mentorup <mentorup-noreply@mentorup.io>')
+    DEFAULT_FROM_EMAIL = values.Value('mentorup <mentorup-noreply@mentorup.io>')
     EMAIL_BACKEND = values.Value('django.core.mail.backends.smtp.EmailBackend')
     EMAIL_HOST = values.Value('smtp.sendgrid.com')
     EMAIL_HOST_PASSWORD = values.SecretValue(environ_prefix="", environ_name="SENDGRID_PASSWORD")

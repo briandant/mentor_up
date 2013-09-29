@@ -1,20 +1,24 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags django_select2_tags %}
 
 {% block title %}User: {{ user.username }}{% endblock %}
+
+{% block extra_css %}
+    {% import_django_select2_css %}
+{% endblock %}
 
 {% block content %}
 
 <div class="container">
+    <h1>{% block header %}User: {{ user.username }}{% endblock %}</h1>
     <div class="row">
-        <div class="col-lg-12">
-            <h1>{% block header %}User: {{ user.username }}{% endblock %}</h1>
-            <form class="form-horizontal" method="post" action="">
+        <div class="col-lg-4">
+            <form class="form-horizontal" method="post" action="{% url 'users:update' %}">
                 {% csrf_token %}
-                {{ form|crispy }}
+                {% crispy form %}
                 <div class="control-group">
                   <div class="controls">
-                    <button type="submit" class="btn">Update</button>
+                    <button type="submit" class="btn btn-large btn-success">Update</button>
                   </div>
                 </div>
             </form>
@@ -22,3 +26,7 @@
     </div>
 </div>
 {% endblock %}
+
+{% block extra_javascript %}
+    {% import_django_select2_js %}
+{% endblock %}    

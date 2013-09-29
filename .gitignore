@@ -1,0 +1,7 @@
+*.py[c,o]
+.DS_Store
+*.*~
+mentorup/media
+*.sw[pcom]
+mentorup/static/.sass-cache/
+build/
