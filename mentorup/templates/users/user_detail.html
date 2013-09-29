@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load avatar_tags %}
-{% load static %}
+{% load static postman_tags %}%}
 
 {% block title %}User: {{ object.username }}{% endblock %}
 
@@ -13,6 +13,11 @@
     </div>
 
     <div class="col-sm-11">
+      {% if object != request.user %}
+      <div class="container pull-right">
+        <a href="{% url 'postman_write' object.username %}" class="btn btn-large btn-success"><i class="icon-envelope-alt"></i>&nbsp;Contact this member</a>
+      </div>
+      {% endif %}
       <h3>{{ object.first_name }} {{ object.last_name }}</h3>
       <h4>({{ object.username }})</h4>
     </div>
@@ -32,6 +37,7 @@
 
 </div>
 <!-- End Action buttons -->
+
 {% endif %}
 
 <div class="row">

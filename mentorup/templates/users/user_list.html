@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load static %}{% load i18n %}
-{% load avatar_tags %}
+{% load static i18n postman_tags avatar_tags %}
 
 {% block title %}Mentor UP Members{% endblock %}
 {% block body_class %}members{% endblock %}
@@ -30,7 +29,7 @@
         </div>
 
         <div class="col-sm-1 col-md-offset-1">
-          <a href="#" class="btn btn-info pull-right contact-me">Contact Me</a> 
+          <a href="{% url 'postman_write' user.username %}" class="btn btn-large btn-success pull-right contact-me"><i class="icon-envelope-alt"></i>&nbsp;Contact me</a>
         </div>
       </a>
     </div>
