@@ -13,7 +13,7 @@ Using Sass
 
 We're using Sass for stylesheets in a very simple way.  You've just gotta understand variables and CSS selector inheritance.  We're not doing anything crazy, and all valid CSS is Sass compliant.
 
-.. codeblock::
+.. code-block::
 
 	gem install compass
 	cd mentorup/static
