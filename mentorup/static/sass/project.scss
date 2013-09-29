@@ -6,41 +6,14 @@
 // Variables
 $red-hot: #C0392B;
 $button-primary: $red-hot;
+$gray: rgb(189, 195, 199);
+$dark-blue: #2C3E50;
 
-body, div.header, input.textinput {
-  background-color: #2C3E50;
-  color: rgb(189, 195, 199);
-  font-family: 'Inconsolata', sans-serif;
-
-    a {
-        &:link {
-          color: rgb(189, 195, 199);
-        }
-    }
-
-}
-
-h1, h2, h3, h4, h5, h6, 
-.h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: 'Bowlby One SC', cursive;
-    font-weight: 400;
-}
-
-.navbar {
-    .nav {
-
-        a:hover {
-            color: $red-hot;
-        }
-
-        > li.active {
-            > a {
-                color: $red-hot;
-            }
-        }
-
-    }
-}
+//h1, h2, h3, h4, h5, h6, 
+//.h1, .h2, .h3, .h4, .h5, .h6 {
+//    font-family: 'Bowlby One SC', cursive;
+//    font-weight: 400;
+//}
 
 .btn-redhot {
     background-color: $red-hot;
@@ -49,7 +22,12 @@ h1, h2, h3, h4, h5, h6,
     }
 }
 
-// sign in page
+// Global
+img.img-thumbnail {
+    margin-bottom: 1%;
+}
+
+// Sign in page
 body.sign-in {
 
     form.login { 
@@ -59,7 +37,17 @@ body.sign-in {
     }
 }
 
-// social accounts list
+body.members {
+    h2 {
+        margin-bottom: 2%;
+        padding-left: 15px;
+    }
+
+    .list-bio {
+        font-size: 22px;
+    }
+
+}
 
 ul.socialaccount_providers li {
     list-style: none;

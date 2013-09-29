@@ -29,7 +29,8 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get_redirect_url(self):
-        return reverse("users:detail",
+        return reverse(
+            "users:detail",
             kwargs={"username": self.request.user.username})
 
 
@@ -42,15 +43,16 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     # send the user back to their own page after a successful update
     def get_success_url(self):
-        return reverse("users:detail",
-                    kwargs={"username": self.request.user.username})
+        return reverse(
+            "users:detail",
+            kwargs={"username": self.request.user.username})
 
     def get_object(self):
         # Only get the User record for the user making the request
         return User.objects.get(username=self.request.user.username)
 
 
-class UserListView(LoginRequiredMixin, ListView):
+class UserListView(ListView):
     model = User
     # These next two lines tell the view to index lookups by username
     slug_field = "username"

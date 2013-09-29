@@ -2,31 +2,40 @@
 {% load static %}{% load i18n %}
 {% load avatar_tags %}
 
-{% block title %}Members{% endblock %}
+{% block title %}Mentor UP Members{% endblock %}
+{% block body_class %}members{% endblock %}
 
 {% block content %}
 
 <div class="container">
     
   <div class="row">
-    <div class="col-xs-12">
-      <h2>Users</h2>
-    </div>
+      <h2>MentorUP Members</h2>
   </div>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="list-group">
-          {% for user in user_list %}
-            <a href="{% url 'users:detail' user.username %}" class="list-group-item">
-              <h4 class="list-group-item-heading">{% avatar user %} {{ user.username }}</h4>
-              <p class="list-group-item-text">{{ maker.tagline }}</p>
-            </a>
-          {% endfor %}
-        
-      </div>
+    {% for user in user_list %}
+    <div class="row">
+      <a href="{% url 'users:detail' user.username %}">
+        <div class="col-sm-1">
+          <span class="avatar">{% avatar user %} </span>
+        </div>
+
+        <div class="col-sm-3 name">
+          <span><h4>{{ user.first_name }} {{ user.last_name }}</h4></span><br>
+          <span class="username">{{ user.username }}</span>
+        </div>
+
+        <div class="col-sm-5 list-bio">
+          <span>{{ user.short_bio }}</span>
+        </div>
+
+        <div class="col-sm-1 col-md-offset-1">
+          <a href="#" class="btn btn-info pull-right contact-me">Contact Me</a> 
+        </div>
+      </a>
     </div>
-  </div>
+    <hr>
+    {% endfor %}
 
 </div>
 

@@ -118,18 +118,8 @@ class Common(Configuration):
 
     ########## DATABASE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-    DATABASES = values.DatabaseURLValue('postgres://localhost/mentorup')
-    if os.environ.get("ISCHRIS", False):
-        DATABASES = {
-            'default': {
-                "ENGINE": "django.db.backends.postgresql_psycopg2",
-                "NAME": "mentorup",
-                "USER": "djangochris",
-                "PASSWORD": "DjangoChris",
-                "HOST": "localhost",
-                "PORT": "",
-            }
-        }
+    DATABASES = values.DatabaseURLValue('postgres://localhost/mentorup_local')
+
     ########## END DATABASE CONFIGURATION
 
     ########## CACHING
@@ -286,7 +276,7 @@ class Local(Common):
 
     ########## django-debug-toolbar
     MIDDLEWARE_CLASSES = Common.MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-    INSTALLED_APPS += ('debug_toolbar',)
+    INSTALLED_APPS += ('debug_toolbar', )
 
     INTERNAL_IPS = ('127.0.0.1',)
 
