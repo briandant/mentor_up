@@ -9,40 +9,11 @@ $button-primary: $red-hot;
 $gray: rgb(189, 195, 199);
 $dark-blue: #2C3E50;
 
-body, div.header, input.textinput {
-  background-color: $dark-blue;
-  color: rgb(189, 195, 199);
-  font-family: 'Inconsolata', sans-serif;
-
-    a {
-        &:link {
-          color: $gray;
-        }
-    }
-
-}
-
-h1, h2, h3, h4, h5, h6, 
-.h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: 'Bowlby One SC', cursive;
-    font-weight: 400;
-}
-
-.navbar {
-    .nav {
-
-        a:hover {
-            color: $red-hot;
-        }
-
-        > li.active {
-            > a {
-                color: $red-hot;
-            }
-        }
-
-    }
-}
+//h1, h2, h3, h4, h5, h6, 
+//.h1, .h2, .h3, .h4, .h5, .h6 {
+//    font-family: 'Bowlby One SC', cursive;
+//    font-weight: 400;
+//}
 
 .btn-redhot {
     background-color: $red-hot;
@@ -53,7 +24,6 @@ h1, h2, h3, h4, h5, h6,
 
 // Global
 img.img-thumbnail {
-    background-color: $gray;
     margin-bottom: 1%;
 }
 
@@ -77,9 +47,6 @@ body.members {
         font-size: 22px;
     }
 
-    a {
-        color: $gray;
-    }
 }
 
 ul.socialaccount_providers li {
