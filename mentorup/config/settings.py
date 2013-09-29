@@ -49,6 +49,9 @@ class Common(Configuration):
         'crispy_forms',  # Form layouts
         'postman',  # for users to message each other
         'django_select2', # for pretty forms
+        # this is only added for purposes of running the South migrations
+        # to avoid this error: ValueError: Cannot import the required field 'select2.fields.ForeignKey'
+        'select2',
     )
 
     # Apps specific for this project go here.
