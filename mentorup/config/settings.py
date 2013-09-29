@@ -353,7 +353,7 @@ class Production(Common):
     ########## SITE CONFIGURATION
     # Hosts/domain names that are valid for this site
     # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-    ALLOWED_HOSTS = ["*"]
+    ALLOWED_HOSTS = ["mentor-up.herokuapp.com", "mentorup.io", "www.mentorup.io"]
     ########## END SITE CONFIGURATION
 
     INSTALLED_APPS += ("gunicorn", )
@@ -366,16 +366,17 @@ class Production(Common):
     STATIC_URL = '/static/'
 
     # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-    STATICFILES_DIRS = (
-        join(BASE_DIR, 'static'),
-    )
+    # STATICFILES_DIRS = (
+    #     join(BASE_DIR, '..', 'static'),
+    # )
 
     # as recommended on # https://devcenter.heroku.com/articles/django-assets
-    # PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+    # TODO: replace this path lookup with unipath as recommended in Two Scoops book
+    PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-    # STATICFILES_DIRS = (
-    #     join(PROJECT_PATH, 'static'),
-    # )
+    STATICFILES_DIRS = (
+         os.path.join(PROJECT_PATH, 'static'),
+    )
 
     # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
     STATICFILES_FINDERS = (
