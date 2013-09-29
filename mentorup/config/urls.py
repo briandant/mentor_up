@@ -32,5 +32,7 @@ urlpatterns = patterns(
     # Your stuff: custom urls go here
     url(r'^messages/', include('postman.urls')),
 
-
+    # URL pattern for select2's AJAX Support
+    url(r'^select2/', include('select2.urls')),
+    
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

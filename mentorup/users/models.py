@@ -19,16 +19,15 @@ import select2.fields
 import select2.models
 
 
-class Skills(models.Model):
+class Skill(models.Model):
     """
     Model for storing skills and associating them with a user
     """
     active = models.BooleanField(default=True)
     name = models.CharField(max_length=50)
-    teach = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return self.name + " Teach: " + str(self.teach)
+        return self.name
 
     @classmethod
     def generate_skills(cls):
@@ -92,7 +91,8 @@ class User(AbstractUser):
     def __unicode__(self):
         return self.username
 
-    skills = models.ManyToManyField(Skills, null=True)
+    skills_to_teach = select2.fields.ManyToManyField(Skill, related_name='skills_to_teach')
+    skills_to_learn = select2.fields.ManyToManyField(Skill, related_name='skills_to_learn')
     short_bio = models.TextField()
     location = models.CharField(max_length=50)
 
@@ -114,7 +114,7 @@ class Search(models.Model):
     Model for hooking up available skill classes with ajax
     search autocomplete requests.
     """
-    skill_categories = select2.fields.ForeignKey(Skills,
+    skill_categories = select2.fields.ForeignKey(Skill,
         limit_choices_to=models.Q(active=True),
         ajax=True,
         search_field='name',

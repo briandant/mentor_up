@@ -11,4 +11,4 @@ class UserForm(forms.ModelForm):
         model = User
 
         # Constrain the UserForm to just these fields.
-        fields = ("first_name", "last_name", "short_bio", "location")
+        fields = ("first_name", "last_name", "short_bio", "location", "skills_to_learn", "skills_to_teach")
