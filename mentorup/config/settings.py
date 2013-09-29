@@ -220,6 +220,14 @@ class Common(Configuration):
     # Select the correct user model
     AUTH_USER_MODEL = "users.User"
     LOGIN_REDIRECT_URL = "users:redirect"
+
+    # this will redirect the user to the update profile page
+    # after they confirm their email address
+    ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "users:update"
+
+    # use this if you want to request all the form fields the first time
+    # the user signs up
+    # ACCOUNT_SIGNUP_FORM_CLASS = "users.forms.UserForm"
     ########## END Custom user app defaults
 
     ########## SLUGLIFIER

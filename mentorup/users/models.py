@@ -84,14 +84,7 @@ class Skill(models.Model):
                 Skills.objects.get_or_create(name=tag, teach=True)
                 Skills.objects.get_or_create(name=tag_skill, teach=True)
 
-
-# Subclass AbstractUser
-class User(AbstractUser):
-
-    def __unicode__(self):
-        return self.username
-
-    LOCATIONS = (
+LOCATIONS = (
         ('boston', 'Boston, MA'),
         ('newyork', 'New York, NY'),
         ('sanfrancisco', 'San Francisco, CA'),
@@ -104,6 +97,13 @@ class User(AbstractUser):
         ('boulder', 'Boulder, CO'),
         ('other', 'Other')
     )
+
+# Subclass AbstractUser
+class User(AbstractUser):
+
+    def __unicode__(self):
+        return self.username
+
     skills_to_teach = select2.fields.ManyToManyField(Skill, related_name='skills_to_teach')
     skills_to_learn = select2.fields.ManyToManyField(Skill, related_name='skills_to_learn')
 
@@ -121,6 +121,13 @@ class User(AbstractUser):
                 return account.get_profile_url()
             else:
                 return None
+
+    def display_location(self):
+        """
+        Given a location value, return the humanized location
+        """
+        locations = dict(LOCATIONS)
+        return locations[self.location]
 
 
 class Search(models.Model):
