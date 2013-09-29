@@ -14,18 +14,25 @@
 
     {% for user in user_list %}
     <div class="row">
-      <a href="{% url 'users:detail' user.username %}">
         <div class="col-sm-1">
-          <span class="avatar">{% avatar user %} </span>
+          <span class="avatar"><a href="{% url 'users:detail' user.username %}">{% avatar user %}</a> </span>
         </div>
 
         <div class="col-sm-3 name">
-          <span><h4>{{ user.first_name }} {{ user.last_name }}</h4></span><br>
-          <span class="username">{{ user.username }}</span>
+          <span><h4><a href="{% url 'users:detail' user.username %}">{{ user.first_name }} {{ user.last_name }}</a></h4></span>
+          <ul class="user-attributes">
+            <li><a href="{% url 'users:detail' user.username %}"><i class="icon-user"></i>&nbsp;{{ user.username }}</a></li>
+            <li><i class="icon-map-marker"></i>&nbsp;{{ user.display_location }}</li>
+          </ul>
         </div>
 
-        <div class="col-sm-5 list-bio">
-          <span>{{ user.short_bio }}</span>
+        <div class="col-sm-5">
+            <!-- <p>{{ user.tagline }}</p> -->
+            <h4>My skills</h4>
+            <p>{{ user.display_skills_to_teach }}</p>
+
+            <h4>What I want to learn</h4>
+            <p>{{ user.display_skills_to_learn }}</p>
         </div>
 
         <div class="col-sm-1 col-md-offset-1">
@@ -37,14 +44,6 @@
     <hr>
     {% endfor %}
 
-</div>
-  <div class="select2-container select2-container-multi populate" id="bagel" style="width: 300px;">
-    <ul class="select2-choices">
-      <li class="select2-search-field">
-        <input type="hidden" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input select2-focused" tabindex="0">
-      </li>
-    </ul>
-  <div>
 </div>
 
 {% endblock content %}

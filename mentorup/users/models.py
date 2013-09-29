@@ -73,3 +73,19 @@ class User(AbstractUser):
         locations = dict(LOCATIONS)
         return locations[self.location]
 
+    def display_skills_to_teach(self):
+        """
+        Given a user, return a comma separated list of
+        skills they want to teach
+        """
+        skills = self.skills_to_teach.all()
+        return ", ".join([str(skill) for skill in skills])
+
+
+    def display_skills_to_learn(self):
+        """
+        Given a user, return a comma separated list of
+        skills they want to learn
+        """
+        skills = self.skills_to_learn.all()
+        return ", ".join([str(skill) for skill in skills])
