@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath="$PWD/mentorup" config.wsgi:application
+web: python mentorup/manage.py collectstatic --noinput; python mentorup/manage.py run_gunicorn
