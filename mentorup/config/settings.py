@@ -52,6 +52,7 @@ class Common(Configuration):
         # this is only added for purposes of running the South migrations
         # to avoid this error: ValueError: Cannot import the required field 'select2.fields.ForeignKey'
         'select2',
+        'floppyforms',  # form freshness
     )
 
     # Apps specific for this project go here.
@@ -184,6 +185,7 @@ class Common(Configuration):
 
     # See: http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
     CRISPY_TEMPLATE_PACK = 'bootstrap3'
+    CRISPY_FAIL_SILENTLY = not DEBUG
     ########## END TEMPLATE CONFIGURATION
 
     ########## MEDIA CONFIGURATION

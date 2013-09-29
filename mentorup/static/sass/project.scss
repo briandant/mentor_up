@@ -9,12 +9,6 @@ $button-primary: $red-hot;
 $gray: rgb(189, 195, 199);
 $dark-blue: #2C3E50;
 
-//h1, h2, h3, h4, h5, h6, 
-//.h1, .h2, .h3, .h4, .h5, .h6 {
-//    font-family: 'Bowlby One SC', cursive;
-//    font-weight: 400;
-//}
-
 .btn-redhot {
     background-color: $red-hot;
       &:hover, &:focus, {
@@ -47,10 +41,25 @@ body.members {
         font-size: 22px;
     }
 
+    div.row.form-row {
+        padding: 20px 0;
+        border-bottom: 2px solid #eee;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        width: 100%;
+        max-width: 100%;
+    }
+
 }
 
 ul.socialaccount_providers li {
     list-style: none;
+}
+
+.navbar-brand {
+    font-size: 34px;
 }
 
 ul.user-attributes {

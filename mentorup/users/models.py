@@ -4,27 +4,22 @@ from django.contrib.auth.models import AbstractUser
 
 # Import the basic Django ORM models and forms library
 from django.db import models
-from django.db.models.signals import post_save
-from django import forms
-from django.db.models import Q
-from django.utils.translation import ugettext_lazy as _
-
 from allauth.socialaccount.models import SocialAccount
 
 
 LOCATIONS = (
-        ('boston', 'Boston, MA'),
-        ('newyork', 'New York, NY'),
-        ('sanfrancisco', 'San Francisco, CA'),
-        ('washingtondc', 'Washington, DC'),
-        ('seattle', 'Seattle, WA'),
-        ('austin', 'Austin, TX'),
-        ('portland', 'Portland, OR'),
-        ('minneapolis', 'Minneapolis, MN'),
-        ('chicago', 'Chicago, IL'),
-        ('boulder', 'Boulder, CO'),
-        ('other', 'Other')
-    )
+    ('boston', 'Boston, MA'),
+    ('newyork', 'New York, NY'),
+    ('sanfrancisco', 'San Francisco, CA'),
+    ('washingtondc', 'Washington, DC'),
+    ('seattle', 'Seattle, WA'),
+    ('austin', 'Austin, TX'),
+    ('portland', 'Portland, OR'),
+    ('minneapolis', 'Minneapolis, MN'),
+    ('chicago', 'Chicago, IL'),
+    ('boulder', 'Boulder, CO'),
+    ('other', 'Other')
+)
 
 
 class Skill(models.Model):
@@ -48,7 +43,7 @@ class User(AbstractUser):
     skills_to_learn = models.ManyToManyField(Skill, related_name='skills_to_learn')
 
     short_bio = models.TextField()
-    location = models.CharField(max_length=50, choices=LOCATIONS, default="boston")
+    location = models.CharField(max_length=50, choices=sorted(LOCATIONS), default="boston")
 
     def github_profile_url(self):
         """
@@ -76,7 +71,6 @@ class User(AbstractUser):
         """
         skills = self.skills_to_teach.all()
         return ", ".join([str(skill) for skill in skills])
-
 
     def display_skills_to_learn(self):
         """

@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 from braces.views import LoginRequiredMixin
 
 # Import the form from users/forms.py
-from .forms import UserForm
+from .forms import UserForm, MemberSearchForm
 
 # Import the customized User model
 from .models import User
@@ -41,6 +41,7 @@ def user_update_view(request, template='users/user_form.html'):
     instance = User.objects.get(username=request.user.username)
 
     if request.method == 'POST':
+
         form = UserForm(request.POST, instance=instance)
         if form.is_valid():
 
@@ -62,8 +63,19 @@ def user_update_view(request, template='users/user_form.html'):
     )
 
 
+def user_search_view(request):
+    import pdb; pdb.set_trace()
+
+
 class UserListView(ListView):
     model = User
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
     slug_url_kwarg = "username"
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(UserListView, self).get_context_data(**kwargs)
+        # Add in the publisher
+        context['search_form'] = MemberSearchForm()
+        return context
