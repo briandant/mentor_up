@@ -120,7 +120,7 @@ class Common(Configuration):
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
     DATABASES = values.DatabaseURLValue('postgres://localhost/mentorup_local')
     if os.environ.get('MENTORUP_POSTGRES', False):
-        DATABASES = values.DatabaseURLValue(os.environ.get('MENTORUP_POSTGRES'))
+        DATABASES = values.DatabaseURLValue(os.environ.get('MENTORUP_POSTGRES', False))
     ########## END DATABASE CONFIGURATION
 
     ########## CACHING
