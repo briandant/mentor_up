@@ -360,7 +360,7 @@ class Production(Common):
 
     ########## STATIC FILE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-    STATIC_ROOT = 'staticfiles'
+    STATIC_ROOT = join(BASE_DIR, 'staticfiles')
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
     STATIC_URL = '/static/'
