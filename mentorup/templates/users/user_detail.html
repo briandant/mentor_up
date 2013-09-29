@@ -36,31 +36,28 @@
     <div class="col-sm-11">
       {% if object != request.user %}
       <div class="container pull-right">
-        <a href="{% url 'postman_write' object.username %}" class="btn btn-large btn-success"><i class="icon-envelope-alt"></i>&nbsp;Contact this member</a>
+        <a href="{% url 'postman_write' object.username %}" class="btn btn-large btn-success"><i class="icon-envelope-alt"></i>&nbsp;Contact me</a>
       </div>
       {% endif %}
       <h2>{{ object.first_name }} {{ object.last_name }}</h2>
-      <h3>({{ object.username }})</h3>
+      <ul class="user-attributes">
+        <li><a href="{% url 'users:detail' user.username %}"><i class="icon-user"></i>&nbsp;{{ user.username }}</a></li>
+        <li><i class="icon-map-marker"></i>&nbsp;{{ user.display_location }}</li>
+        {% if object.github_profile_url %}
+        <li><i class="icon-github"></i>&nbsp;<a href="{{ object.github_profile_url }}">{{ object.github_profile_url }}</a></li>
+      {% endif %}
+      </ul>
+
+      <h4>Personal introduction</h4>
+      <p>{{ object.short_bio }}</p>
+
+      <h4>My skills</h4>
+      <p>{{ object.display_skills_to_teach }}</p>
+
+      <h4>What I want to learn</h4>
+      <p>{{ object.display_skills_to_learn }}</p>
+
     </div>
-  </div>
-
-<div class="row">
-  <div class="col-sm-12">
-  <p>{{ object.short_bio }}</p>
-  {% if object.github_profile_url %}
-  <p><i class="icon-github"></i>&nbsp;<a href="{{ object.github_profile_url }}">{{ object.github_profile_url }}</a></p>
-  {% endif %}
-  {% if object.location %}
-  <p><i class="icon-map-marker"></i>&nbsp;{{ object.display_location }}</p>
-  </div>
-  {% endif %}
-  <h4>My skills</h4>
-  <p>{{ object.display_skills_to_teach }}</p>
-
-  <h4>What I want to learn</h4>
-  <p>{{ object.display_skills_to_learn }}</p>
-
-</div>
 
 </div>
 {% endblock content %}

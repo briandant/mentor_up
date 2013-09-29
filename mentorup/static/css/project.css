@@ -37,3 +37,14 @@ body.members .list-bio {
 ul.socialaccount_providers li {
   list-style: none;
 }
+
+/* line 56, ../sass/project.scss */
+ul.user-attributes {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* line 61, ../sass/project.scss */
+ul.user-attributes li {
+  padding-bottom: 10px;
+}
