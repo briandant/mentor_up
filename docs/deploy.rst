@@ -111,10 +111,11 @@ Run the syncdb, migrate and collectstatic Django management commands::
 	$ heroku run python mentorup/manage.py migrate --settings=config.settings
 	$ heroku run python mentorup/manage.py collectstatic --settings=config.settings
 
-TODO: Explain how to serve static files with dj-static_.
+Add the mentorup.io domain::
 
-.. _dj-static: https://github.com/kennethreitz/dj-static
-
+	$ heroku domains:add mentorup.io
+	Adding mentorup.io to mentor-up... done
+	
 Run this script: (TODO - automate this)
 
 .. code-block:: python

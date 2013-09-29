@@ -49,8 +49,6 @@ class Common(Configuration):
         'crispy_forms',  # Form layouts
         'floppyforms',  # form freshness
         'avatar',  # for user avatars
-        'taggit',  # for searchable skill tags
-        'chosen',  # for pretty searches
         'postman',  # for users to message each other
         'django_select2',  # for pretty forms
     )

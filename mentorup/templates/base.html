@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <title>{% block title %}{{ project_name }}{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Django Dash 2013 project exploring ways to connect mentors and mentees learning to code.
-">
+    <meta name="description" content="Django Dash 2013 project exploring ways to connect mentors and mentees learning to code.">
     <meta name="author" content="Nate Aune, Brian Dant, Chris Van Schyndel">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -13,11 +12,15 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+    <!-- for some reason, jQuery needs to go *before* select2.js or else you get this error:
+    "Uncaught ReferenceError: jQuery is not defined"
+    -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
     {% block css %}
     <!-- Latest compiled and minified CSS -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-{#    <link href="{% static 'css/flat-ui.css' %}" rel="stylesheet">#}
     <link rel="stylesheet" type="text/css" href="{% static 'css/selectize.bootstrap3.css' %}" />
 
     <!-- Loading Flat UI -->
@@ -25,13 +28,9 @@
 
     {% endblock %}
 
-{#    {% block angular %}#}
-{#      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>#}
-{#    {% endblock %}#}
+    {% block extra_css %}
+    {% endblock %}
 
-    <!-- Latest JQuery -->
-    <!-- Moved to head for use with attached methods on django_select2 forms -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   </head>
 
   <body class={% block body_class %}{% endblock %}>
@@ -63,18 +62,16 @@
     
     {% block modal %}{% endblock modal %}
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Load JS here for greater good =============================-->
     {% block javascript %}
-{#      <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>#}
+      <!-- Latest JQuery -->
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
       <!-- Latest compiled and minified JavaScript -->
       <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
       <!-- Your stuff: Third-party javascript libraries go here -->
-      <!-- Load JS here for greater good =============================-->
-      <script src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
+{#      <script src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>#}
 {#      <script src="{% static 'js/jquery.ui.touch-punch.min.js' %}"></script>#}
 {#      <script src="{% static 'js/bootstrap.min.js' %}"></script>#}
 {#      <script src="{% static 'js/bootstrap-select.js' %}"></script>#}
@@ -89,6 +86,9 @@
       <script type="text/javascript" src="{% static 'js/project.js' %}"></script>
 
     {% endblock javascript %}
+
+    {% block extra_javascript %}
+    {% endblock %}
   </body>
 </html>
  

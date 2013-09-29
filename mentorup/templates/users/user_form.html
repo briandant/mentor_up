@@ -1,7 +1,11 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags django_select2_tags %}
 
 {% block title %}Member: {{ user.username }}{% endblock %}
+
+{% block extra_css %}
+    {% import_django_select2_css %}
+{% endblock %}
 
 {% block content %}
 
@@ -22,6 +26,3 @@
     </div>
 </div>
 {% endblock %}
-
-
-

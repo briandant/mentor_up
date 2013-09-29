@@ -4,7 +4,6 @@ import floppyforms as forms
 from .models import User, Skill, LOCATIONS
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit, Fieldset, Div
-from crispy_forms.bootstrap import InlineField
 from django.core.urlresolvers import reverse
 
 #from django_select2 import AutoModelSelect2MultipleField
@@ -12,7 +11,6 @@ SKILL_OPTIONS = tuple((skill.id, skill.name) for skill in Skill.objects.all())
 
 
 class UserForm(forms.ModelForm):
-#    # Define form fields here for select2
 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
@@ -36,7 +34,6 @@ class UserForm(forms.ModelForm):
         # Set this form to use the User model.
         model = User
 
-        # Constrain the UserForm to just these fields.
         fields = ("first_name", "last_name", "short_bio", "location", "skills_to_learn", "skills_to_teach")
 
 
@@ -63,4 +60,3 @@ class MemberSearchForm(forms.Form):
 
         self.fields['skills_to_search'].label = "Choose skills to search"
         self.fields['locations_to_search'].label = "Choose a city"
-
