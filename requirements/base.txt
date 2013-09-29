@@ -37,7 +37,6 @@ django-avatar==2.0
 dj-static==0.0.5
 django-postman==3.0.1
 django-notification==1.1.1
-django-taggit==0.10
 django-select2==4.2.1
 
 # TODO: evaluate these packages for use to populate the Location field
@@ -46,5 +45,6 @@ django-select2==4.2.1
 #djcities==0.1
 
 # not using anymore
-#django-select2-forms
+#django-taggit==0.10
 #django-chosen==0.1
+#django-select2-forms

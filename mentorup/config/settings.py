@@ -48,8 +48,6 @@ class Common(Configuration):
         'south',  # Database migration helpers:
         'crispy_forms',  # Form layouts
         'avatar',  # for user avatars
-        'taggit',  # for searchable skill tags
-        'chosen',  # for pretty searches
         'postman',  # for users to message each other
         'django_select2', # for pretty forms
     )
