@@ -20,12 +20,17 @@
         </div>
 
         <div class="col-sm-3 name">
-          <span><h4>{{ user.first_name }} {{ user.last_name }}</h4></span><br>
+          <span><h3>{{ user.first_name }} {{ user.last_name }}</h3></span><br>
           <span class="username">{{ user.username }}</span>
         </div>
 
         <div class="col-sm-5 list-bio">
           <span>{{ user.short_bio }}</span>
+            <h4>My skills</h4>
+            <p>{{ user.display_skills_to_teach }}</p>
+
+            <h4>What I want to learn</h4>
+            <p>{{ user.display_skills_to_learn }}</p>
         </div>
 
         <div class="col-sm-1 col-md-offset-1">
@@ -37,14 +42,6 @@
     <hr>
     {% endfor %}
 
-</div>
-  <div class="select2-container select2-container-multi populate" id="bagel" style="width: 300px;">
-    <ul class="select2-choices">
-      <li class="select2-search-field">
-        <input type="hidden" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input select2-focused" tabindex="0">
-      </li>
-    </ul>
-  <div>
 </div>
 
 {% endblock content %}

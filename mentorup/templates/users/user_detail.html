@@ -39,8 +39,8 @@
         <a href="{% url 'postman_write' object.username %}" class="btn btn-large btn-success"><i class="icon-envelope-alt"></i>&nbsp;Contact this member</a>
       </div>
       {% endif %}
-      <h3>{{ object.first_name }} {{ object.last_name }}</h3>
-      <h4>({{ object.username }})</h4>
+      <h2>{{ object.first_name }} {{ object.last_name }}</h2>
+      <h3>({{ object.username }})</h3>
     </div>
   </div>
 
@@ -54,6 +54,12 @@
   <p><i class="icon-map-marker"></i>&nbsp;{{ object.display_location }}</p>
   </div>
   {% endif %}
+  <h4>My skills</h4>
+  <p>{{ object.display_skills_to_teach }}</p>
+
+  <h4>What I want to learn</h4>
+  <p>{{ object.display_skills_to_learn }}</p>
+
 </div>
 
 </div>
