@@ -17,21 +17,11 @@
     <!-- Latest compiled and minified CSS -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link href="{% static 'select2/css/select2.css' %}" rel="stylesheet"/>
-
-{#    <!-- Optional theme -->#}
-{#    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">#}
+{#    <link href="{% static 'css/flat-ui.css' %}" rel="stylesheet">#}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/selectize.bootstrap3.css' %}" />
 
     <!-- Loading Flat UI -->
-    <link href="{% static 'css/flat-ui.css' %}" rel="stylesheet">
-    <!-- Your stuff: Third-party css libraries go here -->
-
-    <!-- This file store project specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
-
-    <!-- Fonts -->
-{#    <link href='http://fonts.googleapis.com/css?family=Bowlby+One+SC' rel='stylesheet' type='text/css'>#}
-{#    <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>#}
 
     {% endblock %}
 
@@ -39,23 +29,25 @@
 {#      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>#}
 {#    {% endblock %}#}
 
+    <!-- Latest JQuery -->
+    <!-- Moved to head for use with attached methods on django_select2 forms -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   </head>
 
   <body class={% block body_class %}{% endblock %}>
 
     <div class="header navbar">
       <div class="container">
-        <a class="navbar-brand" href="/">Mentor Up</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Mentor UP</a>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
 
           {% if request.user.is_authenticated %}
-            <li><a href="{% url 'users:detail' request.user.username  %}"><i class="icon-user"></i>&nbsp;{% trans "My Profile" %}</a></li>
-            <li><a href="{% url 'account_logout' %}"><i class="icon-off"></i>&nbsp;{% trans "Logout" %}</a></li>
+            <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
+            <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
           {% else %}
             <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
-            <li><a href="{% url 'account_login' %}"><i class="icon-lock">&nbsp</i>&nbsp;{% trans "Log In" %}</a></li>
+            <li><a href="{% url 'account_login' %}">{% trans "Log In" %}</a></li>
           {% endif %}
         </ul>
       </div>
@@ -75,9 +67,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     {% block javascript %}
-      <!-- Latest JQuery -->
-{#      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>#}
-      <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
+{#      <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>#}
 
       <!-- Latest compiled and minified JavaScript -->
       <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -85,33 +75,19 @@
       <!-- Your stuff: Third-party javascript libraries go here -->
       <!-- Load JS here for greater good =============================-->
       <script src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
-      <script src="{% static 'js/jquery.ui.touch-punch.min.js' %}"></script>
-      <script src="{% static 'js/bootstrap.min.js' %}"></script>
-      <script src="{% static 'js/bootstrap-select.js' %}"></script>
-      <script src="{% static 'js/bootstrap-switch.js' %}"></script>
-      <script src="{% static 'js/flatui-checkbox.js' %}"></script>
-      <script src="{% static 'js/flatui-radio.js' %}"></script>
-      <script src="{% static 'js/jquery.tagsinput.js' %}"></script>
-      <script src="{% static 'js/jquery.placeholder.js' %}"></script>
-      <script src="{% static 'select2/js/select2.js' %}"></script>
+{#      <script src="{% static 'js/jquery.ui.touch-punch.min.js' %}"></script>#}
+{#      <script src="{% static 'js/bootstrap.min.js' %}"></script>#}
+{#      <script src="{% static 'js/bootstrap-select.js' %}"></script>#}
+{#      <script src="{% static 'js/bootstrap-switch.js' %}"></script>#}
+{#      <script src="{% static 'js/flatui-checkbox.js' %}"></script>#}
+{#      <script src="{% static 'js/flatui-radio.js' %}"></script>#}
+{#      <script src="{% static 'js/jquery.tagsinput.js' %}"></script>#}
+{#      <script src="{% static 'js/jquery.placeholder.js' %}"></scriptmin.>#}
+      <script type="text/javascript" src="{% static 'js/selectize.min.js' %}"></script>
 
       <!-- place project specific Javascript in this file -->
-      <script src="{% static 'js/project.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/project.js' %}"></script>
 
-      <script>
-        $(document).ready(function() { 
-          $("#id_skills_to_learn").select2({placeholder: 'Choose the skills you want to learn'}); 
-          $("#id_skills_to_teach").select2({placeholder: 'Choose the skills you want to teach'});
-        })
-
-        // $(document).ready(function() { $("#bagel").select2({
-        //     data:[{id:0,text:'enhancement'},{id:1,text:'bug'},{id:2,text:'duplicate'},{id:3,text:'invalid'},{id:4,text:'wontfix'}]
-        // });
- 
-        // var data=[{id:0,tag:'enhancement'},{id:1,tag:'bug'},{id:2,tag:'duplicate'},{id:3,tag:'invalid'},{id:4,tag:'wontfix'}];
-        // function format(item) { return item.tag; };
-        // });
-      </script>
     {% endblock javascript %}
   </body>
 </html>

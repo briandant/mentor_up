@@ -33,6 +33,6 @@ urlpatterns = patterns(
     url(r'^messages/', include('postman.urls')),
 
     # URL pattern for select2's AJAX Support
-    url(r'^select2/', include('select2.urls')),
-    
+    url(r'^select2/', include('django_select2.urls')),
+
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

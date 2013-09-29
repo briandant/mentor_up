@@ -47,11 +47,12 @@ class Common(Configuration):
     THIRD_PARTY_APPS = (
         'south',  # Database migration helpers:
         'crispy_forms',  # Form layouts
+        'floppyforms',  # form freshness
         'avatar',  # for user avatars
         'taggit',  # for searchable skill tags
         'chosen',  # for pretty searches
         'postman',  # for users to message each other
-        'select2', # for pretty forms
+        'django_select2',  # for pretty forms
     )
 
     # Apps specific for this project go here.
@@ -183,6 +184,7 @@ class Common(Configuration):
 
     # See: http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
     CRISPY_TEMPLATE_PACK = 'bootstrap3'
+    CRISPY_FAIL_SILENTLY = not DEBUG
     ########## END TEMPLATE CONFIGURATION
 
     ########## MEDIA CONFIGURATION

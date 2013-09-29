@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static i18n postman_tags avatar_tags %}
+{% load crispy_forms_tags %}
 
 {% block title %}Mentor UP Members{% endblock %}
 {% block body_class %}members{% endblock %}
@@ -9,7 +10,11 @@
 <div class="container">
     
   <div class="row">
-      <h2>MentorUP Members</h2>
+      <h2>Mentor UP Members</h2>
+  </div>
+
+  <div class="row form-row">
+    {% crispy search_form %}
   </div>
 
     {% for user in user_list %}
@@ -36,15 +41,5 @@
     </div>
     <hr>
     {% endfor %}
-
-</div>
-  <div class="select2-container select2-container-multi populate" id="bagel" style="width: 300px;">
-    <ul class="select2-choices">
-      <li class="select2-search-field">
-        <input type="hidden" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input select2-focused" tabindex="0">
-      </li>
-    </ul>
-  <div>
-</div>
 
 {% endblock content %}

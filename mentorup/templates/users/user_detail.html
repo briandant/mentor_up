@@ -3,6 +3,7 @@
 {% load static postman_tags %}%}
 
 {% block title %}User: {{ object.username }}{% endblock %}
+{% block body_class %}member-detail{% endblock %}
 
 {% block content %}
 
@@ -51,7 +52,7 @@
   <p><i class="icon-github"></i>&nbsp;<a href="{{ object.github_profile_url }}">{{ object.github_profile_url }}</a></p>
   {% endif %}
   {% if object.location %}
-  <p><i class="icon-map-marker"></i>&nbsp;{{ object.display_location }}</p>
+  <p><i class="icon-map-marker"></i>&nbsp;{{ object.location }}</p>
   </div>
   {% endif %}
 </div>

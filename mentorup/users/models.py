@@ -8,15 +8,9 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models.signals import post_save
 from django import forms
-from django.db.models import Q
-
 from allauth.socialaccount.models import SocialAccount
 
-from django.utils.translation import ugettext_lazy as _
-
-# import select 2 fields and forms for skill tag searching
-import select2.fields
-import select2.models
+#from django.utils.translation import ugettext_lazy as _
 
 
 class Skill(models.Model):
@@ -85,18 +79,19 @@ class Skill(models.Model):
                 Skills.objects.get_or_create(name=tag_skill, teach=True)
 
 LOCATIONS = (
-        ('boston', 'Boston, MA'),
-        ('newyork', 'New York, NY'),
-        ('sanfrancisco', 'San Francisco, CA'),
-        ('washingtondc', 'Washington, DC'),
-        ('seattle', 'Seattle, WA'),
-        ('austin', 'Austin, TX'),
-        ('portland', 'Portland, OR'),
-        ('minneapolis', 'Minneapolis, MN'),
-        ('chicago', 'Chicago, IL'),
-        ('boulder', 'Boulder, CO'),
-        ('other', 'Other')
-    )
+    ('boston', 'Boston, MA'),
+    ('newyork', 'New York, NY'),
+    ('sanfrancisco', 'San Francisco, CA'),
+    ('washingtondc', 'Washington, DC'),
+    ('seattle', 'Seattle, WA'),
+    ('austin', 'Austin, TX'),
+    ('portland', 'Portland, OR'),
+    ('minneapolis', 'Minneapolis, MN'),
+    ('chicago', 'Chicago, IL'),
+    ('boulder', 'Boulder, CO'),
+    ('other', 'Other')
+)
+
 
 # Subclass AbstractUser
 class User(AbstractUser):
@@ -104,11 +99,11 @@ class User(AbstractUser):
     def __unicode__(self):
         return self.username
 
-    skills_to_teach = select2.fields.ManyToManyField(Skill, related_name='skills_to_teach')
-    skills_to_learn = select2.fields.ManyToManyField(Skill, related_name='skills_to_learn')
+    skills_to_teach = models.ManyToManyField(Skill, related_name='skills_to_teach')
+    skills_to_learn = models.ManyToManyField(Skill, related_name='skills_to_learn')
 
     short_bio = models.TextField()
-    location = models.CharField(max_length=50, choices=LOCATIONS, default="boston")
+    location = models.CharField(max_length=50, choices=sorted(LOCATIONS), default="boston")
 
     def github_profile_url(self):
         """
@@ -135,12 +130,5 @@ class Search(models.Model):
     Model for hooking up available skill classes with ajax
     search autocomplete requests.
     """
-    skill_categories = select2.fields.ForeignKey(Skill,
-        limit_choices_to=models.Q(active=True),
-        ajax=True,
-        search_field='name',
-        case_sensitive=False,
-        overlay="Choose a Skill Tag to Search by",
-        js_options={},
-    )
 
+    skill_categories = models.ForeignKey(Skill)

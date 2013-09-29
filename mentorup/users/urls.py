@@ -29,4 +29,11 @@ urlpatterns = patterns(
         view=views.user_update_view,
         name='update'
     ),
+
+    # URL pattern for the UserDetailView
+    url(
+        regex=r'^~search/$',
+        view=views.user_search_view,
+        name='search'
+    ),
 )
