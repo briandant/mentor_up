@@ -55,7 +55,7 @@ class Skill(models.Model):
         """
         if skill_level:
             tag_skill = "%s %s" %(skill, skill_level)
-            tag = "%s" %(skill)  
+            tag = "%s" %(skill)
             Skills.objects.get_or_create(name=tag, teach=False)
             Skills.objects.get_or_create(name=tag_skill, teach=False)
             Skills.objects.get_or_create(name=tag, teach=True)
@@ -96,8 +96,8 @@ class User(AbstractUser):
     short_bio = models.TextField()
     location = models.CharField(max_length=50)
 
-    def github_profile_url(self): 
-        """ 
+    def github_profile_url(self):
+        """
         Given a user, return the profile URL of their Github account
         """
         accounts = SocialAccount.objects.filter(user=self)
