@@ -11,10 +11,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from allauth.socialaccount.models import SocialAccount
 
-# import select 2 fields and forms for skill tag searching
-import select2.fields
-import select2.models
-
 
 LOCATIONS = (
         ('boston', 'Boston, MA'),
