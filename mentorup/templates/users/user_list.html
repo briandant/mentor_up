@@ -32,10 +32,19 @@
           <a href="{% url 'postman_write' user.username %}" class="btn btn-large btn-success pull-right contact-me"><i class="icon-envelope-alt"></i>&nbsp;Contact me</a>
         </div>
       </a>
+
     </div>
     <hr>
     {% endfor %}
 
+</div>
+  <div class="select2-container select2-container-multi populate" id="bagel" style="width: 300px;">
+    <ul class="select2-choices">
+      <li class="select2-search-field">
+        <input type="hidden" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input select2-focused" tabindex="0">
+      </li>
+    </ul>
+  <div>
 </div>
 
 {% endblock content %}
