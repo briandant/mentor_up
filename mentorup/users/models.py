@@ -92,9 +92,23 @@ class User(AbstractUser):
     def __unicode__(self):
         return self.username
 
-    skills = models.ManyToManyField(Skills, null=True)
+    LOCATIONS = (
+        ('boston', 'Boston, MA'),
+        ('newyork', 'New York, NY'),
+        ('sanfrancisco', 'San Francisco, CA'),
+        ('washingtondc', 'Washington, DC'),
+        ('seattle', 'Seattle, WA'),
+        ('austin', 'Austin, TX'),
+        ('portland', 'Portland, OR'),
+        ('minneapolis', 'Minneapolis,MN'),
+        ('chicago', 'Chicago, IL'),
+        ('boulder', 'Boulder, CO'),
+    )
+    skills_to_teach = select2.fields.ManyToManyField(Skill, related_name='skills_to_teach')
+    skills_to_learn = select2.fields.ManyToManyField(Skill, related_name='skills_to_learn')
+
     short_bio = models.TextField()
-    location = models.CharField(max_length=50)
+    location = models.CharField(max_length=50, choices=LOCATIONS, default="boston")
 
     def github_profile_url(self): 
         """ 
