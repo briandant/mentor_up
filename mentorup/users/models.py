@@ -27,7 +27,7 @@ class Skill(models.Model):
     name = models.CharField(max_length=50)
 
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
 
     @classmethod
     def generate_skills(cls):
@@ -102,10 +102,10 @@ LOCATIONS = (
 class User(AbstractUser):
 
     def __unicode__(self):
-        return self.username
+        return unicode(self.username)
 
-    skills_to_teach = select2.fields.ManyToManyField(Skill, related_name='skills_to_teach')
-    skills_to_learn = select2.fields.ManyToManyField(Skill, related_name='skills_to_learn')
+    skills_to_teach = models.ManyToManyField(Skill, related_name='skills_to_teach')
+    skills_to_learn = models.ManyToManyField(Skill, related_name='skills_to_learn')
 
     short_bio = models.TextField()
     location = models.CharField(max_length=50, choices=LOCATIONS, default="boston")

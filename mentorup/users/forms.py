@@ -2,12 +2,19 @@
 from django import forms
 import floppyforms as forms
 
-from .models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Field, HTML, Submit, ButtonHolder, Fieldset
 
+from django_select2 import *
+
+from .models import User, Skill
+
 
 class UserForm(forms.ModelForm):
+
+    skills_to_teach = ModelSelect2MultipleField(queryset=Skill.objects, required=False)
+    skills_to_learn = ModelSelect2MultipleField(queryset=Skill.objects, required=False)
+
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
 
@@ -31,4 +38,4 @@ class UserForm(forms.ModelForm):
         model = User
 
         # Constrain the UserForm to just these fields.
-        fields = ("first_name", "last_name", "short_bio", "location", "skills_to_learn", "skills_to_teach")
+        fields = ("first_name", "last_name", "short_bio", "location", "skills_to_teach", "skills_to_learn")
