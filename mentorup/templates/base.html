@@ -17,7 +17,7 @@
     <!-- Latest compiled and minified CSS -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link href="{% static 'css/select2.css' %}" rel="stylesheet"/>
+    <link href="{% static 'select2/css/select2.css' %}" rel="stylesheet"/>
 
 {#    <!-- Optional theme -->#}
 {#    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">#}
@@ -30,8 +30,8 @@
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
 
     <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Bowlby+One+SC' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+{#    <link href='http://fonts.googleapis.com/css?family=Bowlby+One+SC' rel='stylesheet' type='text/css'>#}
+{#    <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>#}
 
     {% endblock %}
 
@@ -93,18 +93,24 @@
       <script src="{% static 'js/flatui-radio.js' %}"></script>
       <script src="{% static 'js/jquery.tagsinput.js' %}"></script>
       <script src="{% static 'js/jquery.placeholder.js' %}"></script>
+      <script src="{% static 'select2/js/select2.js' %}"></script>
 
       <!-- place project specific Javascript in this file -->
       <script src="{% static 'js/project.js' %}"></script>
-      <script src="{% static 'js/select_js/select2.js' %}"></script>
+
       <script>
-        $(document).ready(function() { $("#bagel").select2({
-            data:[{id:0,text:'enhancement'},{id:1,text:'bug'},{id:2,text:'duplicate'},{id:3,text:'invalid'},{id:4,text:'wontfix'}]
-        });
+        $(document).ready(function() { 
+          $("#id_skills_to_learn").select2(); 
+          $("#id_skills_to_teach").select2();
+        })
+
+        // $(document).ready(function() { $("#bagel").select2({
+        //     data:[{id:0,text:'enhancement'},{id:1,text:'bug'},{id:2,text:'duplicate'},{id:3,text:'invalid'},{id:4,text:'wontfix'}]
+        // });
  
-        var data=[{id:0,tag:'enhancement'},{id:1,tag:'bug'},{id:2,tag:'duplicate'},{id:3,tag:'invalid'},{id:4,tag:'wontfix'}];
-        function format(item) { return item.tag; };
-        });
+        // var data=[{id:0,tag:'enhancement'},{id:1,tag:'bug'},{id:2,tag:'duplicate'},{id:3,tag:'invalid'},{id:4,tag:'wontfix'}];
+        // function format(item) { return item.tag; };
+        // });
       </script>
     {% endblock javascript %}
   </body>
