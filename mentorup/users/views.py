@@ -38,8 +38,10 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 @login_required()
 def user_update_view(request, template='users/user_form.html'):
+    instance = User.objects.get(username=request.user.username)
+
     if request.method == 'POST':
-        form = UserForm(request.POST)
+        form = UserForm(request.POST, instance=instance)
         if form.is_valid():
 
             form.save()
@@ -50,38 +52,14 @@ def user_update_view(request, template='users/user_form.html'):
 
             return redirect(success_url)
 
-        return render(
-            request,
-            template,
-            {'form': form}
-        )
-
     else:  # Get request
-        form = UserForm()
+        form = UserForm(instance=instance)
 
-        return render(
-            request,
-            template,
-            {'form': form}
-        )
-
-
-class UserUpdateView(LoginRequiredMixin, UpdateView):
-
-    form_class = UserForm
-
-    # we already imported User in the view code above, remember?
-    model = User
-
-    # send the user back to their own page after a successful update
-    def get_success_url(self):
-        return reverse(
-            "users:detail",
-            kwargs={"username": self.request.user.username})
-
-    def get_object(self):
-        # Only get the User record for the user making the request
-        return User.objects.get(username=self.request.user.username)
+    return render(
+        request,
+        template,
+        {'form': form}
+    )
 
 
 class UserListView(ListView):
