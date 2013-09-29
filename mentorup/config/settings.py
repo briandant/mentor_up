@@ -366,17 +366,17 @@ class Production(Common):
     STATIC_URL = '/static/'
 
     # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-    # STATICFILES_DIRS = (
-    #     join(BASE_DIR, '..', 'static'),
-    # )
+    STATICFILES_DIRS = (
+        join(BASE_DIR, '..', 'static'),
+    )
 
     # as recommended on # https://devcenter.heroku.com/articles/django-assets
     # TODO: replace this path lookup with unipath as recommended in Two Scoops book
-    PROJECT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+    # PROJECT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 
-    STATICFILES_DIRS = (
-         os.path.join(PROJECT_PATH, 'static'),
-    )
+    # STATICFILES_DIRS = (
+    #      os.path.join(PROJECT_PATH, 'static'),
+    # )
 
     # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
     STATICFILES_FINDERS = (
