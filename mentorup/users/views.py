@@ -9,6 +9,7 @@ from django.views.generic import UpdateView
 from django.views.generic import ListView
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 # Only authenticated users can access views using this.
 from braces.views import LoginRequiredMixin
@@ -17,7 +18,7 @@ from braces.views import LoginRequiredMixin
 from .forms import UserForm, MemberSearchForm
 
 # Import the customized User model
-from .models import User
+from .models import User, Skill
 
 
 class UserDetailView(DetailView):
@@ -64,7 +65,23 @@ def user_update_view(request, template='users/user_form.html'):
 
 
 def user_search_view(request):
-    import pdb; pdb.set_trace()
+    pass
+
+#    skills = request.GET.get('skills_to_search', None)
+#    skill_objects = Skill.objects.filter(
+#
+#    User.objects.filter(skills_to_teach__=skills_to_learn_set.all())
+#
+#    if skills:
+#        int_skills = [int(skill) for skill in skills]
+#        matching_users = User.objects.filter(skills_to_teach__id__in=[int_skills])[:20]
+#
+#    matching_users = User.objects.all()
+#    for matching_user in matching_users:
+#
+#        if
+#
+#    return HttpResponse(matching_users)
 
 
 class UserListView(ListView):
