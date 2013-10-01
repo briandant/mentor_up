@@ -47,11 +47,12 @@ class Common(Configuration):
     THIRD_PARTY_APPS = (
         'south',  # Database migration helpers:
         'crispy_forms',  # Form layouts
-        'avatar',  # for user avatars
-        'taggit',  # for searchable skill tags
-        'chosen',  # for pretty searches
         'postman',  # for users to message each other
-        'select2', # for pretty forms
+        'django_select2', # for pretty forms
+        # this is only added for purposes of running the South migrations
+        # to avoid this error: ValueError: Cannot import the required field 'select2.fields.ForeignKey'
+        'select2',
+        'floppyforms',  # form freshness
     )
 
     # Apps specific for this project go here.
@@ -70,6 +71,7 @@ class Common(Configuration):
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
         'allauth.socialaccount.providers.github',
+        'avatar',  # for user avatars
     )
     ########## END APP CONFIGURATION
 
@@ -183,6 +185,7 @@ class Common(Configuration):
 
     # See: http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
     CRISPY_TEMPLATE_PACK = 'bootstrap3'
+    CRISPY_FAIL_SILENTLY = not DEBUG
     ########## END TEMPLATE CONFIGURATION
 
     ########## MEDIA CONFIGURATION
@@ -221,6 +224,14 @@ class Common(Configuration):
     # Select the correct user model
     AUTH_USER_MODEL = "users.User"
     LOGIN_REDIRECT_URL = "users:redirect"
+
+    # this will redirect the user to the update profile page
+    # after they confirm their email address
+    ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "users:update"
+
+    # use this if you want to request all the form fields the first time
+    # the user signs up
+    # ACCOUNT_SIGNUP_FORM_CLASS = "users.forms.UserForm"
     ########## END Custom user app defaults
 
     ########## SLUGLIFIER
@@ -344,14 +355,14 @@ class Production(Common):
     ########## SITE CONFIGURATION
     # Hosts/domain names that are valid for this site
     # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-    ALLOWED_HOSTS = ["*"]
+    ALLOWED_HOSTS = ["mentor-up.herokuapp.com", "mentorup.io", "www.mentorup.io"]
     ########## END SITE CONFIGURATION
 
     INSTALLED_APPS += ("gunicorn", )
 
     ########## STATIC FILE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-    STATIC_ROOT = 'staticfiles'
+    STATIC_ROOT = join(BASE_DIR, 'staticfiles')
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
     STATIC_URL = '/static/'
@@ -362,10 +373,11 @@ class Production(Common):
     )
 
     # as recommended on # https://devcenter.heroku.com/articles/django-assets
-    # PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+    # TODO: replace this path lookup with unipath as recommended in Two Scoops book
+    # PROJECT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 
     # STATICFILES_DIRS = (
-    #     join(PROJECT_PATH, 'static'),
+    #      os.path.join(PROJECT_PATH, 'static'),
     # )
 
     # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders

@@ -15,7 +15,7 @@ urlpatterns = patterns(
     url(r'^$',
         TemplateView.as_view(template_name='pages/home.html'),
         name="home"),
-    url(r'^$',
+    url(r'^about/',
         TemplateView.as_view(template_name='pages/about.html'),
         name="about"),
 
@@ -33,6 +33,4 @@ urlpatterns = patterns(
     url(r'^messages/', include('postman.urls')),
 
     # URL pattern for select2's AJAX Support
-    url(r'^select2/', include('select2.urls')),
-    
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

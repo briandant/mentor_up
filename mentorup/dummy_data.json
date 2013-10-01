@@ -1,0 +1,1423 @@
+[
+{
+    "pk": 1, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "permission", 
+        "name": "permission", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 2, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "group", 
+        "name": "group", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 3, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "contenttype", 
+        "name": "content type", 
+        "app_label": "contenttypes"
+    }
+},
+{
+    "pk": 4, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "session", 
+        "name": "session", 
+        "app_label": "sessions"
+    }
+},
+{
+    "pk": 5, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "site", 
+        "name": "site", 
+        "app_label": "sites"
+    }
+},
+{
+    "pk": 6, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "logentry", 
+        "name": "log entry", 
+        "app_label": "admin"
+    }
+},
+{
+    "pk": 7, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "migrationhistory", 
+        "name": "migration history", 
+        "app_label": "south"
+    }
+},
+{
+    "pk": 8, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "avatar", 
+        "name": "avatar", 
+        "app_label": "avatar"
+    }
+},
+{
+    "pk": 9, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "emailaddress", 
+        "name": "email address", 
+        "app_label": "account"
+    }
+},
+{
+    "pk": 10, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "emailconfirmation", 
+        "name": "email confirmation", 
+        "app_label": "account"
+    }
+},
+{
+    "pk": 11, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "message", 
+        "name": "message", 
+        "app_label": "postman"
+    }
+},
+{
+    "pk": 12, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "pendingmessage", 
+        "name": "pending message", 
+        "app_label": "postman"
+    }
+},
+{
+    "pk": 13, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "tag", 
+        "name": "Tag", 
+        "app_label": "taggit"
+    }
+},
+{
+    "pk": 14, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "taggeditem", 
+        "name": "Tagged Item", 
+        "app_label": "taggit"
+    }
+},
+{
+    "pk": 15, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "skill", 
+        "name": "skill", 
+        "app_label": "users"
+    }
+},
+{
+    "pk": 16, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "user", 
+        "name": "user", 
+        "app_label": "users"
+    }
+},
+{
+    "pk": 17, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "search", 
+        "name": "search", 
+        "app_label": "users"
+    }
+},
+{
+    "pk": 18, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "socialapp", 
+        "name": "social app", 
+        "app_label": "socialaccount"
+    }
+},
+{
+    "pk": 19, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "socialaccount", 
+        "name": "social account", 
+        "app_label": "socialaccount"
+    }
+},
+{
+    "pk": 20, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "socialtoken", 
+        "name": "social token", 
+        "app_label": "socialaccount"
+    }
+},
+{
+    "pk": 21, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "keymap", 
+        "name": "key map", 
+        "app_label": "django_select2"
+    }
+},
+{
+    "pk": "31a1oanr306wedusm6ee274dfissn3sn", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-10-13T14:20:23.054Z", 
+        "session_data": "ODU5MTgwNTQwMTA0MDFmY2ZmNDBiMTQ1YjAyOTlmZTBiOTgwN2QyYzqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
+    }
+},
+{
+    "pk": "tslot11pyn8bzbj3zn24xuvbga47suiu", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-10-13T03:01:31.649Z", 
+        "session_data": "NWZmNDliMDdhZGE3NmVmMTJlYThjZjA3N2RiN2EzNzVmODVjMDFhNzqAAn1xAShYDwAAAF9zZXNzaW9uX2V4cGlyeXECSwBVEl9hdXRoX3VzZXJfYmFja2VuZHEDVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEEVQ1fYXV0aF91c2VyX2lkcQVLAXUu"
+    }
+},
+{
+    "pk": 1, 
+    "model": "sites.site", 
+    "fields": {
+        "domain": "example.com", 
+        "name": "example.com"
+    }
+},
+{
+    "pk": 1, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:47.811Z", 
+        "app_name": "taggit", 
+        "migration": "0001_initial"
+    }
+},
+{
+    "pk": 2, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:47.821Z", 
+        "app_name": "taggit", 
+        "migration": "0002_unique_tagnames"
+    }
+},
+{
+    "pk": 3, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:47.903Z", 
+        "app_name": "users", 
+        "migration": "0001_initial"
+    }
+},
+{
+    "pk": 4, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:47.926Z", 
+        "app_name": "users", 
+        "migration": "0002_auto__add_field_user_short_bio__add_field_user_location"
+    }
+},
+{
+    "pk": 5, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:47.956Z", 
+        "app_name": "users", 
+        "migration": "0003_auto__add_learnskills__add_teachskills__add_field_user_teach__add_fiel"
+    }
+},
+{
+    "pk": 6, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:47.978Z", 
+        "app_name": "users", 
+        "migration": "0004_auto__add_search__add_skills"
+    }
+},
+{
+    "pk": 7, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:47.998Z", 
+        "app_name": "users", 
+        "migration": "0005_auto__del_search__del_field_user_learn__del_field_user_teach"
+    }
+},
+{
+    "pk": 8, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.046Z", 
+        "app_name": "users", 
+        "migration": "0006_auto__add_field_user_teach__add_field_user_learn"
+    }
+},
+{
+    "pk": 9, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.069Z", 
+        "app_name": "users", 
+        "migration": "0007_auto__add_search"
+    }
+},
+{
+    "pk": 10, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.112Z", 
+        "app_name": "users", 
+        "migration": "0008_auto__del_learnskills__del_teachskills__chg_field_search_skill_categor"
+    }
+},
+{
+    "pk": 11, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.135Z", 
+        "app_name": "users", 
+        "migration": "0009_auto"
+    }
+},
+{
+    "pk": 12, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.149Z", 
+        "app_name": "users", 
+        "migration": "0010_auto__del_field_search_skill_categories"
+    }
+},
+{
+    "pk": 13, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.171Z", 
+        "app_name": "users", 
+        "migration": "0011_auto__add_field_skills_active__add_field_skills_teach"
+    }
+},
+{
+    "pk": 14, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.192Z", 
+        "app_name": "users", 
+        "migration": "0012_auto__add_field_search_skill_categories"
+    }
+},
+{
+    "pk": 15, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.231Z", 
+        "app_name": "users", 
+        "migration": "0013_auto__del_skills__add_skill__chg_field_search_skill_categories"
+    }
+},
+{
+    "pk": 16, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.245Z", 
+        "app_name": "users", 
+        "migration": "0014_auto"
+    }
+},
+{
+    "pk": 17, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.270Z", 
+        "app_name": "users", 
+        "migration": "0015_auto"
+    }
+},
+{
+    "pk": 18, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.309Z", 
+        "app_name": "users", 
+        "migration": "0016_auto__del_field_skill_teach"
+    }
+},
+{
+    "pk": 19, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.375Z", 
+        "app_name": "socialaccount", 
+        "migration": "0001_initial"
+    }
+},
+{
+    "pk": 20, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.460Z", 
+        "app_name": "socialaccount", 
+        "migration": "0002_genericmodels"
+    }
+},
+{
+    "pk": 21, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.478Z", 
+        "app_name": "socialaccount", 
+        "migration": "0003_auto__add_unique_socialaccount_uid_provider"
+    }
+},
+{
+    "pk": 22, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.507Z", 
+        "app_name": "socialaccount", 
+        "migration": "0004_add_sites"
+    }
+},
+{
+    "pk": 23, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.530Z", 
+        "app_name": "socialaccount", 
+        "migration": "0005_set_sites"
+    }
+},
+{
+    "pk": 24, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.555Z", 
+        "app_name": "socialaccount", 
+        "migration": "0006_auto__del_field_socialapp_site"
+    }
+},
+{
+    "pk": 25, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.590Z", 
+        "app_name": "socialaccount", 
+        "migration": "0007_auto__add_field_socialapp_client_id"
+    }
+},
+{
+    "pk": 26, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.610Z", 
+        "app_name": "socialaccount", 
+        "migration": "0008_client_id"
+    }
+},
+{
+    "pk": 27, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.630Z", 
+        "app_name": "socialaccount", 
+        "migration": "0009_auto__add_field_socialtoken_expires_at"
+    }
+},
+{
+    "pk": 28, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.664Z", 
+        "app_name": "socialaccount", 
+        "migration": "0010_auto__chg_field_socialtoken_token"
+    }
+},
+{
+    "pk": 29, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-09-29T00:48:48.697Z", 
+        "app_name": "socialaccount", 
+        "migration": "0011_auto__chg_field_socialtoken_token"
+    }
+},
+{
+    "pk": 1, 
+    "model": "users.skill", 
+    "fields": {
+        "active": true, 
+        "name": "Django"
+    }
+},
+{
+    "pk": 2, 
+    "model": "users.skill", 
+    "fields": {
+        "active": true, 
+        "name": "JavaScript"
+    }
+},
+{
+    "pk": 4, 
+    "model": "users.skill", 
+    "fields": {
+        "active": true, 
+        "name": "Python"
+    }
+},
+{
+    "pk": 5, 
+    "model": "users.skill", 
+    "fields": {
+        "active": true, 
+        "name": "HTML"
+    }
+},
+{
+    "pk": 6, 
+    "model": "users.skill", 
+    "fields": {
+        "active": true, 
+        "name": "CSS"
+    }
+},
+{
+    "pk": 7, 
+    "model": "users.skill", 
+    "fields": {
+        "active": true, 
+        "name": "Flask"
+    }
+},
+{
+    "pk": 8, 
+    "model": "users.skill", 
+    "fields": {
+        "active": true, 
+        "name": "Linux"
+    }
+},
+{
+    "pk": 1, 
+    "model": "account.emailconfirmation", 
+    "fields": {
+        "email_address": 1, 
+        "key": "0f1b936cf42f2c6b744b25bddaa2351e6598ce784ae0964324e893fee1a9ca32", 
+        "sent": "2013-09-29T00:50:55.658Z", 
+        "created": "2013-09-29T00:50:55.623Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_permission", 
+        "name": "Can add permission", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_permission", 
+        "name": "Can change permission", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_permission", 
+        "name": "Can delete permission", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_group", 
+        "name": "Can add group", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_group", 
+        "name": "Can change group", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_group", 
+        "name": "Can delete group", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_contenttype", 
+        "name": "Can add content type", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 8, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_contenttype", 
+        "name": "Can change content type", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 9, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_contenttype", 
+        "name": "Can delete content type", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 10, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_session", 
+        "name": "Can add session", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 11, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_session", 
+        "name": "Can change session", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 12, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_session", 
+        "name": "Can delete session", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 13, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_site", 
+        "name": "Can add site", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 14, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_site", 
+        "name": "Can change site", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 15, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_site", 
+        "name": "Can delete site", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 16, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_logentry", 
+        "name": "Can add log entry", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_logentry", 
+        "name": "Can change log entry", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_logentry", 
+        "name": "Can delete log entry", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_migrationhistory", 
+        "name": "Can add migration history", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_migrationhistory", 
+        "name": "Can change migration history", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_migrationhistory", 
+        "name": "Can delete migration history", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 22, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_avatar", 
+        "name": "Can add avatar", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 23, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_avatar", 
+        "name": "Can change avatar", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 24, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_avatar", 
+        "name": "Can delete avatar", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_emailaddress", 
+        "name": "Can add email address", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_emailaddress", 
+        "name": "Can change email address", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_emailaddress", 
+        "name": "Can delete email address", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 28, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_emailconfirmation", 
+        "name": "Can add email confirmation", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 29, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_emailconfirmation", 
+        "name": "Can change email confirmation", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 30, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_emailconfirmation", 
+        "name": "Can delete email confirmation", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 31, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_message", 
+        "name": "Can add message", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 32, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_message", 
+        "name": "Can change message", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 33, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_message", 
+        "name": "Can delete message", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 34, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_pendingmessage", 
+        "name": "Can add pending message", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 35, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_pendingmessage", 
+        "name": "Can change pending message", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 36, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_pendingmessage", 
+        "name": "Can delete pending message", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 37, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_tag", 
+        "name": "Can add Tag", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 38, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_tag", 
+        "name": "Can change Tag", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 39, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_tag", 
+        "name": "Can delete Tag", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 40, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_taggeditem", 
+        "name": "Can add Tagged Item", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 41, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_taggeditem", 
+        "name": "Can change Tagged Item", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 42, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_taggeditem", 
+        "name": "Can delete Tagged Item", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 43, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_skill", 
+        "name": "Can add skill", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 44, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_skill", 
+        "name": "Can change skill", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 45, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_skill", 
+        "name": "Can delete skill", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 46, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_user", 
+        "name": "Can add user", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 47, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_user", 
+        "name": "Can change user", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 48, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_user", 
+        "name": "Can delete user", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 49, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_search", 
+        "name": "Can add search", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 50, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_search", 
+        "name": "Can change search", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 51, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_search", 
+        "name": "Can delete search", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 52, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_socialapp", 
+        "name": "Can add social app", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 53, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_socialapp", 
+        "name": "Can change social app", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 54, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_socialapp", 
+        "name": "Can delete social app", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 55, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_socialaccount", 
+        "name": "Can add social account", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 56, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_socialaccount", 
+        "name": "Can change social account", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 57, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_socialaccount", 
+        "name": "Can delete social account", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 58, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_socialtoken", 
+        "name": "Can add social token", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 59, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_socialtoken", 
+        "name": "Can change social token", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 60, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_socialtoken", 
+        "name": "Can delete social token", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 61, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_keymap", 
+        "name": "Can add key map", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 62, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_keymap", 
+        "name": "Can change key map", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 63, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_keymap", 
+        "name": "Can delete key map", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 1, 
+    "model": "users.user", 
+    "fields": {
+        "username": "briandant", 
+        "first_name": "Brian", 
+        "last_name": "Dant", 
+        "skills_to_learn": [
+            1
+        ], 
+        "skills_to_teach": [], 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-09-29T07:00:06.126Z", 
+        "location": "boston", 
+        "groups": [], 
+        "user_permissions": [], 
+        "short_bio": "Coder boy", 
+        "password": "pbkdf2_sha256$10000$LxNhFXJSN8G0$r9zLRNFdB6ZKQyejfhiWeWzBQLcYp2qBneFLHIux1Og=", 
+        "email": "briandant414@gmail.com", 
+        "date_joined": "2013-09-29T00:50:55.448Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "users.user", 
+    "fields": {
+        "username": "admin", 
+        "first_name": "Brian", 
+        "last_name": "Dant", 
+        "skills_to_learn": [
+            1
+        ], 
+        "skills_to_teach": [
+            1, 
+            2
+        ], 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2013-09-29T14:20:23.043Z", 
+        "location": "austin", 
+        "groups": [], 
+        "user_permissions": [], 
+        "short_bio": "Coder boy", 
+        "password": "pbkdf2_sha256$10000$v0z3N5AnoqLk$tBsCL+lBlVeilF32YvyMvEouPW+Fa9vgK+/0fCsfYnY=", 
+        "email": "admin@admin.com", 
+        "date_joined": "2013-09-29T00:53:39.900Z"
+    }
+},
+{
+    "pk": 3, 
+    "model": "users.user", 
+    "fields": {
+        "username": "codergal", 
+        "first_name": "Jane", 
+        "last_name": "Coder", 
+        "skills_to_learn": [
+            1, 
+            2
+        ], 
+        "skills_to_teach": [
+            5, 
+            7
+        ], 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-09-29T22:46:21Z", 
+        "location": "minneapolis", 
+        "groups": [], 
+        "user_permissions": [], 
+        "short_bio": "I'm a person who lives and dies by STDOUT.", 
+        "password": "shit", 
+        "email": "jane@coder.com", 
+        "date_joined": "2013-09-29T22:46:23Z"
+    }
+},
+{
+    "pk": 4, 
+    "model": "users.user", 
+    "fields": {
+        "username": "jamieteach", 
+        "first_name": "James", 
+        "last_name": "Larson", 
+        "skills_to_learn": [
+            1, 
+            2
+        ], 
+        "skills_to_teach": [
+            6, 
+            7, 
+            8
+        ], 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-09-29T22:47:25Z", 
+        "location": "boston", 
+        "groups": [], 
+        "user_permissions": [], 
+        "short_bio": "Dude, I can't wait to mentor you!", 
+        "password": "danm", 
+        "email": "js@larson.com", 
+        "date_joined": "2013-09-29T22:47:26Z"
+    }
+},
+{
+    "pk": 5, 
+    "model": "users.user", 
+    "fields": {
+        "username": "pyguy", 
+        "first_name": "Brad", 
+        "last_name": "Williams", 
+        "skills_to_learn": [
+            6, 
+            7, 
+            8
+        ], 
+        "skills_to_teach": [
+            1, 
+            2, 
+            4
+        ], 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-09-29T22:48:52Z", 
+        "location": "chicago", 
+        "groups": [], 
+        "user_permissions": [], 
+        "short_bio": "If it weren't for Django Dash 2013, I don't know where I'd be right now.", 
+        "password": "fuckyou", 
+        "email": "b@d.com", 
+        "date_joined": "2013-09-29T22:48:53Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "account.emailaddress", 
+    "fields": {
+        "verified": true, 
+        "user": 1, 
+        "primary": true, 
+        "email": "briandant414@gmail.com"
+    }
+},
+{
+    "pk": 2, 
+    "model": "account.emailaddress", 
+    "fields": {
+        "verified": false, 
+        "user": 2, 
+        "primary": false, 
+        "email": "admin@admin.com"
+    }
+},
+{
+    "pk": 1, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-09-29T00:54:30.228Z", 
+        "object_repr": "Django", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 2, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 2, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-09-29T00:54:45.382Z", 
+        "object_repr": "JavaScript", 
+        "object_id": "2", 
+        "change_message": "", 
+        "user": 2, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 3, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-09-29T00:54:54.204Z", 
+        "object_repr": "HTML", 
+        "object_id": "3", 
+        "change_message": "", 
+        "user": 2, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 4, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-09-29T22:45:07.103Z", 
+        "object_repr": "Python", 
+        "object_id": "4", 
+        "change_message": "", 
+        "user": 2, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 5, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-09-29T22:45:11.238Z", 
+        "object_repr": "HTML", 
+        "object_id": "5", 
+        "change_message": "", 
+        "user": 2, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 6, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-09-29T22:45:18.309Z", 
+        "object_repr": "CSS", 
+        "object_id": "6", 
+        "change_message": "", 
+        "user": 2, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 7, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 3, 
+        "action_time": "2013-09-29T22:45:38.697Z", 
+        "object_repr": "HTML", 
+        "object_id": "3", 
+        "change_message": "", 
+        "user": 2, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 8, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-09-29T22:46:07.810Z", 
+        "object_repr": "Flask", 
+        "object_id": "7", 
+        "change_message": "", 
+        "user": 2, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 9, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-09-29T22:46:10.739Z", 
+        "object_repr": "Linux", 
+        "object_id": "8", 
+        "change_message": "", 
+        "user": 2, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 10, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-09-29T22:47:20.993Z", 
+        "object_repr": "codergal", 
+        "object_id": "3", 
+        "change_message": "", 
+        "user": 2, 
+        "content_type": 16
+    }
+},
+{
+    "pk": 11, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-09-29T22:48:09.645Z", 
+        "object_repr": "jamieteach", 
+        "object_id": "4", 
+        "change_message": "", 
+        "user": 2, 
+        "content_type": 16
+    }
+},
+{
+    "pk": 12, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-09-29T22:50:03.578Z", 
+        "object_repr": "pyguy", 
+        "object_id": "5", 
+        "change_message": "", 
+        "user": 2, 
+        "content_type": 16
+    }
+}
+]
