@@ -19,8 +19,8 @@ $(document).ready(function() {
         hideSelected: true });
 
     $("#id_member_search_form").submit(function(e) {
-        alert("Search coming soon! Goooooo Django Dash!");
-        e.preventDefault();
+        // alert("Search coming soon! Goooooo Django Dash!");
+        // e.preventDefault();
     })
 })
 
