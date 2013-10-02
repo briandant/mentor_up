@@ -23,8 +23,6 @@ from .forms import UserForm, MemberSearchForm
 # Import the customized User model
 from .models import User, Skill
 
-import json
-
 
 class UserDetailView(DetailView):
     model = User
@@ -79,11 +77,6 @@ class UserListView(ListView):
     slug_field = "username"
     slug_url_kwarg = "username"
 
-    # Template select bar for pages not implemented yet
-    # def get_paginate_by(self, queryset):
-    #     self.paginate_by = 20
-    #     return self.paginate_by
-
     def get_queryset(self):
         """
         Get the list of items for this view. This must be an iterable, and may
@@ -91,20 +84,15 @@ class UserListView(ListView):
         """
 
         queryset = self.model.objects.all()
-        search = self.request.GET.get('skills_to_search', None)
+        search = self.request.GET.getlist('skills_to_search', None)
 
         if search:
 
+            # Search for users with the skills to teach
             skill_values = search
-            print self.request.GET
-            print self.request.GET.get('skills_to_search')
-            print self.request.GET['skills_to_search']
-
-            # Search for users with the skills 'Django' and 'Ruby'
-            skill_primary_keys = [4]
 
             # Turn list of values into list of Q objects
-            queries = [Q(skills_to_teach__pk=value) for value in skill_primary_keys]
+            queries = [Q(skills_to_teach__pk=value) for value in skill_values]
 
             # Initialize Query
             query = Q()
