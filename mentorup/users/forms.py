@@ -50,7 +50,7 @@ class MemberSearchForm(forms.Form):
         self.helper.form_class = 'form-inline'
         self.helper.field_template = 'bootstrap3/layout/inline_field.html'
         self.helper.form_method = 'get'
-        self.helper.form_action = reverse('users:search')
+        self.helper.form_action = "." #reverse('users:list')
 
         self.helper.layout = Layout(
             Div('skills_to_search', css_class="col-sm-3"),

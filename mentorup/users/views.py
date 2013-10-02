@@ -70,47 +70,7 @@ def user_update_view(request, template='users/user_form.html'):
 
 
 def user_search_view(request):
-
-    print request.GET
-    print request.GET.get('skills_to_search')
-    # skills = request.GET.get('skills_to_search', None)
-
-    # Brian
-    # skill_objects = Skill.objects.filter(
-
-    # User.objects.filter(skills_to_teach__=skills_to_learn_set.all())
-
-    # if skills:
-    #     int_skills = [int(skill) for skill in skills]
-    #     matching_users = User.objects.filter(skills_to_teach__id__in=[int_skills])[:20]
-
-    # matching_users = User.objects.all()
-    # for matching_user in matching_users:
-
-    # Chris
-    # queryz = User.objects.all().filter(Q(skills_to_teach__name="Python") | Q(skills_to_teach__name="Django")).distinct()
-    # print queryz
-
-    skill_values = request.GET.get('skills_to_search')
-
-    # Search for users with the skills 'Django' and 'Ruby'
-    skill_primary_keys = [5, 4]
-
-    # Turn list of values into list of Q objects
-    queries = [Q(skills_to_teach__pk=value) for value in skill_primary_keys]
-
-    # Initialize Query
-    query = Q()
-
-    # Or the Q object with the ones remaining in the list
-    for item in queries:
-        query |= item
-
-    # Query the model for all users that have the skills_to_teach we're searching for
-    user_list = User.objects.filter(query).distinct()
-    print user_list
-
-    return HttpResponseRedirect(reverse('users:list'))
+    pass
 
 
 class UserListView(ListView):
@@ -130,18 +90,31 @@ class UserListView(ListView):
         be a queryset (in which qs-specific behavior will be enabled).
         """
 
-        if self.queryset is not None:
-            queryset = self.queryset
+        queryset = self.model.objects.all()
+        search = self.request.GET.get('skills_to_search', None)
 
-            if hasattr(queryset, '_clone'):
-                queryset = queryset._clone()
+        if search:
 
-        elif self.model is not None:
-            queryset = self.model._default_manager.all()
+            skill_values = search
+            print self.request.GET
+            print self.request.GET.get('skills_to_search')
+            print self.request.GET['skills_to_search']
 
-        else:
-            raise ImproperlyConfigured("'%s' must define 'queryset' or 'model'"
-                                       % self.__class__.__name__)
+            # Search for users with the skills 'Django' and 'Ruby'
+            skill_primary_keys = [4]
+
+            # Turn list of values into list of Q objects
+            queries = [Q(skills_to_teach__pk=value) for value in skill_primary_keys]
+
+            # Initialize Query
+            query = Q()
+
+            # Or the Q object with the ones remaining in the list
+            for item in queries:
+                query |= item
+
+            # Query the model for all users that have the skills_to_teach we're searching for
+            queryset = User.objects.filter(query).distinct()
 
         return queryset
 
