@@ -9,7 +9,10 @@ from django.views.generic import UpdateView
 from django.views.generic import ListView
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+
+# query imports
+from django.db.models import Q
 
 # Only authenticated users can access views using this.
 from braces.views import LoginRequiredMixin
@@ -67,28 +70,41 @@ def user_update_view(request, template='users/user_form.html'):
 def user_search_view(request):
     pass
 
-#    skills = request.GET.get('skills_to_search', None)
-#    skill_objects = Skill.objects.filter(
-#
-#    User.objects.filter(skills_to_teach__=skills_to_learn_set.all())
-#
-#    if skills:
-#        int_skills = [int(skill) for skill in skills]
-#        matching_users = User.objects.filter(skills_to_teach__id__in=[int_skills])[:20]
-#
-#    matching_users = User.objects.all()
-#    for matching_user in matching_users:
-#
-#        if
-#
-#    return HttpResponse(matching_users)
-
 
 class UserListView(ListView):
     model = User
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
     slug_url_kwarg = "username"
+
+    def get_queryset(self):
+        """
+        Get the list of items for this view. This must be an iterable, and may
+        be a queryset (in which qs-specific behavior will be enabled).
+        """
+
+        queryset = self.model.objects.all()
+        search = self.request.GET.getlist('skills_to_search', None)
+
+        if search:
+
+            # Search for users with the skills to teach
+            skill_values = search
+
+            # Turn list of values into list of Q objects
+            queries = [Q(skills_to_teach__pk=value) for value in skill_values]
+
+            # Initialize Query
+            query = Q()
+
+            # Or the Q object with the ones remaining in the list
+            for item in queries:
+                query |= item
+
+            # Query the model for all users that have the skills_to_teach we're searching for
+            queryset = User.objects.filter(query).distinct()
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
