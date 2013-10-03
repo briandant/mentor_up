@@ -356,6 +356,8 @@ class Production(Common):
     ########## django-secure
     INSTALLED_APPS += ("djangosecure", )
 
+    MIDDLEWARE_CLASSES = Common.MIDDLEWARE_CLASSES + ('djangosecure.middleware.SecurityMiddleware',)
+
     # set this to 60 seconds and then to 518400 when you can prove it works
     SECURE_HSTS_SECONDS = 60
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
