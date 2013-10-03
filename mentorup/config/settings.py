@@ -339,15 +339,15 @@ class Production(Common):
 
     INTERNAL_IPS = ('127.0.0.1',)
 
+    def show_toolbar(request):
+        #return request.user.is_staff
+        return True
+
     DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False,
         'SHOW_TEMPLATE_CONTEXT': True,
         'SHOW_TOOLBAR_CALLBACK': show_toolbar,
     }
-
-    def show_toolbar(request):
-        #return request.user.is_staff
-        return True
 
     ########## SECRET KEY
     SECRET_KEY = values.SecretValue()
