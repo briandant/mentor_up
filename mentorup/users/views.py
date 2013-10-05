@@ -111,4 +111,5 @@ class UserListView(ListView):
         context = super(UserListView, self).get_context_data(**kwargs)
         # Add in the publisher
         context['search_form'] = MemberSearchForm()
+        context['hide_navbar_search'] = True
         return context

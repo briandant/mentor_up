@@ -18,6 +18,10 @@ $(document).ready(function() {
         persist: false,
         hideSelected: true });
 
+    $("#nav_skills_to_search").selectize({
+        persist: false,
+        hideSelected: true });
+
     $("#id_member_search_form").submit(function(e) {
         // alert("Search coming soon! Goooooo Django Dash!");
         // e.preventDefault();

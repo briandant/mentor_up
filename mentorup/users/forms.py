@@ -50,7 +50,7 @@ class MemberSearchForm(forms.Form):
         self.helper.form_class = 'form-inline'
         self.helper.field_template = 'bootstrap3/layout/inline_field.html'
         self.helper.form_method = 'get'
-        self.helper.form_action = "." #reverse('users:list')
+        self.helper.form_action = "."
 
         self.helper.layout = Layout(
             Div('skills_to_search', css_class="col-sm-3"),
@@ -60,3 +60,22 @@ class MemberSearchForm(forms.Form):
 
         self.fields['skills_to_search'].label = "Choose skills to search"
         self.fields['locations_to_search'].label = "Choose a city"
+
+
+class NavMemberSearchForm(MemberSearchForm):
+    def __init__(self, *args, **kwargs):
+        super(NavMemberSearchForm, self).__init__(*args, **kwargs)
+        self.helper.form_action = reverse('users:list')
+        self.helper.form_tag = False
+        self.helper.form_id = "nav_skills_to_search"
+
+        self.helper.layout = Layout(
+            Field(
+                'skills_to_search',
+                type="search",
+                css_class="form-control",
+                placeholder="Search members by skill"
+            )
+        )
+
+        self.fields['skills_to_search'].label = ""

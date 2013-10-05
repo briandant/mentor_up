@@ -34,30 +34,12 @@
   </head>
 
   <body class={% block body_class %}{% endblock %}>
-
-    <div class="header navbar">
-      <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">Mentor UP</a>
-        <ul class="nav navbar-nav">
-          <li><a href="{% url 'users:list' %}">Find Members</a></li>
-
-          {% if request.user.is_authenticated %}
-            <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
-            <li><a href="{% url 'account_logout' %}"><i class="icon-off"></i>&nbsp;{% trans "Logout" %}</a></li>
-          {% else %}
-            <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
-            <li><a href="{% url 'account_login' %}"><i class="icon-lock"></i>&nbsp;{% trans "Log In" %}</a></li>
-          {% endif %}
-
-          <li><a href="{% url 'about' %}">About</a></li>
-
-        </ul>
-      </div>
-    </div>
+    {% block nav %} {% include 'includes/nav.html' %} {% endblock %}
 
     <div class="container">
 
       {% block content %}
+      {{ view }}
 
       {% endblock content %}
 
