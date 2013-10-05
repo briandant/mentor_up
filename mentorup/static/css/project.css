@@ -2,65 +2,112 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 12, ../sass/project.scss */
+/* line 17, ../sass/project.scss */
+body {
+  color: #4b606c;
+}
+
+/* line 36, ../sass/project.scss */
 .btn-redhot {
   background-color: #c0392b;
 }
-/* line 14, ../sass/project.scss */
+/* line 38, ../sass/project.scss */
 .btn-redhot:hover, .btn-redhot:focus {
   background-color: #c0392b;
 }
 
-/* line 20, ../sass/project.scss */
+/* line 44, ../sass/project.scss */
 img.img-thumbnail {
   margin-bottom: 1%;
 }
 
-/* line 27, ../sass/project.scss */
+/* line 51, ../sass/project.scss */
 body.sign-in form.login {
   background: none;
   padding: 0;
   color: inherit;
 }
 
-/* line 35, ../sass/project.scss */
+/* line 59, ../sass/project.scss */
 body.members h2 {
   margin-bottom: 2%;
   padding-left: 15px;
 }
-/* line 40, ../sass/project.scss */
+/* line 64, ../sass/project.scss */
 body.members .list-bio {
   font-size: 22px;
 }
-/* line 44, ../sass/project.scss */
+/* line 68, ../sass/project.scss */
 body.members div.row.form-row {
   padding: 20px 0;
   border-bottom: 2px solid #eee;
   margin-bottom: 20px;
 }
-/* line 50, ../sass/project.scss */
+/* line 74, ../sass/project.scss */
 body.members .form-group {
   width: 100%;
   max-width: 100%;
 }
 
-/* line 57, ../sass/project.scss */
+/* line 81, ../sass/project.scss */
 ul.socialaccount_providers li {
   list-style: none;
 }
 
-/* line 61, ../sass/project.scss */
+/* line 85, ../sass/project.scss */
 .navbar-brand {
   font-size: 34px;
 }
 
-/* line 65, ../sass/project.scss */
-ul.user-attributes {
+/* line 93, ../sass/project.scss */
+body.member-detail .profile-basics-box {
+  max-width: 100%;
+  padding: 4px;
+  line-height: 1.428571429;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+/* line 96, ../sass/project.scss */
+body.member-detail .profile-basics-box img {
+  min-width: 95%;
+}
+/* line 100, ../sass/project.scss */
+body.member-detail .profile-basics-box ul.user-attributes {
   list-style: none;
   padding-left: 0;
 }
-
-/* line 70, ../sass/project.scss */
-ul.user-attributes li {
+/* line 104, ../sass/project.scss */
+body.member-detail .profile-basics-box ul.user-attributes li {
   padding-bottom: 10px;
+}
+/* line 110, ../sass/project.scss */
+body.member-detail .profile-content-box {
+  max-width: 100%;
+  padding: 4px;
+  line-height: 1.428571429;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  padding: 10px 15px;
+}
+/* line 114, ../sass/project.scss */
+body.member-detail .profile-content-box h2 {
+  display: inline-block;
+}
+/* line 118, ../sass/project.scss */
+body.member-detail .profile-content-box .contact-me {
+  margin-top: 22px;
+}
+/* line 123, ../sass/project.scss */
+body.member-detail .content-wrapper {
+  margin-top: 30px;
 }
