@@ -128,12 +128,12 @@ class Common(Configuration):
     ########## CACHING
     # Do this here because thanks to django-pylibmc-sasl and pylibmc memcacheify is painful to install on windows.
     # memcacheify is what's used in Production
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-            'LOCATION': ''
-        }
-    }
+    # CACHES = {
+    #     'default': {
+    #         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    #         'LOCATION': ''
+    #     }
+    # }
     ########## END CACHING
 
     ########## GENERAL CONFIGURATION
@@ -335,22 +335,39 @@ class Production(Common):
     INSTALLED_APPS = Common.INSTALLED_APPS
     ########## END INSTALLED_APPS
 
+    # MIDDLEWARE_CLASSES = Common.MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+    # INSTALLED_APPS += ('debug_toolbar', )
+
+    # INTERNAL_IPS = ('127.0.0.1',)
+
+    # def show_toolbar(request):
+    #     #return request.user.is_staff
+    #     return True
+
+    # DEBUG_TOOLBAR_CONFIG = {
+    #     'INTERCEPT_REDIRECTS': False,
+    #     'SHOW_TEMPLATE_CONTEXT': True,
+    #     'SHOW_TOOLBAR_CALLBACK': show_toolbar,
+    # }
+
     ########## SECRET KEY
     SECRET_KEY = values.SecretValue()
     ########## END SECRET KEY
 
     ########## django-secure
-    INSTALLED_APPS += ("djangosecure", )
+    # INSTALLED_APPS += ("djangosecure", )
 
-    # set this to 60 seconds and then to 518400 when you can prove it works
-    SECURE_HSTS_SECONDS = 60
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_FRAME_DENY = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    SECURE_BROWSER_XSS_FILTER = True
-    SESSION_COOKIE_SECURE = True
-    SESSION_COOKIE_HTTPONLY = True
-    SECURE_SSL_REDIRECT = True
+    # MIDDLEWARE_CLASSES = Common.MIDDLEWARE_CLASSES + ('djangosecure.middleware.SecurityMiddleware',)
+
+    # # set this to 60 seconds and then to 518400 when you can prove it works
+    # SECURE_HSTS_SECONDS = 60
+    # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    # SECURE_FRAME_DENY = True
+    # SECURE_CONTENT_TYPE_NOSNIFF = True
+    # SECURE_BROWSER_XSS_FILTER = True
+    # SESSION_COOKIE_SECURE = True
+    # SESSION_COOKIE_HTTPONLY = True
+    # SECURE_SSL_REDIRECT = True
     ########## end django-secure
 
     ########## SITE CONFIGURATION
@@ -421,7 +438,7 @@ class Production(Common):
     ########## END STORAGE CONFIGURATION
 
     ########## EMAIL
-    DEFAULT_FROM_EMAIL = values.Value('mentorup <mentorup-noreply@mentorup.io>')
+    DEFAULT_FROM_EMAIL = values.Value('mentorup <natejaune@gmail.com>')
     EMAIL_BACKEND = values.Value('django.core.mail.backends.smtp.EmailBackend')
     EMAIL_HOST = values.Value('smtp.sendgrid.com')
     EMAIL_HOST_PASSWORD = values.SecretValue(environ_prefix="", environ_name="SENDGRID_PASSWORD")
@@ -445,7 +462,7 @@ class Production(Common):
 
     ########## CACHING
     # Only do this here because thanks to django-pylibmc-sasl and pylibmc memcacheify is painful to install on windows.
-    CACHES = values.CacheURLValue(default="memcached://127.0.0.1:11211")
+    # CACHES = values.CacheURLValue(default="memcached://127.0.0.1:11211")
     ########## END CACHING
 
     ########## Your production stuff: Below this line define 3rd party libary settings

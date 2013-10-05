@@ -23,14 +23,14 @@ urlpatterns = patterns(
         view=views.UserDetailView.as_view(),
         name='detail'
     ),
-    # URL pattern for the UserDetailView
+    # URL pattern for the UserUpdateView
     url(
         regex=r'^~update/$',
         view=views.user_update_view,
         name='update'
     ),
 
-    # URL pattern for the UserDetailView
+    # URL pattern for the UserSearchView
     url(
         regex=r'^~search/$',
         view=views.user_search_view,
