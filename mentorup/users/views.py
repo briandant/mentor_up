@@ -3,13 +3,9 @@
 from django.core.urlresolvers import reverse
 
 # view imports
-from django.views.generic import DetailView
-from django.views.generic import RedirectView
-from django.views.generic import UpdateView
-from django.views.generic import ListView
+from django.views.generic import DetailView, RedirectView, ListView
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
 
 # query imports
 from django.db.models import Q
@@ -111,4 +107,8 @@ class UserListView(ListView):
         context = super(UserListView, self).get_context_data(**kwargs)
         # Add in the publisher
         context['search_form'] = MemberSearchForm()
+        context['hide_navbar_search'] = True
+        search_skill_ids = self.request.GET.getlist('skills_to_search', None)
+        search_skill_objects = Skill.objects.filter(id__in=search_skill_ids)
+        context['previously_selected_search_skills'] = dict((skill.id, str(skill.name)) for skill in search_skill_objects)
         return context

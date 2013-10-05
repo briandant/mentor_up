@@ -170,6 +170,7 @@ class Common(Configuration):
         'django.contrib.messages.context_processors.messages',
         'django.core.context_processors.request',
         'postman.context_processors.inbox',
+        'utils.context_processors.get_navbar_search_form'
         # Your stuff: custom template context processers go here
     )
 

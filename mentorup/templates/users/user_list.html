@@ -13,10 +13,13 @@
       <h2>Mentor UP Members</h2>
   </div>
 
-  <div class="row form-row">
-    {% crispy search_form %}
+  <div class="search-form-wrapper">
+    <div class="row form-row">
+      {% crispy search_form %}
+    </div>
   </div>
 
+  <div class="user-list-wrapper">
     {% for user in user_list %}
     <div class="row">
         <div class="col-sm-1">
@@ -46,9 +49,15 @@
       </a>
 
     </div>
-    <hr>
+    {% if not forloop.last %}
+      <hr>
+    {% endif %}
     {% endfor %}
-
+  </div>
 </div>
 
 {% endblock content %}
+
+{% block extra_javascript %} 
+  {% include 'includes/repopulate-select.html' %}
+{% endblock %}
