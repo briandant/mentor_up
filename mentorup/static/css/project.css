@@ -21,45 +21,73 @@ img.img-thumbnail {
   margin-bottom: 1%;
 }
 
-/* line 60, ../sass/project.scss */
+/* line 57, ../sass/project.scss */
+ul.user-attributes {
+  list-style: none;
+  padding-left: 0;
+}
+/* line 61, ../sass/project.scss */
+ul.user-attributes li {
+  padding-bottom: 10px;
+}
+
+/* line 69, ../sass/project.scss */
 body.sign-in form.login {
   background: none;
   padding: 0;
   color: inherit;
 }
 
-/* line 68, ../sass/project.scss */
+/* line 78, ../sass/project.scss */
 body.members h2 {
   margin-bottom: 2%;
   padding-left: 15px;
 }
-/* line 73, ../sass/project.scss */
+/* line 83, ../sass/project.scss */
 body.members .list-bio {
   font-size: 22px;
 }
-/* line 77, ../sass/project.scss */
-body.members div.row.form-row {
-  padding: 20px 0;
-  border-bottom: 2px solid #eee;
-  margin-bottom: 20px;
-}
-/* line 83, ../sass/project.scss */
+/* line 87, ../sass/project.scss */
 body.members .form-group {
   width: 100%;
   max-width: 100%;
 }
+/* line 93, ../sass/project.scss */
+body.members .search-form-wrapper,
+body.members .user-list-wrapper {
+  max-width: 100%;
+  padding: 4px;
+  line-height: 1.428571429;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  background-color: #f9f9f9;
+  background-image: -moz-linear-gradient(bottom, white, #f2f2f2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#f2f2f2));
+  background-image: -webkit-linear-gradient(bottom, white, #f2f2f2);
+  background-image: -o-linear-gradient(bottom, white, #f2f2f2);
+  background-image: linear-gradient(to top, #ffffff, #f2f2f2);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFF2F2F2', GradientType=0);
+  padding: 20px;
+  margin: 15px auto;
+}
 
-/* line 90, ../sass/project.scss */
+/* line 101, ../sass/project.scss */
 ul.socialaccount_providers li {
   list-style: none;
 }
 
-/* line 94, ../sass/project.scss */
+/* line 105, ../sass/project.scss */
 .navbar-brand {
   font-size: 28px;
 }
 
-/* line 102, ../sass/project.scss */
+/* line 113, ../sass/project.scss */
 body.member-detail .profile-basics-box {
   max-width: 100%;
   padding: 4px;
@@ -81,21 +109,12 @@ body.member-detail .profile-basics-box {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFF2F2F2', GradientType=0);
   padding-top: 15px;
 }
-/* line 107, ../sass/project.scss */
+/* line 118, ../sass/project.scss */
 body.member-detail .profile-basics-box img {
   min-width: 95%;
   padding: 0px;
 }
-/* line 112, ../sass/project.scss */
-body.member-detail .profile-basics-box ul.user-attributes {
-  list-style: none;
-  padding-left: 0;
-}
-/* line 116, ../sass/project.scss */
-body.member-detail .profile-basics-box ul.user-attributes li {
-  padding-bottom: 10px;
-}
-/* line 122, ../sass/project.scss */
+/* line 125, ../sass/project.scss */
 body.member-detail .profile-content-box {
   max-width: 100%;
   padding: 4px;
@@ -117,21 +136,21 @@ body.member-detail .profile-content-box {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFF2F2F2', GradientType=0);
   padding: 15px 15px;
 }
-/* line 126, ../sass/project.scss */
+/* line 129, ../sass/project.scss */
 body.member-detail .profile-content-box h2 {
   display: inline-block;
   margin-top: 0px;
 }
-/* line 132, ../sass/project.scss */
+/* line 135, ../sass/project.scss */
 body.member-detail .content-wrapper {
   margin-top: 30px;
 }
 
-/* line 138, ../sass/project.scss */
+/* line 141, ../sass/project.scss */
 nav input {
   min-width: 185px;
 }
-/* line 142, ../sass/project.scss */
+/* line 145, ../sass/project.scss */
 nav div.selectize-control.form-control {
   padding-top: 5px;
 }

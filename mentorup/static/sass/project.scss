@@ -54,6 +54,15 @@ img.img-thumbnail {
     margin-bottom: 1%;
 }
 
+ul.user-attributes {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+        padding-bottom: 10px;
+    }
+}
+
 // Sign in page
 body.sign-in {
 
@@ -64,6 +73,7 @@ body.sign-in {
     }
 }
 
+// User / Member List Page
 body.members {
     h2 {
         margin-bottom: 2%;
@@ -74,15 +84,16 @@ body.members {
         font-size: 22px;
     }
 
-    div.row.form-row {
-        padding: 20px 0;
-        border-bottom: 2px solid #eee;
-        margin-bottom: 20px;
-    }
-
     .form-group {
         width: 100%;
         max-width: 100%;
+    }
+
+    .search-form-wrapper,
+    .user-list-wrapper {
+        @include box;
+        padding: 20px;
+        margin: 15px auto;
     }
 
 }
@@ -109,14 +120,6 @@ body.member-detail {
             padding: 0px;
         }
 
-        ul.user-attributes {
-            list-style: none;
-            padding-left: 0;
-
-            li {
-                padding-bottom: 10px;
-            }
-        }
     }
 
     .profile-content-box {
