@@ -80,25 +80,23 @@ class UserListView(ListView):
         """
 
         queryset = self.model.objects.all()
-        search = self.request.GET.getlist('skills_to_search', None)
+        search_skills = self.request.GET.getlist('skills_to_search', None)
+        search_locations = self.request.GET.getlist('locations_to_search', None)
 
-        if search:
+        if search_skills and not search_locations:
+            # If there is no location provided, just
+            # query the model for all users that have the skills_to_teach we're searching for
+            queryset = User.objects.filter(skills_to_teach__pk__in=search_skills)
 
-            # Search for users with the skills to teach
-            skill_values = search
+        elif search_locations and not search_skills:
+            # If there is no location provided, just
+            # query the model for all users that live in the location(s) we're searching for
+            queryset = User.objects.filter(location__in=search_locations)
 
-            # Turn list of values into list of Q objects
-            queries = [Q(skills_to_teach__pk=value) for value in skill_values]
-
-            # Initialize Query
-            query = Q()
-
-            # Or the Q object with the ones remaining in the list
-            for item in queries:
-                query |= item
-
-            # Query the model for all users that have the skills_to_teach we're searching for
-            queryset = User.objects.filter(query).distinct()
+        else:
+            # If the location and skills to search are provided,
+            # query the model for all users that live in the location(s) and have the skill(s) 
+            queryset = User.objects.filter(location__in=search_locations).filter(skills_to_teach__pk__in=search_skills)
 
         return queryset
 
