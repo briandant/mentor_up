@@ -34,7 +34,6 @@
     <div class="container">
 
       {% block content %}
-      {{ view }}
 
       {% endblock content %}
 
@@ -55,6 +54,9 @@
 
       <!-- Your stuff: Third-party javascript libraries go here -->
       <script type="text/javascript" src="{% static 'js/selectize.min.js' %}"></script>
+
+      {% block in_page_javascript %} {# for JavaScripts that will rely on Django variables #}
+      {% endblock %}
 
       <!-- place project specific Javascript in this file -->
       <script type="text/javascript" src="{% static 'js/project.js' %}"></script>
