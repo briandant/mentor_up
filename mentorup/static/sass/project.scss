@@ -6,8 +6,41 @@
 // Variables
 $red-hot: #C0392B;
 $button-primary: $red-hot;
-$gray: rgb(189, 195, 199);
 $dark-blue: #2C3E50;
+
+$gray: #777;
+$grey: $gray;
+
+$dark-grey: hsla(203,18%,25%,1);
+$dark-gray: hsla(203,18%,25%,1);
+
+// Typography
+body {
+  color: $grey; 
+}
+
+// Mixins
+@mixin box {
+    max-width: 100%;
+    padding: 4px;
+    line-height: 1.428571429;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.15);
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+
+    background-color: #f9f9f9;
+    background-image: -moz-linear-gradient(bottom, white, #f2f2f2);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#f2f2f2));
+    background-image: -webkit-linear-gradient(bottom, white, #f2f2f2);
+    background-image: -o-linear-gradient(bottom, white, #f2f2f2);
+    background-image: linear-gradient(to top, #ffffff, #f2f2f2);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFF2F2F2', GradientType=0);
+}
 
 .btn-redhot {
     background-color: $red-hot;
@@ -21,6 +54,15 @@ img.img-thumbnail {
     margin-bottom: 1%;
 }
 
+ul.user-attributes {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+        padding-bottom: 10px;
+    }
+}
+
 // Sign in page
 body.sign-in {
 
@@ -31,6 +73,7 @@ body.sign-in {
     }
 }
 
+// User / Member List Page
 body.members {
     h2 {
         margin-bottom: 2%;
@@ -41,15 +84,16 @@ body.members {
         font-size: 22px;
     }
 
-    div.row.form-row {
-        padding: 20px 0;
-        border-bottom: 2px solid #eee;
-        margin-bottom: 20px;
-    }
-
     .form-group {
         width: 100%;
         max-width: 100%;
+    }
+
+    .search-form-wrapper,
+    .user-list-wrapper {
+        @include box;
+        padding: 20px;
+        margin: 15px auto;
     }
 
 }
@@ -59,14 +103,46 @@ ul.socialaccount_providers li {
 }
 
 .navbar-brand {
-    font-size: 34px;
+    font-size: 28px;
 }
 
-ul.user-attributes {
-    list-style: none;
-    padding-left: 0;
+
+// Member detail page (including update / edit)
+
+body.member-detail {
+    .profile-basics-box {
+
+        @include box;
+        padding-top: 15px;
+
+        img {
+            min-width: 95%;
+            padding: 0px;
+        }
+
+    }
+
+    .profile-content-box {
+        @include box;
+        padding: 15px 15px;
+
+        h2 {
+          display: inline-block;
+          margin-top: 0px;
+        }
+    }
+
+    .content-wrapper {
+        margin-top: 30px;
+    }
 }
 
-ul.user-attributes li {
-    padding-bottom: 10px;
+nav {
+    input {
+        min-width: 185px;
+    }
+
+    div.selectize-control.form-control {
+        padding-top: 5px;
+    }
 }

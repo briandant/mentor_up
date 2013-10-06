@@ -12,11 +12,6 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <!-- for some reason, jQuery needs to go *before* select2.js or else you get this error:
-    "Uncaught ReferenceError: jQuery is not defined"
-    -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
     {% block css %}
     <!-- Latest compiled and minified CSS -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -37,41 +32,34 @@
   </head>
 
   <body class={% block body_class %}{% endblock %}>
+    {% block nav %} {% include 'includes/nav.html' %} {% endblock %}
 
-    <div class="header navbar">
-      <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">Mentor UP</a>
-        <ul class="nav navbar-nav">
-          <li><a href="{% url 'about' %}">About</a></li>
-
-          {% if request.user.is_authenticated %}
-            <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
-            <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
-          {% else %}
-            <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
-            <li><a href="{% url 'account_login' %}">{% trans "Log In" %}</a></li>
-          {% endif %}
-        </ul>
+    {% block body_content %}
+    <div class="container">
+      <div class="row">
+          <div class="col-sm-3">
+            {% block leftnav %}{% endblock leftnav %}
+          </div>
+          <div class="col-sm-9">
+            {% block content %}
+            {% endblock content %}
+          </div>
       </div>
     </div>
-
-    <div class="container">
-
-      {% block content %}
-
-      {% endblock content %}
-
-    </div> <!-- /container -->
+    {% endblock %} 
     
     {% block modal %}{% endblock modal %}
 
     <!-- Load JS here for greater good =============================-->
     {% block javascript %}
       <!-- Latest JQuery -->
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+      {# <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> #}
+
+      <script src="{% static 'js/jquery-2.0.3.min.js' %}" type="text/javascript"></script>
 
       <!-- Latest compiled and minified JavaScript -->
-      <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+      {# <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> #}
+      <script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
 
       <!-- Your stuff: Third-party javascript libraries go here -->
       <script type="text/javascript" src="{% static 'js/selectize.min.js' %}"></script>

@@ -1,4 +1,5 @@
 # This file is here because many Platforms as a Service look for
 #	requirements.txt in the root directory of a project.
 pylibmc==1.2.3  # 
+#git+git://github.com/django-debug-toolbar/django-debug-toolbar@7e4ecfd04cfe61b51e1fd6fdf0ce1c800a3ebb3b
 -r requirements/production.txt

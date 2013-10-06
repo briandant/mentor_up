@@ -6,11 +6,6 @@
 {% block body_class %}member-detail{% endblock %}
 
 {% block content %}
-<script>
-  $(function () {
-    $('#myTab a:last').tab('show')
-  })
-</script>
 
 <div class="container">
 
@@ -49,35 +44,31 @@
 
 {% endif %}
 
-<div class="row">
-  <div class="col-sm-1">
-    {% avatar user %}
-  </div>
+<div class="row wrapper content-wrapper">
+  <div class="col-sm-3">
+    <div class="profile-basics-box">
+      <center>
+        {% avatar object %}
+        <h2 class="user-name">{{ object.first_name }} {{ object.last_name }}</h2>
+        <ul class="user-attributes">
+          <li><a href="{% url 'users:detail' object.username %}"><i class="icon-user"></i>&nbsp;{{ object.username }}</a></li>
+          <li><i class="icon-map-marker"></i>&nbsp;{{ object.display_location }}</li>
+          {% if object.github_profile_url %}
+          <li><i class="icon-github"></i>&nbsp;<a href="{{ object.github_profile_url }}">{{ object.github_profile_url }}</a></li>
+          {% endif %}
 
-  <div class="col-sm-11">
-    {% if object != request.user %}
-    <div class="container pull-right">
-      <a href="{% url 'postman_write' object.username %}" class="btn btn-large btn-success"><i class="icon-envelope-alt"></i>&nbsp;Contact me</a>
+          {% if object == request.user %}
+            <li><a href="#">Edit profile</a><li>
+          {% endif %}
+        </ul>
+      </center>
     </div>
-    {% endif %}
-    <h2>{{ object.first_name }} {{ object.last_name }}</h2>
-    <ul class="user-attributes">
-      <li><a href="{% url 'users:detail' user.username %}"><i class="icon-user"></i>&nbsp;{{ user.username }}</a></li>
-      <li><i class="icon-map-marker"></i>&nbsp;{{ user.display_location }}</li>
-      {% if object.github_profile_url %}
-      <li><i class="icon-github"></i>&nbsp;<a href="{{ object.github_profile_url }}">{{ object.github_profile_url }}</a></li>
-    {% endif %}
-    </ul>
-
-    <h4>Personal introduction</h4>
-    <p>{{ object.short_bio }}</p>
-
-    <h4>My skills</h4>
-    <p>{{ object.display_skills_to_teach }}</p>
-
-    <h4>What I want to learn</h4>
-    <p>{{ object.display_skills_to_learn }}</p>
-
   </div>
+
+  {% if object != request.user %}  {# Two seperate sections for logged in / logged out #}
+    {% include 'includes/profile_detail_content.html' %}
+  {% else %}
+    {% include 'includes/profile_dashboard.html' %}
+  {% endif %}
 </div>
 {% endblock content %}
