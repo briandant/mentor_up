@@ -78,27 +78,30 @@ class UserListView(ListView):
         Get the list of items for this view. This must be an iterable, and may
         be a queryset (in which qs-specific behavior will be enabled).
         """
-
         queryset = self.model.objects.all()
-        search = self.request.GET.getlist('skills_to_search', None)
+        search_skills = self.request.GET.getlist('skills_to_search', None)
+        search_locations = self.request.GET.getlist('locations_to_search', None)
 
-        if search:
+        if not self.request.GET and self.request.user.is_authenticated():
+            # If the user isn't anonymous, has either attribute, and hasn't submitted a search
+            # then default the search to be relevant to their location and / or skills_to_learn
+            search_skills = self.request.user.skills_to_learn.all() or None
+            search_locations = [self.request.user.location] or None
 
-            # Search for users with the skills to teach
-            skill_values = search
+        if search_skills and not search_locations:
+            # If there is no location provided, just
+            # query the model for all users that have the skills_to_teach we're searching for
+            queryset = self.model.objects.filter(skills_to_teach__pk__in=search_skills)
 
-            # Turn list of values into list of Q objects
-            queries = [Q(skills_to_teach__pk=value) for value in skill_values]
+        elif search_locations and not search_skills:
+            # If there is no location provided, just
+            # query the model for all users that live in the location(s) we're searching for
+            queryset = self.model.objects.filter(location__in=search_locations)
 
-            # Initialize Query
-            query = Q()
-
-            # Or the Q object with the ones remaining in the list
-            for item in queries:
-                query |= item
-
-            # Query the model for all users that have the skills_to_teach we're searching for
-            queryset = User.objects.filter(query).distinct()
+        elif search_locations and search_skills:
+            # If the location and skills to search are provided,
+            # query the model for all users that live in the location(s) and have the skill(s) 
+            queryset = self.model.objects.filter(location__in=search_locations).filter(skills_to_teach__pk__in=search_skills)
 
         return queryset
 
