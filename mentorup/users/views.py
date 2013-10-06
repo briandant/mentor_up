@@ -78,25 +78,28 @@ class UserListView(ListView):
         Get the list of items for this view. This must be an iterable, and may
         be a queryset (in which qs-specific behavior will be enabled).
         """
-
         queryset = self.model.objects.all()
         search_skills = self.request.GET.getlist('skills_to_search', None)
         search_locations = self.request.GET.getlist('locations_to_search', None)
 
+        if not self.request.GET and self.request.user.is_active:
+            search_skills = self.request.user.skills_to_learn.all()
+            search_locations = [self.request.user.location]
+
         if search_skills and not search_locations:
             # If there is no location provided, just
             # query the model for all users that have the skills_to_teach we're searching for
-            queryset = User.objects.filter(skills_to_teach__pk__in=search_skills)
+            queryset = self.model.objects.filter(skills_to_teach__pk__in=search_skills)
 
         elif search_locations and not search_skills:
             # If there is no location provided, just
             # query the model for all users that live in the location(s) we're searching for
-            queryset = User.objects.filter(location__in=search_locations)
+            queryset = self.model.objects.filter(location__in=search_locations)
 
-        else:
+        elif search_locations and search_skills:
             # If the location and skills to search are provided,
             # query the model for all users that live in the location(s) and have the skill(s) 
-            queryset = User.objects.filter(location__in=search_locations).filter(skills_to_teach__pk__in=search_skills)
+            queryset = self.model.objects.filter(location__in=search_locations).filter(skills_to_teach__pk__in=search_skills)
 
         return queryset
 
