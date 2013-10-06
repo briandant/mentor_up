@@ -82,9 +82,11 @@ class UserListView(ListView):
         search_skills = self.request.GET.getlist('skills_to_search', None)
         search_locations = self.request.GET.getlist('locations_to_search', None)
 
-        if not self.request.GET and self.request.user.is_active:
-            search_skills = self.request.user.skills_to_learn.all()
-            search_locations = [self.request.user.location]
+        if not self.request.GET and self.request.user.is_authenticated():
+            # If the user isn't anonymous, has either attribute, and hasn't submitted a search
+            # then default the search to be relevant to their location and / or skills_to_learn
+            search_skills = self.request.user.skills_to_learn.all() or None
+            search_locations = [self.request.user.location] or None
 
         if search_skills and not search_locations:
             # If there is no location provided, just
