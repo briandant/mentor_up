@@ -26,7 +26,9 @@ class UserForm(forms.ModelForm):
                 Field('short_bio'),
                 Field('location'),
                 Field('skills_to_learn'),
-                Field('skills_to_teach')
+                Field('skills_to_teach'),
+                Field('available_to_teach'),
+                Field('availability_description'),
             )
         )
 
@@ -34,7 +36,16 @@ class UserForm(forms.ModelForm):
         # Set this form to use the User model.
         model = User
 
-        fields = ("first_name", "last_name", "short_bio", "location", "skills_to_learn", "skills_to_teach")
+        fields = (
+            "first_name", 
+            "last_name", 
+            "short_bio", 
+            "location", 
+            "skills_to_learn", 
+            "skills_to_teach",
+            "available_to_teach",
+            "availability_description",
+            )
 
 
 class MemberSearchForm(forms.Form):
