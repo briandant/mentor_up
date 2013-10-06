@@ -17,5 +17,9 @@ $(document).ready(function() {
     $("#id_skills_to_search").selectize({
         persist: false,
         hideSelected: true });
-})
 
+    $("#nav_skills_to_search").selectize({
+        persist: false,
+        hideSelected: true });
+
+});
