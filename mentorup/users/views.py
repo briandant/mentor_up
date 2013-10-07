@@ -81,12 +81,14 @@ class UserListView(ListView):
         queryset = self.model.objects.all()
         search_skills = self.request.GET.getlist('skills_to_search', None)
         search_locations = self.request.GET.getlist('locations_to_search', None)
+        default_search_attempt = False
 
         if not self.request.GET and self.request.user.is_authenticated():
             # If the user isn't anonymous, has either attribute, and hasn't submitted a search
             # then default the search to be relevant to their location and / or skills_to_learn
             search_skills = self.request.user.skills_to_learn.all() or None
             search_locations = [self.request.user.location] or None
+            default_search_attempt = True
 
         if search_skills and not search_locations:
             # If there is no location provided, just
@@ -102,6 +104,11 @@ class UserListView(ListView):
             # If the location and skills to search are provided,
             # query the model for all users that live in the location(s) and have the skill(s) 
             queryset = self.model.objects.filter(location__in=search_locations).filter(skills_to_teach__pk__in=search_skills)
+
+        if not queryset and default_search_attempt:
+            # If the User's skills and location default search does not return any results,
+            # then just show all Users
+            queryset = self.model.objects.all()
 
         return queryset
 

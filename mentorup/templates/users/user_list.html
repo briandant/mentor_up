@@ -31,7 +31,7 @@
           <span><h4><a href="{% url 'users:detail' user.username %}">{{ user.first_name }} {{ user.last_name }}</a></h4></span>
           <ul class="user-attributes">
             <li><a href="{% url 'users:detail' user.username %}"><i class="icon-user"></i>&nbsp;{{ user.username }}</a></li>
-            <li><i class="icon-map-marker"></i>&nbsp;{{ user.display_location }}</li>
+            <li><i class="icon-map-marker"></i>&nbsp;{{ user.get_location_display }}</li>
           </ul>
         </div>
 
