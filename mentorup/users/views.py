@@ -93,17 +93,17 @@ class UserListView(ListView):
         if search_skills and not search_locations:
             # If there is no location provided, just
             # query the model for all users that have the skills_to_teach we're searching for
-            queryset = self.model.objects.filter(skills_to_teach__pk__in=search_skills)
+            queryset = self.model.objects.filter(skills_to_teach__pk__in=search_skills).distinct()
 
         elif search_locations and not search_skills:
             # If there is no location provided, just
             # query the model for all users that live in the location(s) we're searching for
-            queryset = self.model.objects.filter(location__in=search_locations)
+            queryset = self.model.objects.filter(location__in=search_locations).distinct()
 
         elif search_locations and search_skills:
             # If the location and skills to search are provided,
             # query the model for all users that live in the location(s) and have the skill(s) 
-            queryset = self.model.objects.filter(location__in=search_locations).filter(skills_to_teach__pk__in=search_skills)
+            queryset = self.model.objects.filter(location__in=search_locations).filter(skills_to_teach__pk__in=search_skills).distinct()
 
         if not queryset and default_search_attempt:
             # If the User's skills and location default search does not return any results,
