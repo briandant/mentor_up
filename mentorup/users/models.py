@@ -60,12 +60,12 @@ class User(AbstractUser):
             else:
                 return None
 
-    def display_location(self):
-        """
-        Given a location value, return the humanized location
-        """
-        locations = dict(LOCATIONS)
-        return locations[self.location]
+    # def display_location(self):
+    #     """
+    #     Given a location value, return the humanized location
+    #     """
+    #     locations = dict(LOCATIONS)
+    #     return locations[self.location]
 
     def display_skills_to_teach(self):
         """

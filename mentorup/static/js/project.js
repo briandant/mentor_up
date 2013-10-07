@@ -22,6 +22,10 @@ $(document).ready(function() {
         persist: false,
         hideSelected: true });
 
+    // var $locations_to_search = $("id_locations_to_search").selectize({
+    //     persist: false,
+    //     hideSelected: true });
+
     // Use selectize API to repopulate those fields
    
    if ( $.isEmptyObject(window.previouslySelectedSkills) == false ) {
@@ -32,4 +36,12 @@ $(document).ready(function() {
              skills_instance.addItem(skill);
          };
    }
+   // if ( $.isEmptyObject(window.previouslySelectedLocations) == false ) {
+   //      // Select the element(s) to write to
+   //      var skills_instance = $skills_to_search[0].selectize;
+
+   //       for ( skill in window.previouslySelectedSkills )  {
+   //           skills_instance.addItem(skill);
+   //       };
+   // }
 })

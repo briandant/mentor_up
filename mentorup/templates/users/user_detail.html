@@ -16,8 +16,8 @@
   <div class="col-sm-12">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#">Dashboard</a></li>
-      <li><a href="{% url 'users:update' %}">Messages</a></li>
-      <li><a href="{% url 'postman_inbox' %}">Settings</a></li>
+      <li><a href="{% url 'postman_inbox' %}">Messages</a></li>
+      <li><a href="#">Settings ( Not Implemented )</a></li>
 {#      <li><a href="{% url 'avatar_change' %}">Photo</a></li>#}
 {#      <li><a href="{% url 'socialaccount_connections' %}">Social Networks</a></li>#}
     </ul>
@@ -36,13 +36,13 @@
         <h2 class="user-name">{{ object.first_name }} {{ object.last_name }}</h2>
         <ul class="user-attributes">
           <li><a href="{% url 'users:detail' object.username %}"><i class="icon-user"></i>&nbsp;{{ object.username }}</a></li>
-          <li><i class="icon-map-marker"></i>&nbsp;{{ object.display_location }}</li>
+          <li><i class="icon-map-marker"></i>&nbsp;{{ object.get_location_display }}</li>
           {% if object.github_profile_url %}
           <li><i class="icon-github"></i>&nbsp;<a href="{{ object.github_profile_url }}">{{ object.github_profile_url }}</a></li>
           {% endif %}
 
           {% if object == request.user %}
-            <li><a href="#">Edit profile</a><li>
+            <li><a href="{% url 'users:update' %}">Edit profile</a><li>
           {% endif %}
         </ul>
       </center>
