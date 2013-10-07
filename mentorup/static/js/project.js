@@ -26,8 +26,6 @@ $(document).ready(function() {
    
    if ( $.isEmptyObject(window.previouslySelectedSkills) == false ) {
         // Select the element(s) to write to
-        console.log($skills_to_search[0])
-        console.log($skills_to_search)
         var skills_instance = $skills_to_search[0].selectize;
 
          for ( skill in window.previouslySelectedSkills )  {
