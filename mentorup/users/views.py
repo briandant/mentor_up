@@ -78,7 +78,7 @@ class UserListView(ListView):
         Get the list of items for this view. This must be an iterable, and may
         be a queryset (in which qs-specific behavior will be enabled).
         """
-        queryset = self.model.objects.all().exclude(id=request.user.id)
+        queryset = self.model.objects.all().exclude(id=self.request.user.id)
         search_skills = self.request.GET.getlist('skills_to_search', None)
         search_locations = self.request.GET.getlist('locations_to_search', None)
         default_search_attempt = False
@@ -93,22 +93,22 @@ class UserListView(ListView):
         if search_skills and not search_locations:
             # If there is no location provided, just
             # query the model for all users that have the skills_to_teach we're searching for
-            queryset = self.model.objects.filter(skills_to_teach__pk__in=search_skills).distinct().exclude(id=request.user.id)
+            queryset = self.model.objects.filter(skills_to_teach__pk__in=search_skills).distinct().exclude(id=self.request.user.id)
 
         elif search_locations and not search_skills:
             # If there is no location provided, just
             # query the model for all users that live in the location(s) we're searching for
-            queryset = self.model.objects.filter(location__in=search_locations).distinct().exclude(id=request.user.id)
+            queryset = self.model.objects.filter(location__in=search_locations).distinct().exclude(id=self.request.user.id)
 
         elif search_locations and search_skills:
             # If the location and skills to search are provided,
             # query the model for all users that live in the location(s) and have the skill(s) 
-            queryset = self.model.objects.filter(location__in=search_locations).filter(skills_to_teach__pk__in=search_skills).distinct().exclude(id=request.user.id)
+            queryset = self.model.objects.filter(location__in=search_locations).filter(skills_to_teach__pk__in=search_skills).distinct().exclude(id=self.request.user.id)
 
         if not queryset and default_search_attempt:
             # If the User's skills and location default search does not return any results,
             # then just show all Users
-            queryset = self.model.objects.all().exclude(id=request.user.id)
+            queryset = self.model.objects.all().exclude(id=self.request.user.id)
 
         return queryset
 
