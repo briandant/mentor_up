@@ -23,7 +23,7 @@
 
         <li><a href="{% url 'about' %}">About</a></li>
       {% if request.user.is_authenticated %}
-        <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Dashboard" %}</a></li>
+        <li><a href="{% url 'postman_inbox' %}">{% trans "My Dashboard" %}</a></li>
         <li><a href="{% url 'account_logout' %}"><i class="icon-off"></i>&nbsp;{% trans "Logout" %}</a></li>
 
       {% else %}

@@ -1,0 +1,10 @@
+{% block user_menu %}
+<div class="well">
+<ul id="user_menu" class="nav nav-pills nav-stacked">
+ <li><a href="{% url 'users:update' %}"><i class="icon-edit"></i>&nbsp;Edit profile</a></li>
+ <li><a href="{% url 'avatar_change' %}"><i class="icon-picture"></i>&nbsp;Change photo</a></li>
+
+ <li><a href="{% url 'socialaccount_connections' %}"><i class="icon-github-alt"></i>&nbsp;Connected accounts</a></li>
+</ul>
+</div>
+{% endblock %}
