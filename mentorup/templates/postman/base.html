@@ -2,9 +2,9 @@
 {% load url from future %}
 {% load i18n static %}{% load postman_tags %}
 {% block title %}{% trans "Messaging" %}{% endblock %}
-{% block extrahead %}{{ block.super }}
+{% block extra_css %}{{ block.super }}
 <link type="text/css" media="all" rel="stylesheet" href="{% static 'postman/css/postman.css' %}" />
-{% endblock %}
+{% endblock extra_css %}
 
 {% block subnav %}
 {% include 'users/_dashboard_menu.html' %}
