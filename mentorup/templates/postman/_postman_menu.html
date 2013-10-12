@@ -1,11 +1,13 @@
 {% load i18n postman_tags %}{% load pagination_tags %}
 
 {% block postman_menu %}
+<div class="well">
 <ul id="postman_menu" class="nav nav-pills nav-stacked">{% postman_unread as unread_count %}
  <li><a href="{% url 'postman_inbox' %}"><i class="icon-inbox"></i>&nbsp;{% trans "Inbox" %}{% if unread_count %} <strong>({{ unread_count }})</strong>{% endif %}</a></li>
- <li><a href="{% url 'postman_sent' %}">&nbsp;{% trans "Sent Messages" %}</a></li>
+ <li><a href="{% url 'postman_sent' %}"><i class="icon-reply"></i>&nbsp;{% trans "Sent Messages" %}</a></li>
  <li><a href="{% url 'postman_write' %}"><i class="icon-edit"></i>&nbsp;{% trans "Write" %}</a></li>
- <li><a href="{% url 'postman_archives' %}">&raquo;&nbsp;{% trans "Archives" %}</a></li>
+ <li><a href="{% url 'postman_archives' %}"><i class="icon-folder-close"></i>&nbsp;{% trans "Archives" %}</a></li>
  <li><a href="{% url 'postman_trash' %}"><i class="icon-trash"></i>&nbsp;{% trans "Trash" %}</a></li>
 </ul>
+</div>
 {% endblock %}
