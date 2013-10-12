@@ -5,28 +5,19 @@
 {% block title %}User: {{ object.username }}{% endblock %}
 {% block body_class %}member-detail{% endblock %}
 
-{% block content %}
+{% block body_content %}
 
+{% block content %}
 <div class="container">
 
+{% block subnav %}
 {% if object == request.user %}
-<!-- Action buttons -->     
-<div class="row">
 
-  <div class="col-sm-12">
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#">Dashboard</a></li>
-      <li><a href="{% url 'postman_inbox' %}">Messages</a></li>
-      <li><a href="#">Settings ( Not Implemented )</a></li>
-{#      <li><a href="{% url 'avatar_change' %}">Photo</a></li>#}
-{#      <li><a href="{% url 'socialaccount_connections' %}">Social Networks</a></li>#}
-    </ul>
-  </div>
 
-</div>
-<!-- End Action buttons -->
+{% include 'users/_dashboard_menu.html' %}
 
 {% endif %}
+{% endblock subnav %}
 
 <div class="row wrapper content-wrapper">
   <div class="col-sm-3">
@@ -56,3 +47,4 @@
   {% endif %}
 </div>
 {% endblock content %}
+{% endblock body_content %}

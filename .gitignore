@@ -6,3 +6,4 @@ mentorup/media
 mentorup/static/.sass-cache/
 build/
 staticfiles/
+*.orig

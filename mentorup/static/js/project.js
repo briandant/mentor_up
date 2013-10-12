@@ -22,14 +22,18 @@ $(document).ready(function() {
         persist: false,
         hideSelected: true });
 
-    // Use selectize API to repopulate those fields
-   
-   if ( $.isEmptyObject(window.previouslySelectedSkills) == false ) {
-        // Select the element(s) to write to
-        var skills_instance = $skills_to_search[0].selectize;
-
-         for ( skill in window.previouslySelectedSkills )  {
-             skills_instance.addItem(skill);
-         };
-   }
+    $("#id_member_search_form").submit(function(e) {
+        // alert("Search coming soon! Goooooo Django Dash!");
+        // e.preventDefault();
+    })
 })
+
+//        $.ajax({
+//           url: this.attr('action'),
+//           data: $("#id_member_search_form").serialize(), // serializes the form's elements.
+//         }).done(function(data) {
+//           alert("Done"); // show response from the php script.
+//         })
+//    })
+//               type: "GET",
+//               url: url,
