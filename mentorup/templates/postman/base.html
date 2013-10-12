@@ -6,19 +6,14 @@
 <link type="text/css" media="all" rel="stylesheet" href="{% static 'postman/css/postman.css' %}" />
 {% endblock %}
 
-{% block body_content %}
-	{% block leftnav %}
-		{% block postman_menu %}
-		<ul id="postman_menu" class="nav nav-pills nav-stacked">{% postman_unread as unread_count %}
-		 <li><a href="{% url 'postman_inbox' %}"><i class="icon-inbox"></i>&nbsp;{% trans "Inbox" %}{% if unread_count %} <strong>({{ unread_count }})</strong>{% endif %}</a></li>
-		 <li><a href="{% url 'postman_sent' %}">&nbsp;{% trans "Sent Messages" %}</a></li>
-		 <li><a href="{% url 'postman_write' %}"><i class="icon-edit"></i>&nbsp;{% trans "Write" %}</a></li>
-		 <li><a href="{% url 'postman_archives' %}">&raquo;&nbsp;{% trans "Archives" %}</a></li>
-		 <li><a href="{% url 'postman_trash' %}"><i class="icon-trash"></i>&nbsp;{% trans "Trash" %}</a></li>
-		</ul>
-		{% endblock %}
-	{% endblock %}
+{% block subnav %}
+{% include 'users/_dashboard_menu.html' %}
+{% endblock subnav %}
 
-	{% block content %}
-	{% endblock %}
+{% block leftnav %}
+{% include 'postman/_postman_menu.html' %}
 {% endblock %}
+
+{% block content %}
+{% endblock %}
+

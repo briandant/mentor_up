@@ -32,13 +32,19 @@
   </head>
 
   <body class={% block body_class %}{% endblock %}>
+
     {% block nav %} {% include 'includes/nav.html' %} {% endblock %}
 
     {% block body_content %}
+
     <div class="container">
+        {% block subnav %}
+        {% endblock subnav %}
+
       <div class="row">
           <div class="col-sm-3">
-            {% block leftnav %}{% endblock leftnav %}
+            {% block leftnav %}
+            {% endblock leftnav %}
           </div>
           <div class="col-sm-9">
             {% block content %}
