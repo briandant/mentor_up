@@ -1,17 +1,18 @@
+{% load activeurl %}
+
 <!-- Action buttons -->     
 <div class="row">
 
   <div class="col-sm-12">
+    {% activeurl menu="yes" parent_tag="li" %}
     <ul class="nav nav-tabs">
-      {% url 'users:detail' as detail_url %}
-      <li><a href="{% url detail_url  %}"{% if request.path == detail_url %} class="active"{% endif %}>Dashboard</a></li>
-      {% url 'postman_inbox' as inbox_url %}
-      <li><a href="{% url inbox_url %}"{% if request.path == inbox_url %} class="active"{% endif %}>Messages</a></li>
-      {% url 'users:update' as update_url %}
-      <li><a href="{% url update_url %}"{% if request.path == update_url %} class="active"{% endif %}>Settings</a></li>
+      <li><a href="{% url 'users:detail' request.user %}">Dashboard</a></li>
+      <li><a href="{% url 'postman_inbox' %}">Messages</a></li>
+      <li><a href="{% url 'users:update' %}">Settings</a></li>
 {#      <li><a href="{% url 'avatar_change' %}">Photo</a></li>#}
 {#      <li><a href="{% url 'socialaccount_connections' %}">Social Networks</a></li>#}
     </ul>
+    {% endactiveurl %}
   
 <!--     <ul class="nav nav-tabs" id="myTab">
       <li class="active"><a <a data-toggle="tab" href="#dashboard">Dashboard</a></li>

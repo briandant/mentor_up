@@ -40,7 +40,8 @@ django-notification==1.1.1
 django-select2==4.2.1
 # this is only added for purposes of running the South migrations
 # to avoid this error: ValueError: Cannot import the required field 'select2.fields.ForeignKey'
-django-select2-forms==1.1.7  
+django-select2-forms==1.1.7
+django-activeurl==0.1.4
 
 # TODO: evaluate these packages for use to populate the Location field
 #django-cities-light==2.1.0

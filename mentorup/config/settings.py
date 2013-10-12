@@ -53,6 +53,7 @@ class Common(Configuration):
         # to avoid this error: ValueError: Cannot import the required field 'select2.fields.ForeignKey'
         'select2',
         'floppyforms',  # form freshness
+        'django_activeurl',
     )
 
     # Apps specific for this project go here.
