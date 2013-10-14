@@ -39,8 +39,8 @@ class User(AbstractUser):
     def __unicode__(self):
         return unicode(self.username)
 
-    skills_to_teach = models.ManyToManyField(Skill, related_name='skills_to_teach')
-    skills_to_learn = models.ManyToManyField(Skill, related_name='skills_to_learn')
+    skills_to_teach = models.ManyToManyField(Skill, related_name='skills_to_teach', blank=True)
+    skills_to_learn = models.ManyToManyField(Skill, related_name='skills_to_learn', blank=True)
 
     available_to_teach = models.BooleanField(default=False)
     availability_description = models.TextField()
