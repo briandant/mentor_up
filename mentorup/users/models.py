@@ -43,7 +43,7 @@ class User(AbstractUser):
     skills_to_learn = models.ManyToManyField(Skill, related_name='skills_to_learn', blank=True)
 
     available_to_teach = models.BooleanField(default=False)
-    availability_description = models.TextField()
+    availability_description = models.TextField(blank=True)
 
     short_bio = models.TextField()
     location = models.CharField(max_length=50, choices=sorted(LOCATIONS), default="boston")

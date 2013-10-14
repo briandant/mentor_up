@@ -28,7 +28,7 @@ def sender_profile_required(sender, recipient, recipients_list):
     message.  Otherwise, the user can send a message.
     '''
     if not sender.has_valid_profile():
-        return "You must create a profile before contacting a user!"
+        return "You must create a profile before contacting a user!  Your profile must at least contain a short bio and the skills you wish to learn."
     return None
 
 
