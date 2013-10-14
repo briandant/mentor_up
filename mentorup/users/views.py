@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
 # Only authenticated users can access views using this.
-from braces.views import LoginRequiredMixin, AccessMixin
+from braces.views import LoginRequiredMixin
 
 # Import the form from users/forms.py
 from .forms import UserForm, MemberSearchForm
@@ -21,28 +21,15 @@ from .forms import UserForm, MemberSearchForm
 from .models import User, Skill
 
 
-# class ProfileRequiredMixin(AccessMixin):
-#     """
-#     View mixin which verifies that the user has a profile created.
-#     """
-#     def dispatch(self, request, *args, **kwargs):
-#         if not request.user.is_authenticated() or not request.user.has_valid_profile():
-#             if self.raise_exception:
-#                 raise PermissionDenied  # return a forbidden response
-#             else:
-#                 return HttpResponseRedirect(reverse(
-#                     "users:update"))
-
-#         return super(ProfileRequiredMixin, self).dispatch(
-#             request, *args, **kwargs)
-
-
-# class UserPostmanRedirect(ProfileRequiredMixin, RedirectView):
-    
-#     def get_redirect_url(self, recipients):
-#         return reverse(
-#             "postman_write",
-#             kwargs={"recipients": recipients})
+def sender_profile_required(sender, recipient, recipients_list):
+    '''
+    Method attached to postman_write url via exchange_filter.
+    Checks to see if a message sender has a valid profile, if not, returns a
+    message.  Otherwise, the user can send a message.
+    '''
+    if not sender.has_valid_profile():
+        return "You must create a profile before contacting a user!"
+    return None
 
 
 class UserDetailView(DetailView):
