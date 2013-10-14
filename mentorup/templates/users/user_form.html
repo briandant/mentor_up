@@ -7,15 +7,16 @@
     {% import_django_select2_css %}
 {% endblock %}
 
+{% block content %}
+
 {% block sub_nav %}
 {% include 'users/_dashboard_menu.html' %}
 {% endblock sub_nav %}
 
-{% block content %}
-
 <div class="pull-right"><a href="{% url 'users:detail' request.user %}" class="btn btn-primary">Preview profile</a></div>
 
 <div class="container">
+    <div class="row wrapper content-wrapper">
     <h1>{% block header %}User: {{ user.username }}{% endblock %}</h1>
     <div class="row">
         <div class="col-lg-4">
@@ -30,5 +31,6 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 {% endblock content %}
