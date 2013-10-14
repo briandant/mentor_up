@@ -20,6 +20,7 @@ from .forms import UserForm, MemberSearchForm
 # Import the customized User model
 from .models import User, Skill
 
+
 class ProfileRequiredMixin(AccessMixin):
     """
     View mixin which verifies that the user has a profile created.
@@ -35,12 +36,14 @@ class ProfileRequiredMixin(AccessMixin):
         return super(ProfileRequiredMixin, self).dispatch(
             request, *args, **kwargs)
 
+
 class UserPostmanRedirect(ProfileRequiredMixin, RedirectView):
     
     def get_redirect_url(self, recipients):
         return reverse(
             "postman_write",
             kwargs={"recipients": recipients})
+
 
 class UserDetailView(DetailView):
     model = User
