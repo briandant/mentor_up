@@ -3,6 +3,7 @@
 from django.core.urlresolvers import reverse
 
 # view imports
+from django.http import HttpResponseRedirect
 from django.views.generic import DetailView, RedirectView, ListView
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -11,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
 # Only authenticated users can access views using this.
-from braces.views import LoginRequiredMixin
+from braces.views import LoginRequiredMixin, AccessMixin
 
 # Import the form from users/forms.py
 from .forms import UserForm, MemberSearchForm
@@ -19,6 +20,27 @@ from .forms import UserForm, MemberSearchForm
 # Import the customized User model
 from .models import User, Skill
 
+class ProfileRequiredMixin(AccessMixin):
+    """
+    View mixin which verifies that the user has a profile created.
+    """
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated() or not request.user.has_valid_profile():
+            if self.raise_exception:
+                raise PermissionDenied  # return a forbidden response
+            else:
+                return HttpResponseRedirect(reverse(
+                    "users:update"))
+
+        return super(ProfileRequiredMixin, self).dispatch(
+            request, *args, **kwargs)
+
+class UserPostmanRedirect(ProfileRequiredMixin, RedirectView):
+    
+    def get_redirect_url(self, recipients):
+        return reverse(
+            "postman_write",
+            kwargs={"recipients": recipients})
 
 class UserDetailView(DetailView):
     model = User

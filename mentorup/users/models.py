@@ -75,3 +75,16 @@ class User(AbstractUser):
         """
         skills = self.skills_to_learn.all()
         return ", ".join([str(skill) for skill in skills])
+
+    def has_valid_profile(self):
+        """
+        Given a user, return True if they have completed 
+        the skills_to_learn and short_bio section of their
+        profile, otherwise return False.
+        """
+        valid = False
+
+        if self.skills_to_learn.all() and self.short_bio:
+            valid = True
+
+        return valid

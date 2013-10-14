@@ -36,4 +36,10 @@ urlpatterns = patterns(
         view=views.user_search_view,
         name='search'
     ),
+
+    url(
+        regex=r'^~write_redirect/(?P<recipients>[\w\-_]+)/$',
+        view=views.UserPostmanRedirect.as_view(),
+        name='postman_write_redirect'
+    ),
 )
