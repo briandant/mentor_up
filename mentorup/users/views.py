@@ -29,6 +29,9 @@ def sender_profile_required(sender, recipient, recipients_list):
     '''
     if not sender.has_valid_profile():
         return "You must create a profile before contacting a user!  Your profile must at least contain a short bio and the skills you wish to learn."
+    for recipient_user in recipients_list:
+        if not recipient_user.available_to_teach:
+            return "This user is not available to teach at this time."
     return None
 
 
