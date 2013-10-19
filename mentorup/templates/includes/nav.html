@@ -1,0 +1,35 @@
+{% load i18n %}
+{% load crispy_forms_tags %}
+<nav class="navbar navbar-default" role="navigation">
+  <a class="navbar-brand" href="{% url 'home' %}">Mentor UP</a>
+
+  <div class="navbar-right">
+
+    {% if not hide_navbar_search %}
+    <form class="navbar-form navbar-left" role="search" method="get" name="skills_to_search" action="{% url 'users:list' %}">
+      <div class="form-group">
+        {#        <input id="nav_skills_to_search" type="search" class="form-control" placeholder="Search members by skill">#}
+        {% crispy nav_member_search_form %}
+      </div>
+
+      <button type="submit" class="btn btn-default">Search</button>
+    </form>
+    {% endif %}
+
+    <ul class="nav navbar-nav">
+      {% if not hide_navbar_search %}
+        <li><a href="{% url 'users:list' %}">Member List</a></li>
+      {% endif %}
+
+        <li><a href="{% url 'about' %}">About</a></li>
+      {% if request.user.is_authenticated %}
+        <li><a href="{% url 'postman_inbox' %}">{% trans "My Dashboard" %}</a></li>
+        <li><a href="{% url 'account_logout' %}"><i class="icon-off"></i>&nbsp;{% trans "Logout" %}</a></li>
+
+      {% else %}
+        <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
+        <li><a href="{% url 'account_login' %}"><i class="icon-lock"></i>&nbsp;{% trans "Log In" %}</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

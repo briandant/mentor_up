@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags django_select2_tags %}
 
-{% block title %}User: {{ user.username }}{% endblock %}
+{% block title %}Member: {{ user.username }}{% endblock %}
 
 {% block extra_css %}
     {% import_django_select2_css %}
 {% endblock %}
 
 {% block content %}
+
+{% block sub_nav %}
+{% include 'users/_dashboard_menu.html' %}
+{% endblock sub_nav %}
+
+<div class="pull-right"><a href="{% url 'users:detail' request.user %}" class="btn btn-primary">Preview profile</a></div>
 
 <div class="container">
     <h1>{% block header %}User: {{ user.username }}{% endblock %}</h1>
@@ -25,8 +31,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block extra_javascript %}
-    {% import_django_select2_js %}
-{% endblock %}    
+{% endblock content %}

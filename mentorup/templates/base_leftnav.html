@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block container %}
+	<div class="container">
+      <div class="row">
+          <div class="col-sm-3">
+            {% block postman_menu %}{% endblock postman_menu %}
+          </div>
+          <div class="col-sm-9">
+            {% block content %}
+            {% endblock content %}
+          </div>
+      </div>
+  </div>
+{% endblock container %}

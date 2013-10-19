@@ -4,27 +4,22 @@ from django.contrib.auth.models import AbstractUser
 
 # Import the basic Django ORM models and forms library
 from django.db import models
-from django.db.models.signals import post_save
-from django import forms
-from django.db.models import Q
-from django.utils.translation import ugettext_lazy as _
-
 from allauth.socialaccount.models import SocialAccount
 
 
 LOCATIONS = (
-        ('boston', 'Boston, MA'),
-        ('newyork', 'New York, NY'),
-        ('sanfrancisco', 'San Francisco, CA'),
-        ('washingtondc', 'Washington, DC'),
-        ('seattle', 'Seattle, WA'),
-        ('austin', 'Austin, TX'),
-        ('portland', 'Portland, OR'),
-        ('minneapolis', 'Minneapolis, MN'),
-        ('chicago', 'Chicago, IL'),
-        ('boulder', 'Boulder, CO'),
-        ('other', 'Other')
-    )
+    ('boston', 'Boston, MA'),
+    ('newyork', 'New York, NY'),
+    ('sanfrancisco', 'San Francisco, CA'),
+    ('washingtondc', 'Washington, DC'),
+    ('seattle', 'Seattle, WA'),
+    ('austin', 'Austin, TX'),
+    ('portland', 'Portland, OR'),
+    ('minneapolis', 'Minneapolis, MN'),
+    ('chicago', 'Chicago, IL'),
+    ('boulder', 'Boulder, CO'),
+    ('other', 'Other')
+)
 
 
 class Skill(models.Model):
@@ -44,11 +39,14 @@ class User(AbstractUser):
     def __unicode__(self):
         return unicode(self.username)
 
-    skills_to_teach = models.ManyToManyField(Skill, related_name='skills_to_teach')
-    skills_to_learn = models.ManyToManyField(Skill, related_name='skills_to_learn')
+    skills_to_teach = models.ManyToManyField(Skill, related_name='skills_to_teach', blank=True)
+    skills_to_learn = models.ManyToManyField(Skill, related_name='skills_to_learn', blank=True)
+
+    available_to_teach = models.BooleanField(default=False)
+    availability_description = models.TextField()
 
     short_bio = models.TextField()
-    location = models.CharField(max_length=50, choices=LOCATIONS, default="boston")
+    location = models.CharField(max_length=50, choices=sorted(LOCATIONS), default="boston")
 
     def github_profile_url(self):
         """
@@ -62,13 +60,6 @@ class User(AbstractUser):
             else:
                 return None
 
-    def display_location(self):
-        """
-        Given a location value, return the humanized location
-        """
-        locations = dict(LOCATIONS)
-        return locations[self.location]
-
     def display_skills_to_teach(self):
         """
         Given a user, return a comma separated list of
@@ -77,7 +68,6 @@ class User(AbstractUser):
         skills = self.skills_to_teach.all()
         return ", ".join([str(skill) for skill in skills])
 
-
     def display_skills_to_learn(self):
         """
         Given a user, return a comma separated list of
@@ -85,3 +75,16 @@ class User(AbstractUser):
         """
         skills = self.skills_to_learn.all()
         return ", ".join([str(skill) for skill in skills])
+
+    def has_valid_profile(self):
+        """
+        Given a user, return True if they have completed 
+        the skills_to_learn and short_bio section of their
+        profile, otherwise return False.
+        """
+        valid = False
+
+        if self.skills_to_learn.all() and self.short_bio:
+            valid = True
+
+        return valid

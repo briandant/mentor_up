@@ -1,0 +1,19 @@
+{% load activeurl %}
+
+<!-- Action buttons -->     
+<div class="row">
+
+  <div class="col-sm-12">
+    {% activeurl menu="yes" parent_tag="li" %}
+    <ul class="nav nav-tabs">
+      <li><a href="{% url 'postman_inbox' %}"><i class="icon-envelope"></i>&nbsp;Messages</a></li>
+      <li><a href="{% url 'users:update' %}"><i class="icon-edit"></i>&nbsp;Edit Profile</a></li>
+      <li><a href="{% url 'avatar_change' %}"><i class="icon-picture"></i>&nbsp;Change Photo</a></li>
+      <li><a href="{% url 'socialaccount_connections' %}"><i class="icon-github-alt"></i>&nbsp;Connected Accounts</a></li>
+    </ul>
+    {% endactiveurl %}
+
+  </div>
+
+</div>
+<!-- End Action buttons -->

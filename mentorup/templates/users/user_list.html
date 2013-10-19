@@ -1,17 +1,25 @@
 {% extends "base.html" %}
 {% load static i18n postman_tags avatar_tags %}
+{% load crispy_forms_tags %}
 
 {% block title %}Mentor UP Members{% endblock %}
 {% block body_class %}members{% endblock %}
 
-{% block content %}
+{% block body_content %}
 
 <div class="container">
     
   <div class="row">
-      <h2>MentorUP Members</h2>
+      <h2>Mentor UP Members</h2>
   </div>
 
+  <div class="search-form-wrapper">
+    <div class="row form-row">
+      {% crispy search_form %}
+    </div>
+  </div>
+
+  <div class="user-list-wrapper">
     {% for user in user_list %}
     <div class="row">
         <div class="col-sm-1">
@@ -22,7 +30,7 @@
           <span><h4><a href="{% url 'users:detail' user.username %}">{{ user.first_name }} {{ user.last_name }}</a></h4></span>
           <ul class="user-attributes">
             <li><a href="{% url 'users:detail' user.username %}"><i class="icon-user"></i>&nbsp;{{ user.username }}</a></li>
-            <li><i class="icon-map-marker"></i>&nbsp;{{ user.display_location }}</li>
+            <li><i class="icon-map-marker"></i>&nbsp;{{ user.get_location_display }}</li>
           </ul>
         </div>
 
@@ -41,9 +49,15 @@
       </a>
 
     </div>
-    <hr>
+    {% if not forloop.last %}
+      <hr>
+    {% endif %}
     {% endfor %}
-
+  </div>
 </div>
 
-{% endblock content %}
+{% endblock body_content %}
+
+{% block in_page_javascript %}
+  {% include 'includes/repopulate-select.html' %}
+{% endblock %}
